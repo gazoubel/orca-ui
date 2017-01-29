@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="absolute-center is-responsive col-md-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">New Registration</div>
+        <div class="panel-body">
+          <form {{action "doRegister" newRegistration on="submit"}}>
+            <label for="companyFullName">Company Full Name</label>
+            {{input value=newRegistration.companyFullName class="form-control"}}
+
+            <label for="inputSuccess2">Acronym</label>
+            <div class="form-group has-feedback {{if acronymIsValid 'has-success' 'has-error'}}">
+              {{input value=newRegistration.companyAcronym class="form-control" aria-describedby="inputAcronymStatus"}}
+              <span class="glyphicon {{if acronymIsValid 'glyphicon-ok' 'glyphicon-remove'}} form-control-feedback" aria-hidden="true"></span>
+              <span id="inputAcronymStatus" class="sr-only">{{#if acronymIsValid}}(success){{else}}(error){{/if}}</span>
+            </div>
+
+            <label for="firstname">First Name</label>
+            {{input value=newRegistration.firstname class="form-control"}}
+            <label for="lastname">Last Name</label>
+            {{input value=newRegistration.lastname class="form-control"}}
+
+            <label for="email">Email</label>
+            <div class="form-group has-feedback {{if emailIsValid 'has-success' 'has-error'}}">
+              {{input value=newRegistration.email class="form-control" aria-describedby="inputEmailStatus"}}
+              <span class="glyphicon {{if emailIsValid 'glyphicon-ok' 'glyphicon-remove'}} form-control-feedback" aria-hidden="true"></span>
+              <span id="inputEmailStatus" class="sr-only">{{#if emailIsValid}}(success){{else}}(error){{/if}}</span>
+            </div>
+
+            <label for="password">Password</label>
+            {{input value=newRegistration.password type="password" class="form-control"}}
+
+            <label for="passwordConfirmation">Confirm Password</label>
+            <div class="form-group has-feedback {{if passwordMatches 'has-success' 'has-error'}}">
+              {{input value=newRegistration.passwordConfirmation class="form-control" type="password" aria-describedby="inputPasswordConfirmationStatus"}}
+              <span class="glyphicon {{if passwordMatches 'glyphicon-ok' 'glyphicon-remove'}} form-control-feedback" aria-hidden="true"></span>
+              <span id="inputPasswordConfirmationStatus" class="sr-only">{{#if passwordMatches}}(success){{else}}(error){{/if}}</span>
+            </div>
+            <button type="submit" class="btn btn-success btn-lg btn-block"
+              style="margin-top: 15px" disabled={{buttonDisabled}}>Sign Up</button>
+          </form>
+        </div>
+        <div class="panel-footer"></div>
+      </div>
+    </div>
+  </div>
+</div>
