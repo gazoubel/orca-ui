@@ -24,6 +24,27 @@ module.exports = function(environment) {
     }
   };
 
+  ENV['ember-simple-auth'] = {
+    // baseURL: 'company/login'
+    authorizer: 'authorizer:token'
+  };
+  ENV['ember-simple-auth-token'] = {
+    // serverTokenEndpoint: 'http://localhost:1337/api/v1/users/jwt',
+    serverTokenEndpoint: 'http://localhost:1337/api/v1/auths/login',
+    identificationField: 'email',
+    passwordField: 'password',
+    refreshAccessTokens: true,
+    serverTokenRefreshEndpoint: 'http://localhost:1337/api/v1/users/jwt',
+
+    tokenPropertyName: 'token',
+    authorizationPrefix: 'Bearer ',
+    authorizationHeaderName: 'Authorization',
+
+    timeFactor: 1,
+    refreshLeeway: 300 // Refresh the token 5 minutes (300s) before it expires.
+  };
+
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;

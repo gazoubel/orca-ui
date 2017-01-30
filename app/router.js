@@ -8,6 +8,12 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('registration');
+
+  this.route('company', {
+    path: ':company_acronym'
+  }, function() {
+    this.route('login');
+  });
 });
 
 export default Router;
