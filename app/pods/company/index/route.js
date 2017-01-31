@@ -24,7 +24,6 @@ export default Ember.Route.extend({
       doSignOut(){
         var _this = this;
         this.get('session').invalidate().then(function(){
-          // _this.transitionToRoute('company');
         });
       }
   }

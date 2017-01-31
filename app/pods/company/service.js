@@ -12,9 +12,23 @@ export default Ember.Service.extend({
         var company = companies.get('firstObject');
         if(company && company.get('id')){
           store.findAll('company-to-user', {user: userId, company: company.get('id')})
-          .then(function(record) {
-              if(record.get('length')>0){
-                session.set('name', 'Fulano dos Grudes');
+          .then(function(records) {
+              if(records.get('length')>0){
+                var companyRelationship = records.get('firstObject');
+                companyRelationship.get('user')
+                .then(function(user){
+                  return user.get('person');
+                }).then(function(person){
+                  var sessionVariables = {
+                    company_id: company.get('id'),
+                    company_name: company.get('name'),
+                    privilege:companyRelationship.get('privilege'),
+                    name: person.get('firstName')+' '+person.get('lastName')
+                  }
+                  session.set('sessionVariables', sessionVariables);
+                }).catch(function(reason){
+                  reject('user does not have records correctly setup.'+ reason);
+                });
                 resolve(true);
               } else {
                 reject('user does not have access to this company');

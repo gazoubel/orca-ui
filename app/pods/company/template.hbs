@@ -1,5 +1,8 @@
 {{#if session.isAuthenticated}}
-  {{session.name}}
+  {{session.sessionVariables.name}}
+  {{session.sessionVariables.privilege}}
+  {{session.sessionVariables.company_id}}
+  {{session.sessionVariables.company_name}}
   {{outlet}}
 {{else}}
 <div class="container">
