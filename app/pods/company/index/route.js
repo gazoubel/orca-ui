@@ -12,9 +12,10 @@ export default Ember.Route.extend({
       var currentAcronym = transition.params.company.company_acronym;
       _this.get('company')
       .checkUserAccess(currentAcronym, userId)
-      .then(function(value) {
+      .then(function() {
         // on fulfillment
       }, function(reason) {
+        alert('user access denied:'+reason)
         _this.set('session.attemptedTransition', null);
         _this.get('session').invalidate();
       });
@@ -22,7 +23,6 @@ export default Ember.Route.extend({
   },
   actions:{
       doSignOut(){
-        var _this = this;
         this.get('session').invalidate().then(function(){
         });
       }

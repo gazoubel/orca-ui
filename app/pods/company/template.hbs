@@ -1,9 +1,129 @@
 {{#if session.isAuthenticated}}
-  {{session.sessionVariables.name}}
+<!-- <div class="wrapper" style="position: inherit;">
+  <header class="main-header">
+      <a href="/" class="logo">
+        {{session.sessionVariables.company_name}}
+      </a>
+      <nav class="navbar navbar-static-top" role="navigation">
+        <a role="button" data-toggle="offcanvas" class="sidebar-toggle" href="#">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="hidden-xs">{{session.sessionVariables.name}}</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="user-header">
+                  <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <p>
+                    {{session.sessionVariables.name}}
+                    <small>{{session.sessionVariables.privilege}}</small>
+                  </p>
+                </li>
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  </div>
+                  <div class="pull-right">
+                    <a {{action 'doSignOut'}} class="btn btn-default btn-flat">Sign out</a>
+
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  </header>
+  <nav class="sidebar-wrapper">
+      <div class="main-sidebar">
+          <div class="sidebar">
+              <ul class="sidebar-menu">
+                  <li><a href="#"><span>Projects</span></a></li>
+                  <li><a href="#"><span>Administration</span></a></li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+  <section class="content-wrapper  fill-height ">
+      {{outlet}}
+  </section>
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      Report an issue
+    </div>
+    <strong>Copyright © 2016 <a href="#">Orkaman</a>.</strong> All rights reserved.
+  </footer>
+</div> -->
+<header class="main-header" >
+  <nav class="navbar navbar-static-top" style="margin-left: 0px;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <div class="navbar-brand">{{session.sessionVariables.company_name}}<small style="font-size: 8px;padding-left:5px;">powered by orkaman</small></div>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav" style="margin-left: 10px;">
+          <li class="active"><a href="#">Projects <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Administration</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
+          </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="hidden-xs">{{session.sessionVariables.name}}</span><span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="user-header">
+                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <p>
+                  {{session.sessionVariables.name}}
+                  <small>{{session.sessionVariables.privilege}}</small>
+                </p>
+              </li>
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a {{action 'doSignOut'}} class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</header>
+<div class="content-wrapper" style="min-height: 817px; margin-left: 0px">
+  <div class="container">
+      {{outlet}}
+  </div>
+</div>
+
+<footer class="main-footer" style="margin-left: 0px;">
+  <div class="pull-right hidden-xs">
+    Report an issue
+  </div>
+  <strong>Copyright © 2016 <a href="#">Orkaman</a>.</strong> All rights reserved.
+</footer>
+  <!-- {{session.sessionVariables.name}}
   {{session.sessionVariables.privilege}}
   {{session.sessionVariables.company_id}}
-  {{session.sessionVariables.company_name}}
-  {{outlet}}
+  {{session.sessionVariables.company_name}} -->
 {{else}}
 <div class="container">
   <div class="row">
