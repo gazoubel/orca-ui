@@ -1,9 +1,70 @@
 {{#if session.isAuthenticated}}
-  {{session.sessionVariables.name}}
-  {{session.sessionVariables.privilege}}
-  {{session.sessionVariables.company_id}}
-  {{session.sessionVariables.company_name}}
-  {{outlet}}
+<header class="main-header" >
+  <nav class="navbar navbar-static-top" style="margin-left: 0px;">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand">
+        <span>{{model.companyName}}
+          <small style="font-size: 8px;padding-left:5px;">powered by orkaman</small>
+        </span>
+      </a>
+    </div>
+    <div class="container">
+      <div class="navbar-custom-menu">
+        <!-- <ul class="nav navbar-nav navbar-left" style="margin-left: 10px;">
+          <li class="active"><a href="#">P<span class="hidden-xs">rojects</span> <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">A<span class="hidden-xs">dministration<</span></a></li>
+        </ul> -->
+        <!-- <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
+          </div>
+        </form> -->
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="#">P<span class="hidden-xs">rojects</span> </a></li>
+          <li><a href="#">A<span class="hidden-xs">dministration<</span></a></li>
+
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="fa fa-user visible-xs-block"></span>
+              <span class="hidden-xs">{{session.sessionVariables.name}}</span><span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="user-header">
+                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <p>
+                  {{session.sessionVariables.name}}
+                  <small>{{session.sessionVariables.privilege}}</small>
+                </p>
+              </li>
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a {{action 'doSignOut'}} class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div>
+    </div>
+  </nav>
+</header>
+<div class="content-wrapper" style="min-height: 817px; margin-left: 0px">
+  <div class="container">
+      {{outlet}}
+  </div>
+</div>
+
+<footer class="main-footer" style="margin-left: 0px;">
+  <div class="pull-right hidden-xs">
+    Report an issue
+  </div>
+  <strong>Copyright © 2016 <a href="#">Orkaman</a>.</strong> All rights reserved.
+</footer>
 {{else}}
 <div class="container">
   <div class="row">

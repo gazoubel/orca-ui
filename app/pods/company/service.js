@@ -22,9 +22,10 @@ export default Ember.Service.extend({
                   var sessionVariables = {
                     company_id: company.get('id'),
                     company_name: company.get('name'),
+                    company_acronym: currentAcronym,
                     privilege:companyRelationship.get('privilege'),
                     name: person.get('firstName')+' '+person.get('lastName')
-                  }
+                  };
                   session.set('sessionVariables', sessionVariables);
                 }).catch(function(reason){
                   reject('user does not have records correctly setup.'+ reason);
@@ -38,7 +39,7 @@ export default Ember.Service.extend({
           reject('company does not exist');
         }
 
-      })
+      });
     });
     return promise;
   }

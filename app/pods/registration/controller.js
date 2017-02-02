@@ -31,10 +31,10 @@ export default Ember.Controller.extend({
       });
   }),
   passwordMatches: Ember.computed('newRegistration.passwordConfirmation','newRegistration.password', function(){
-    if (!this.get('newRegistration.password') || this.get('newRegistration.password')=='') {
+    if (!this.get('newRegistration.password') || this.get('newRegistration.password')==='') {
       return false;
     }
-    return this.get('newRegistration.passwordConfirmation')==this.get('newRegistration.password');
+    return this.get('newRegistration.passwordConfirmation')===this.get('newRegistration.password');
   }),
   buttonDisabled: Ember.computed('acronymIsValid','emailIsValid','passwordMatches', function(){
     return !this.get('acronymIsValid') ||
@@ -46,10 +46,10 @@ export default Ember.Controller.extend({
       this.get('registration').send(newRegistration)
       .then(
         (res)=>{
-          alert('registered');
+          alert('registered'+res);
         },
         (xhr, status,error)=>{
-          alert('err:'+xhr.responseText);
+          alert('err:'+xhr.responseText+status+error);
         }
       );
     }
