@@ -7,7 +7,6 @@ export function initialize(instance) {
   session.on('invalidationSucceeded', function() {
     applicationRoute.transitionTo('company.index');
   });
-}
 
 export default {
   initialize,
