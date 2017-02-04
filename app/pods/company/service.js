@@ -3,9 +3,11 @@ import Ember from 'ember';
 export default Ember.Service.extend({
   store: Ember.inject.service('store'),
   session: Ember.inject.service('session'),
+  intl: Ember.inject.service(),
   checkUserAccess(currentAcronym, userId){
     var session = this.get('session');
     var store = this.get('store');
+    var intl = this.get('intl');
     var promise = new Promise(function(resolve, reject) {
       store.query('company', {acronym: currentAcronym})
       .then(function(companies){
@@ -19,6 +21,7 @@ export default Ember.Service.extend({
                 .then(function(user){
                   return user.get('person');
                 }).then(function(person){
+                  intl.setLocale('en-us');
                   var sessionVariables = {
                     company_id: company.get('id'),
                     company_name: company.get('name'),
