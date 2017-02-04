@@ -32,7 +32,7 @@ module.exports = function(defaults) {
   app.import('bower_components/AdminLTE/bootstrap/css/bootstrap.css');
   app.import('bower_components/AdminLTE/dist/css/AdminLTE.css');
   app.import('bower_components/AdminLTE/dist/css/skins/_all-skins.css');
-  app.import('bower_components/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js');
+  app.import('bower_components/AdminLTE/plugins/jQuery/jQuery-2.2.3.min.js');
   app.import('bower_components/AdminLTE/bootstrap/js/bootstrap.min.js');
   app.import('bower_components/AdminLTE/dist/js/app.min.js');
 

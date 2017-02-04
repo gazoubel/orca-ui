@@ -1,0 +1,36 @@
+<section class="content-header">
+  <h1>Administration<small></small></h1>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="box box-solid">
+        <div class="box-header with-border">
+          <h3 class="box-title">Menus</h3>
+        </div>
+        <div class="box-body no-padding" style="display: block;">
+          <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#"><i class="fa fa-inbox"></i> stages
+              <span class="label label-primary pull-right">12</span></a></li>
+            <li><a href="#"><i class="fa fa-envelope-o"></i> provider</a></li>
+            <li><a href="#"><i class="fa fa-file-text-o"></i> Item Types</a></li>
+            <li><a href="#"><i class="fa fa-filter"></i> Payment Types <span class="label label-warning pull-right">65</span></a>
+            </li>
+            <li><a href="#"><i class="fa fa-trash-o"></i> Users</a></li>
+
+            <!-- {{#link-to 'company.administration.stages' class="list-group-item"}}{{t 'product.administration.menu.stages'}}{{/link-to}}
+    {{#link-to 'company.administration.provider' class="list-group-item"}}{{t 'product.administration.menu.providers'}}{{/link-to}}
+    {{#link-to 'company.administration.item-types' class="list-group-item"}}{{t 'product.administration.menu.itemTypes'}}{{/link-to}}
+    {{#link-to 'company.administration.users' class="list-group-item"}}{{t 'product.administration.menu.users'}}{{/link-to}}
+    {{#link-to 'company.administration.payment-types' class="list-group-item"}}{{t 'product.administration.menu.paymentTypes'}}{{/link-to}} -->
+
+          </ul>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </div>
+    <div class="col-md-9">
+      {{outlet}}
+    </div>
+  </div>
+</section>

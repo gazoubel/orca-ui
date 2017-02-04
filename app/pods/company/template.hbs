@@ -4,14 +4,14 @@
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand">
-        <span>{{model.companyName}}
+        <span>{{model.companyAcronym}}
           <small style="font-size: 8px;padding-left:5px;">powered by orkaman</small>
         </span>
       </a>
     </div>
     <div class="container">
       <div class="navbar-custom-menu">
-        
+
         <!-- <ul class="nav navbar-nav navbar-left" style="margin-left: 10px;">
           <li class="active"><a href="#">P<span class="hidden-xs">rojects</span> <span class="sr-only">(current)</span></a></li>
           <li><a href="#">A<span class="hidden-xs">dministration<</span></a></li>
@@ -22,8 +22,10 @@
           </div>
         </form> -->
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#">P<span class="hidden-xs">rojects</span> </a></li>
-          <li><a href="#">A<span class="hidden-xs">dministration<</span></a></li>
+          <li><a href="#">P<span class="hidden-xs">rojects</span> </a></li>
+          {{#link-to 'company.administration' tagName="li" href=false}}
+            <a href="#"><span class="visible-xs-block">A</span><span class="hidden-xs">Administration<</span></a>
+          {{/link-to}}
 
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

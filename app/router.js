@@ -13,6 +13,7 @@ Router.map(function() {
     path: ':company_acronym'
   }, function() {
     this.route('login');
+    this.route('administration');
   });
 });
 
