@@ -1,11 +1,16 @@
 product:
   info: '{product} will cost {price, number, USD} if ordered by {deadline, date, time}'
   subTitle: 'powered by orkaman'
-  tabs:
-    projects: 'Projects'
-    projects_mobile: 'P'
-    administration: 'Administration'
-    administration_mobile: 'A'
-    user:
-      profile: 'Profile'
-      signOut: 'Sign Out'
+  user:
+    profile: 'Profile'
+    signOut: 'Sign Out'
+  administration:
+    tabName: 'Administration'
+    tabNameMobile: 'A'
+    title: 'Administration'
+    menu:
+      stages: 'Stages'
+  projects:
+    tabName: 'Projects'
+    tabNameMobile: 'P'
+    title: 'Projects'

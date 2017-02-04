@@ -13,7 +13,9 @@ Router.map(function() {
     path: ':company_acronym'
   }, function() {
     this.route('login');
-    this.route('administration');
+    this.route('administration', function() {
+      this.route('stages');
+    });
   });
 });
 

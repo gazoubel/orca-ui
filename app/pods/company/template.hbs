@@ -23,9 +23,13 @@
           </div>
         </form> -->
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span  class="visible-xs-block">{{t 'product.tabs.projects_mobile'}}</span><span class="hidden-xs">{{t 'product.tabs.projects'}}</span> </a></li>
+          <li><a href="#">
+            <span  class="visible-xs-block">{{t 'product.projects.tabNameMobile'}}</span>
+            <span class="hidden-xs">{{t 'product.projects.tabName'}}</span>
+          </a></li>
           {{#link-to 'company.administration' tagName="li" href=false}}
-            <a href="#"><span class="visible-xs-block">{{t 'product.tabs.administration_mobile'}}</span><span class="hidden-xs">{{t 'product.tabs.administration'}}</span></a>
+            <a href="#"><span class="visible-xs-block">{{t 'product.administration.tabNameMobile'}}</span>
+              <span class="hidden-xs">{{t 'product.administration.tabName'}}</span></a>
           {{/link-to}}
 
           <li class="dropdown user user-menu">
@@ -43,10 +47,10 @@
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">{{t 'product.tabs.user.profile'}}</a>
+                  <a href="#" class="btn btn-default btn-flat">{{t 'product.user.profile'}}</a>
                 </div>
                 <div class="pull-right">
-                  <a {{action 'doSignOut'}} class="btn btn-default btn-flat">{{t 'product.tabs.user.signOut'}}</a>
+                  <a {{action 'doSignOut'}} class="btn btn-default btn-flat">{{t 'product.user.signOut'}}</a>
                 </div>
               </li>
             </ul>
