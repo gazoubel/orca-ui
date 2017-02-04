@@ -16,7 +16,7 @@ export default Ember.Route.extend({
       .then(function() {
         // on fulfillment
       }, function(reason) {
-        alert('user access denied:'+reason)
+        alert('user access denied:'+reason);
         _this.set('session.attemptedTransition', null);
         _this.get('session').invalidate();
       });

@@ -9,8 +9,9 @@ export default Ember.Controller.extend({
       var credentials = {'identification':email, 'password': password};
       var authenticator = 'authenticator:token';
       this.get('session').authenticate(authenticator, credentials)
-      .then(function(data){
-        alert('authenticated'+data);
+      .then(function(){
+        _this.get('appManager').notify('info', 'authenticated');
+        // alert('authenticated'+data);
         var userId = _this.get('session.data.authenticated.user.id');
         _this.get('company').checkUserAccess(_this.get('model.companyAcronym'), userId)
         .then(function() {
