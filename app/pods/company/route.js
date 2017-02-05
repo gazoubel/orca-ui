@@ -6,12 +6,13 @@ export default Ember.Route.extend({
   company: Ember.inject.service(),
   session: Ember.inject.service('session'),
   beforeModel: function(transition) {
+    // this.get('session').invalidate();
     var _this = this;
     var session = _this.get('session');
     if (session.get('isAuthenticated')) {
       var userId = session.get('data.authenticated.user.id');
       var currentAcronym = transition.params.company.company_acronym;
-      _this.get('company')
+      return _this.get('company')
       .checkUserAccess(currentAcronym, userId)
       .then(function() {
         // on fulfillment

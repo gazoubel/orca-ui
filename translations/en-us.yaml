@@ -14,3 +14,7 @@ product:
     tabName: 'Projects'
     tabNameMobile: 'P'
     title: 'Projects'
+  commonWords:
+    add: 'Add'
+    cancel: 'Cancel'
+    name: 'Name'
