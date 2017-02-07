@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
+  intl: Ember.inject.service(),
   modelIsInValid: false,
   init: function () {
     this._super();
@@ -34,12 +35,14 @@ export default Ember.Controller.extend({
         stage.save().then(function() {
             controller.set('modelIsInValid', false);
             controller.set('name', '');
-            controller.get('appManager').notify('success', "Stage Created");
+
+            var t_model = controller.get('intl').t('models.stage');
+            var message = controller.get('intl').t('product.messages.model_created',{model: t_model});
+            controller.get('appManager').notify('success', message);
         }, function(error){
           controller.set('modelIsInValid', true);
           controller.get('appManager').notify('error', error.detailedMessage);
           stage.rollbackAttributes();
-          // controller.get('appManager').notify('error', errors);
         }).catch(function(reason){
           stage.rollbackAttributes();
           controller.get('appManager').notify('error', "Error creating stage:" + reason);

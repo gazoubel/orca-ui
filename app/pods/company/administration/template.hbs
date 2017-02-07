@@ -14,10 +14,11 @@
             {{#link-to 'company.administration.providers' tagName="li" href=false}}
             <a href="#"><i class="fa fa-truck"></i> <span>{{t 'product.administration.menu.providers'}}</span></a>
             {{/link-to}}
-            <li><a href="#"><i class="fa fa-file-text-o"></i> Item Types</a></li>
-            <li><a href="#"><i class="fa fa-filter"></i> Payment Types</a>
-            </li>
-            <li><a href="#"><i class="fa fa-trash-o"></i> Users</a></li>
+            {{#link-to 'company.administration.payment-types' tagName="li" href=false}}
+            <a href="#"><i class="fa fa-money"></i> <span>{{t 'product.administration.menu.paymentTypes'}}</span></a>
+            {{/link-to}}
+            <li><a href="#"><i class="fa fa-object-group"></i> Item Types</a></li>
+            <li><a href="#"><i class="fa fa-users"></i> Users</a></li>
           </ul>
         </div>
         <!-- /.box-body -->

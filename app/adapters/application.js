@@ -22,9 +22,9 @@ export default DS.RESTAdapter.extend(DataAdapterMixin, {
             var model = errorMessageParts[0];
             var field = errorMessageParts[1];
             var error = errorMessageParts[2];
-            var t_model = intl.t('product.errors.models.'+model);
-            var t_field = intl.t('product.errors.fields.'+field);
-            message+= intl.t('product.errors.'+error, {model: t_model, field: t_field});
+            var t_model = intl.t('models.'+model);
+            var t_field = intl.t('fields.'+field);
+            message+= intl.t('errors.'+error, {model: t_model, field: t_field});
           } else {
             message+=thisKeyErrors[errorIndex].message;
           }

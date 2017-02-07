@@ -6,7 +6,8 @@ const Validations = buildValidations({
   name: validator('presence', true),
   userRelationships: validator('has-many'),
   stages: validator('has-many'),
-  providers: validator('has-many')
+  providers: validator('has-many'),
+  paymentTypes: validator('has-many')
 
 });
 
@@ -15,5 +16,6 @@ export default DS.Model.extend(Validations, {
   acronym: DS.attr('string'),
   userRelationships: DS.hasMany('company-to-user', {inverse: 'company'}),
   stages: DS.hasMany('stage', {inverse: 'company'}),
-  providers: DS.hasMany('provider', {inverse: 'company'})
+  providers: DS.hasMany('provider', {inverse: 'company'}),
+  paymentTypes: DS.hasMany('payment-type', {inverse: 'company'})
 });

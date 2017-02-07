@@ -20,35 +20,34 @@ export default Ember.Controller.extend({
       var controller = this;
       var sessionVariables = this.get('session.sessionVariables');
       this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
-        var provider = controller.store.createRecord('provider', {
+        var paymentType = controller.store.createRecord('payment-type', {
           name: name,
           company: company
         });
 
-        if (!provider.get('validations.isValid')) {
+        if (!paymentType.get('validations.isValid')) {
           controller.set('modelIsInValid', true);
           controller.get('appManager').notify('error', provider.get('validations.messages'));
-          provider.rollbackAttributes();
+          paymentType.rollbackAttributes();
           return;
         }
 
-        provider.save().then(function() {
+        paymentType.save().then(function() {
           controller.set('modelIsInValid', false);
           controller.set('name', '');
-
-          var t_model = controller.get('intl').t('models.provider');
+          var t_model = controller.get('intl').t('models.paymenttype');
           var message = controller.get('intl').t('product.messages.model_created',{model: t_model});
           controller.get('appManager').notify('success', message);
         }).catch(function(error){
           controller.set('modelIsInValid', true);
           controller.get('appManager').notify('error', error.detailedMessage);
-          provider.rollbackAttributes();
+          paymentType.rollbackAttributes();
         });
       });
 
     },
-    removeStage: function (provider){
-      provider.destroyRecord();
+    removeStage: function (paymentType){
+      paymentType.destroyRecord();
     }
   }
 });

@@ -16,6 +16,7 @@ Router.map(function() {
     this.route('administration', function() {
       this.route('stages');
       this.route('providers');
+      this.route('payment-types');
     });
   });
 });
