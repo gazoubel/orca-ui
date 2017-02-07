@@ -24,7 +24,6 @@ export default Ember.Controller.extend({
           company: company
         });
 
-        controller.set('modelIsInValid', false);
         if (!provider.get('validations.isValid')) {
           controller.set('modelIsInValid', true);
           controller.get('appManager').notify('error', provider.get('validations.messages'));
@@ -33,10 +32,13 @@ export default Ember.Controller.extend({
         }
 
         provider.save().then(function() {
-            controller.set('name', '');
-            controller.get('appManager').notify('success', "Provider Created");
-        }).catch(function(reason){
-          controller.get('appManager').notify('error', "Error creating provider:" + reason);
+          controller.set('modelIsInValid', false);
+          controller.set('name', '');
+          controller.get('appManager').notify('success', "Provider Created");
+        }).catch(function(error){
+          controller.set('modelIsInValid', true);
+          controller.get('appManager').notify('error', error.detailedMessage);
+          provider.rollbackAttributes();
         });
       });
 

@@ -10,19 +10,24 @@ export default DS.RESTAdapter.extend(DataAdapterMixin, {
   host: config.host,
   authorizer: 'authorizer:token',
   handleResponse: function(status, headers, payload, requestData){
-    var _this = this;
+    var intl = this.get('intl');
     if(status === 400 && payload.Errors){
       var error = new DS.AdapterError(payload.Errors);
       var message = "";
       Object.keys(payload.Errors).forEach(function(key){
         var thisKeyErrors = payload.Errors[key];
         Object.keys(thisKeyErrors).forEach(function(errorIndex){
-          var inflector = new Ember.Inflector(Ember.Inflector.defaultRules);
-          var thisMessage=thisKeyErrors[errorIndex].message.replace(' ', '_');
-          var entity = inflector.singularize(requestData.url.replace(_this.host + '/' + _this.namespace + '/', ''));
-          var t_entity = _this.get('intl').t('product.errors.'+entity);
-          var t_field = _this.get('intl').t('product.errors.'+entity+'_'+key);
-          message+= _this.get('intl').t('product.errors.'+thisMessage, {entity: t_entity, field: t_field});
+          var errorMessageParts = thisKeyErrors[errorIndex].message.split('.');
+          if (errorMessageParts.length>2) {
+            var model = errorMessageParts[0];
+            var field = errorMessageParts[1];
+            var error = errorMessageParts[2];
+            var t_model = intl.t('product.errors.models.'+model);
+            var t_field = intl.t('product.errors.fields.'+field);
+            message+= intl.t('product.errors.'+error, {model: t_model, field: t_field});
+          } else {
+            message+=thisKeyErrors[errorIndex].message;
+          }
         });
       });
       error.detailedMessage = message;

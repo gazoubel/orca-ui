@@ -21,6 +21,9 @@ product:
     done: 'Done'
     name: 'Name'
   errors:
-    stage: 'stage'
-    stage_name: 'name'
-    already_exists: 'Another {entity} with same {field} already exists'
+    models:
+      stage: 'stage'
+      provider: 'provider'
+    fields:
+      name: 'name'
+    unique: 'Another {model} with same {field} already exists'
