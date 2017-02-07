@@ -18,13 +18,12 @@ export default Ember.Controller.extend({
     addStage: function (name){
       var controller = this;
       var sessionVariables = this.get('session.sessionVariables');
-      this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
+      return this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
         var stage = controller.store.createRecord('stage', {
           name: name,
           company: company
         });
 
-        controller.set('modelIsInValid', false);
         if (!stage.get('validations.isValid')) {
           controller.set('modelIsInValid', true);
           controller.get('appManager').notify('error', stage.get('validations.messages'));
@@ -33,9 +32,16 @@ export default Ember.Controller.extend({
         }
 
         stage.save().then(function() {
+            controller.set('modelIsInValid', false);
             controller.set('name', '');
             controller.get('appManager').notify('success', "Stage Created");
+        }, function(error){
+          controller.set('modelIsInValid', true);
+          controller.get('appManager').notify('error', error.detailedMessage);
+          stage.rollbackAttributes();
+          // controller.get('appManager').notify('error', errors);
         }).catch(function(reason){
+          stage.rollbackAttributes();
           controller.get('appManager').notify('error', "Error creating stage:" + reason);
         });
       });

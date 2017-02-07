@@ -15,6 +15,7 @@ Router.map(function() {
     this.route('login');
     this.route('administration', function() {
       this.route('stages');
+      this.route('providers');
     });
   });
 });

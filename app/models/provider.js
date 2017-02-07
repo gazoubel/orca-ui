@@ -9,7 +9,8 @@ const Validations = buildValidations({
   ]
 });
 
-export default DS.Model.extend(Validations, {
+export default DS.Model.extend(Validations,{
   name: DS.attr('string'),
-  company: DS.belongsTo('company',{inverse: 'stages'})
+  company: DS.belongsTo('company',{inverse: 'providers'})
+  // purchaseTransactions: DS.hasMany('purchase-transaction',   {async: true}),
 });

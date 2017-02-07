@@ -10,6 +10,7 @@ product:
     title: 'Administration'
     menu:
       stages: 'Stages'
+      providers: 'Providers'
   projects:
     tabName: 'Projects'
     tabNameMobile: 'P'
@@ -17,4 +18,9 @@ product:
   commonWords:
     add: 'Add'
     cancel: 'Cancel'
+    done: 'Done'
     name: 'Name'
+  errors:
+    stage: 'stage'
+    stage_name: 'name'
+    already_exists: 'Another {entity} with same {field} already exists'
