@@ -1,7 +1,7 @@
 <!-- <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-plus"></i></button> -->
-<h2>{{t 'product.administration.menu.stages'}}<small></small></h2>
+<h2>{{t 'product.administration.menu.itemTypes'}}<small></small></h2>
 {{#show-on-click  modelIsInValid=modelIsInValid
-    onCloseClicked="closeAddPanel" onAddClicked="addStage" itemAdded=name }}
+    onCloseClicked="closeAddPanel" onAddClicked="add" itemAdded=name }}
   <div class="form-group {{if modelIsInValid "has-error"}}">
     <label for="nameInput">{{t 'fields.name'}}</label>
     {{input value=name class="form-control" id="nameInput" }}
@@ -17,9 +17,9 @@
         </tr>
       </thead>
       <tbody>
-        {{#each model as |stage|}}
+        {{#each model as |paymentType|}}
         <tr>
-          <td>{{stage.name}}</td>
+          <td>{{paymentType.name}}</td>
           <!-- <td><button type="submit" class="btn btn-default" {{action "removeStage" stage}}>{{t 'product.basic.buttonText.delete'}}</button></td> -->
         </tr>
         {{/each}}

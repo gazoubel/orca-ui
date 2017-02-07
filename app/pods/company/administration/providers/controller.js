@@ -4,11 +4,6 @@ export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
   modelIsInValid: false,
-  init: function () {
-    this._super();
-    this.set('modelIsInValid', false);
-    this.set('name', "");
-  },
 
   actions: {
     closeAddPanel: function(){

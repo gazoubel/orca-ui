@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   formCss: "form-inline pull-right",
   actions: {
     openAddPanel: function(){
+      this.set('modelIsInValid', false);
       this.set('isAdding', true);
     },
     addClicked:function(){

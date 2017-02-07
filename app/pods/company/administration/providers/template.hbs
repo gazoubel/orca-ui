@@ -3,7 +3,7 @@
 {{#show-on-click  modelIsInValid=modelIsInValid
     onCloseClicked="closeAddPanel" onAddClicked="add" itemAdded=name }}
   <div class="form-group {{if modelIsInValid "has-error"}}">
-    <label for="nameInput">{{t 'product.commonWords.name'}}</label>
+    <label for="nameInput">{{t 'fields.name'}}</label>
     {{input value=name class="form-control" id="nameInput" }}
   </div>
 {{/show-on-click}}

@@ -17,6 +17,7 @@ Router.map(function() {
       this.route('stages');
       this.route('providers');
       this.route('payment-types');
+      this.route('item-types');
     });
   });
 });

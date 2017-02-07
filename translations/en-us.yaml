@@ -2,6 +2,7 @@ models:
   stage: 'stage'
   provider: 'provider'
   paymenttype: 'payment type'
+  itemtype: 'item type'
 fields:
   name: 'Name'
 product:
@@ -18,6 +19,7 @@ product:
       stages: 'Stages'
       providers: 'Providers'
       paymentTypes: 'Payment Types'
+      itemTypes: 'Item Types'
   projects:
     tabName: 'Projects'
     tabNameMobile: 'P'
