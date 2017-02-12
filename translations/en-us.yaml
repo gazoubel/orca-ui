@@ -5,6 +5,10 @@ models:
   itemtype: 'item type'
 fields:
   name: 'Name'
+  basicType: 'Basic Type'
+  basicTypes:
+    labor: 'Labor'
+    material: 'Material'
 product:
   info: '{product} will cost {price, number, USD} if ordered by {deadline, date, time}'
   subTitle: 'powered by orkaman'
@@ -28,6 +32,7 @@ product:
     add: 'Add'
     cancel: 'Cancel'
     done: 'Done'
+    select: 'Select...'
   messages:
     model_created: '{model} created.'
 errors:

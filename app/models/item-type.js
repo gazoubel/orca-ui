@@ -3,6 +3,7 @@ import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
   name: validator('presence', true),
+  basicType: validator('presence', true),
   company: [
     validator('presence', true),
     validator('belongs-to')
@@ -11,5 +12,10 @@ const Validations = buildValidations({
 
 export default DS.Model.extend(Validations,{
   name: DS.attr('string'),
-  company: DS.belongsTo('company',{inverse: 'itemTypes'})
+  basicType: DS.attr('string'),
+  company: DS.belongsTo('company',{inverse: 'itemTypes'}),
+  basicTypeName: Ember.computed('basicType', function() {
+    var basicType = this.get('basicType');
+    return 'fields.basicTypes.'+(basicType||'material');
+  }),
 });
