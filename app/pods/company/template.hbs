@@ -23,10 +23,14 @@
           </div>
         </form> -->
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">
+          <!-- <li><a href="#">
             <span  class="visible-xs-block">{{t 'product.projects.tabNameMobile'}}</span>
             <span class="hidden-xs">{{t 'product.projects.tabName'}}</span>
-          </a></li>
+          </a></li> -->
+          {{#link-to 'company.projects' tagName="li" href=false}}
+            <a href="#"><span class="visible-xs-block">{{t 'product.projects.tabNameMobile'}}</span>
+              <span class="hidden-xs">{{t 'product.projects.tabName'}}</span></a>
+          {{/link-to}}
           {{#link-to 'company.administration' tagName="li" href=false}}
             <a href="#"><span class="visible-xs-block">{{t 'product.administration.tabNameMobile'}}</span>
               <span class="hidden-xs">{{t 'product.administration.tabName'}}</span></a>
@@ -61,7 +65,7 @@
     </div>
   </nav>
 </header>
-<div class="content-wrapper" style="min-height: 817px; margin-left: 0px">
+<div class="content-wrapper" style="min-height: 817px; margin-left: 0px; padding-top: 5px">
   <div class="container">
       {{outlet}}
   </div>

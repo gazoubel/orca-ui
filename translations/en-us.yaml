@@ -3,7 +3,10 @@ models:
   provider: 'provider'
   paymenttype: 'payment type'
   itemtype: 'item type'
+  project: 'project'
 fields:
+  save: 'Save'
+  cancel: 'Cancel'
   name: 'Name'
   basicType: 'Basic Type'
   basicTypes:
@@ -28,6 +31,7 @@ product:
     tabName: 'Projects'
     tabNameMobile: 'P'
     title: 'Projects'
+    new_project: 'New Project'
   commonWords:
     add: 'Add'
     cancel: 'Cancel'

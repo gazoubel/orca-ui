@@ -3,7 +3,7 @@
 {{#show-on-click  modelIsInValid=modelIsInValid
     onCloseClicked="closeAddPanel" onAddClicked="add"
     itemAdded=newItemType }}
-  <div class="form-group {{if modelIsInValid "has-error"}}">
+  <!-- <div class="form-group {{if modelIsInValid "has-error"}}">
     {{#orca-dropdown id="itemBasicType" options=basicTypes
         class="form-control"
         selected=newItemType.basicType
@@ -11,10 +11,16 @@
         onchange=(action (mut newItemType.basicType)) as |type|}}
       {{t type.name}}
     {{/orca-dropdown}}
-  </div>
+  </div> -->
   <div class="form-group {{if modelIsInValid "has-error"}}">
     {{input value=newItemType.name class="form-control" id="nameInput"
       placeholder = (t 'fields.name') }}
+  </div>
+  <div class = "checkbox">
+    <label>
+      {{input checked=newItemType.isLabor id="isLaborInput" type="checkbox"}}
+      Is Labor
+    </label>
   </div>
 {{/show-on-click}}
 

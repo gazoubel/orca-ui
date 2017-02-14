@@ -4,14 +4,18 @@ import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 import Ember from 'ember';
 
 export default DS.RESTAdapter.extend(DataAdapterMixin, {
+  session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
   coalesceFindRequests: true,
   namespace: config.namespace,
   host: config.host,
   authorizer: 'authorizer:token',
-  handleResponse: function(status, headers, payload, requestData){
-    var intl = this.get('intl');
-    if(status === 400 && payload.Errors){
+  handleResponse: function(status, headers, payload){
+    if(status ===403){
+      this.set('session.attemptedTransition', null);
+      this.get('session').invalidate();
+    }else if(status === 400 && payload.Errors){
+      var intl = this.get('intl');
       var error = new DS.AdapterError(payload.Errors);
       var message = "";
       Object.keys(payload.Errors).forEach(function(key){

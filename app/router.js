@@ -19,6 +19,9 @@ Router.map(function() {
       this.route('payment-types');
       this.route('item-types');
     });
+    this.route('projects', function() {
+      this.route('new');
+    });
   });
 });
 

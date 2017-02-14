@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
     closeAddPanel: function(){
       this.set('modelIsInValid', false);
       // this.set('name', "");
-      this.set('newItemType', {name: '', basicType: null});
+      this.set('newItemType', {name: '', isLabor: false});
     },
 
     add: function (itemType){
@@ -20,7 +20,8 @@ export default Ember.Controller.extend({
       this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
         var itemType = controller.store.createRecord('item-type', {
           name: newItemType.name,
-          basicType: newItemType.basicType.value,
+          // basicType: newItemType.basicType.value,
+          isLabor: newItemType.isLabor,
           company: company
         });
 
@@ -33,7 +34,7 @@ export default Ember.Controller.extend({
 
         itemType.save().then(function() {
           controller.set('modelIsInValid', false);
-          controller.set('newItemType', {name: '', basicType: null});
+          controller.set('newItemType', {name: '', isLabor: false});
           var t_model = controller.get('intl').t('models.itemtype');
           var message = controller.get('intl').t('product.messages.model_created',{model: t_model});
           controller.get('appManager').notify('success', message);
