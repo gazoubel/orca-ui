@@ -30,10 +30,10 @@ export default Ember.Service.extend({
                     name: person.get('firstName')+' '+person.get('lastName')
                   };
                   session.set('sessionVariables', sessionVariables);
+                  resolve(true);
                 }).catch(function(reason){
                   reject('user does not have records correctly setup.'+ reason);
                 });
-                resolve(true);
               } else {
                 reject('user does not have access to this company');
               }

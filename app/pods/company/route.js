@@ -6,7 +6,6 @@ export default Ember.Route.extend({
   company: Ember.inject.service(),
   session: Ember.inject.service('session'),
   beforeModel: function(transition) {
-    // this.get('session').invalidate();
     var _this = this;
     var session = _this.get('session');
     if (session.get('isAuthenticated')) {
