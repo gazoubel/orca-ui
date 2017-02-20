@@ -39,6 +39,7 @@ product:
     select: 'Select...'
   messages:
     model_created: '{model} created.'
+    model_updated: '{model} updated.'
 errors:
   unique: 'Another {model} with same {field} already exists'
   description: "Este campo"

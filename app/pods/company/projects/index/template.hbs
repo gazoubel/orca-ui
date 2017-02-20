@@ -6,7 +6,7 @@
 {{/link-to}}
 <div class="box" style="margin-top: 5px">
   <div class="box-body no-padding">
-    <table class="table table-condensed table-hover">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th>{{t 'fields.name'}}</th>
@@ -14,10 +14,10 @@
       </thead>
       <tbody>
         {{#each projects as |project|}}
-        <tr>
-          <td>{{project.name}}</td>
-          <!-- <td><button type="submit" class="btn btn-default" {{action "removeStage" stage}}>{{t 'product.basic.buttonText.delete'}}</button></td> -->
-        </tr>
+          {{#link-to 'company.projects.project' project.id tagName="tr"}}
+              <td>{{project.name}}</td>
+              <!-- <td><button type="submit" class="btn btn-default" {{action "removeStage" stage}}>{{t 'product.basic.buttonText.delete'}}</button></td> -->
+          {{/link-to}}
         {{/each}}
     </tbody>
   </table>
