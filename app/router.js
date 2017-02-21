@@ -26,6 +26,7 @@ Router.map(function() {
         path: ':project_id'
       }, function() {
         this.route('edit');
+        this.route('stages');
       });
     });
   });
