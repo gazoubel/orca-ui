@@ -28,6 +28,18 @@ export default Ember.Route.extend({
     },
     canceled(){
       this.transitionTo('company.projects');
+    },
+    willTransition(transition) {
+      var project = this.controller.get('project');
+      if (project.get('hasDirtyAttributes') &&
+          !confirm('Are you sure you want to abandon progress?')) {
+        transition.abort();
+      } else {
+        // Bubble the `willTransition` action so that
+        // parent routes can decide whether or not to abort.
+        project.rollbackAttributes();
+        return true;
+      }
     }
   }
 });
