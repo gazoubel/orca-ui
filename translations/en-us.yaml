@@ -7,7 +7,6 @@ models:
 fields:
   save: 'Save'
   cancel: 'Cancel'
-  edit: 'Edit'
   name: 'Name'
   basicType: 'Basic Type'
   basicTypes:
@@ -33,9 +32,6 @@ product:
     tabNameMobile: 'P'
     title: 'Projects'
     new_project: 'New Project'
-    project:
-      general_info: 'General Info'
-      stages: 'Stages'
   commonWords:
     add: 'Add'
     cancel: 'Cancel'
@@ -43,7 +39,6 @@ product:
     select: 'Select...'
   messages:
     model_created: '{model} created.'
-    model_updated: '{model} updated.'
 errors:
   unique: 'Another {model} with same {field} already exists'
   description: "Este campo"
