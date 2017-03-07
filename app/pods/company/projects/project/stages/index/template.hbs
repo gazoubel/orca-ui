@@ -1,0 +1,31 @@
+{{#link-to 'company.projects.project.stages.new'}}
+<button class="btn btn-default">
+  <i class="glyphicon glyphicon-plus"></i>
+  <!-- {{t 'product.projects_stages.new_project_stage'}} -->
+</button>
+{{/link-to}}
+<div class="box" style="margin-top: 5px">
+  <div class="box-body no-padding">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>{{t 'fields.name'}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each projectStages as |projectStage|}}
+          <tr>
+            <td>{{projectStage.name}}</td>
+            <td>{{projectStage.previous.id}}</td>
+            <td>{{projectStage.sortOrder}}</td>
+            <td>{{projectStage.isLastItem}}</td>
+
+          </tr>
+          <!-- {{#link-to 'company.project.stages' projectStage.id tagName="tr"}}
+              <td>{{projectStage.name}}</td>
+          {{/link-to}} -->
+        {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>

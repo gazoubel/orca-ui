@@ -26,10 +26,19 @@ Router.map(function() {
         path: ':project_id'
       }, function() {
         this.route('edit');
-        this.route('stages');
+        this.route('stages', function() {
+          this.route('new');
+        });
       });
     });
   });
 });
+
+// Router.reopen({
+//   doSomethingOnUrlChange: function() {
+//     // console.log(this.get('currentPath'));
+//     this.set('currentRoute', this.get('currentPath'));
+//   }.on('didTransition')
+// });
 
 export default Router;

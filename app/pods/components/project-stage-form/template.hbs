@@ -1,0 +1,14 @@
+<form  class="form-horizotal" role="form" {{action "save" projectStage on="submit"}}> <!-- horizontal form -->
+  <div class="row">
+    {{orca-input-with-label field = projectStage.name displayText=(t 'fields.name')
+     classNames="col-sm-12" validation=projectStage.validations.attrs.name}}
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <div class="pull-right" style="margin-top: 20px;padding-right:20px;">
+        <button class="btn btn-default" {{action "cancel" projectStage}}>{{t 'fields.cancel'}}</button>
+        <button type="submit" class="btn btn-default">{{t 'fields.save'}}</button>
+      </div>
+    </div>
+  </div>
+</form>
