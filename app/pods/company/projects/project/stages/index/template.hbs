@@ -15,8 +15,10 @@
       <tbody>
         {{#each projectStages as |projectStage|}}
           <tr>
+            <td>{{projectStage.id}}</td>
             <td>{{projectStage.name}}</td>
             <td>{{projectStage.previous.id}}</td>
+            <td>{{projectStage.next.id}}</td>
             <td>{{projectStage.sortOrder}}</td>
             <td>{{projectStage.isLastItem}}</td>
 
