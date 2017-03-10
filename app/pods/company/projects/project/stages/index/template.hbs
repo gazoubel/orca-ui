@@ -21,10 +21,17 @@
             <td>{{projectStage.next.id}}</td>
             <td>{{projectStage.sortOrder}}</td>
             <td>{{projectStage.isLastItem}}</td>
-
+            {{#link-to 'company.projects.project.stages.stage' projectStage.id}}
+              <button class="btn btn-default">
+                <i class="glyphicon glyphicon-plus"></i>
+                <!-- {{t 'product.projects_stages.new_project_stage'}} -->
+              </button>
+            {{/link-to}}
           </tr>
-          <!-- {{#link-to 'company.project.stages' projectStage.id tagName="tr"}}
+          <!-- {{#link-to 'company.projects.project.stages.stage' projectStage.id }}
+            <tr>
               <td>{{projectStage.name}}</td>
+            </tr>
           {{/link-to}} -->
         {{/each}}
     </tbody>

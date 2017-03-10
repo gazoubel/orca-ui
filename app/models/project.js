@@ -3,7 +3,7 @@ import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
   name: validator('presence', true),
-  projectStages: validator('has-many')
+  projectStages: validator('has-many'),
   company: [
     validator('presence', true),
     validator('belongs-to')

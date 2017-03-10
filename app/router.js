@@ -28,6 +28,10 @@ Router.map(function() {
         this.route('edit');
         this.route('stages', function() {
           this.route('new');
+
+          this.route('stage', {
+            path: ':stage_id'
+          }, function() {});
         });
       });
     });

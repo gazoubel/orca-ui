@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="box box-solid">
+      <div class="list-group">
+        {{#each projectStages as |stage|}}
+          {{#link-to 'company.projects.project.stages.stage' stage.id tagName="li" href=false class="list-group-item"}}
+            {{stage.name}}
+            <!-- {{#link-to "company.projects.project.edit" tagName="i" class="pull-right fa fa-pencil"}}
+            {{/link-to}} -->
+          {{/link-to}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    {{outlet}}
+  </div>
+</div>
