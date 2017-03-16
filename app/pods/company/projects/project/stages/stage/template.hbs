@@ -1,18 +1,48 @@
-<div class="row">
+<section style="padding-bottom: 30px; margin-left: 15px;">
+  <h4>
+    Stage: {{projectStage.name}}
+  </h4>
+</section>
+{{outlet}}
+<!-- <div class="row">
   <div class="col-md-3">
-    <div class="box box-solid">
-      <div class="list-group">
-        {{#each projectStages as |stage|}}
-          {{#link-to 'company.projects.project.stages.stage' stage.id tagName="li" href=false class="list-group-item"}}
-            {{stage.name}}
-            <!-- {{#link-to "company.projects.project.edit" tagName="i" class="pull-right fa fa-pencil"}}
-            {{/link-to}} -->
+
+    <div class="box box-solid" >
+      <div class="box-header with-border" style="margin-top: 20px">
+          Stage:
+          <div class="btn-group">
+            <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{projectStage.name}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              {{#each projectStages as |stage|}}
+                {{#link-to 'company.projects.project.stages.stage' stage.id tagName="li" href=false}}
+                  <a href="#">{{stage.name}}</a>
+                {{/link-to}}
+              {{/each}}
+            </ul>
+          </div>
+      </div>
+      <div class="box-body no-padding" style="display: block;">
+        <ul class="nav nav-pills nav-stacked">
+          {{#link-to 'company.projects.project.stages.stage' tagName="li" href=false}}
+          <a href="#"><i class="fa fa-cubes"></i> <span>Dashboard</span></a>
           {{/link-to}}
-        {{/each}}
+          {{#link-to 'company.projects.project.stages.stage' tagName="li" href=false}}
+          <a href="#"><i class="fa fa-cubes"></i> <span>Main Info</span></a>
+          {{/link-to}}
+          {{#link-to 'company.projects.project.stages.stage' tagName="li" href=false}}
+          <a href="#"><i class="fa fa-cubes"></i> <span>Items</span></a>
+          {{/link-to}}
+        </ul>
       </div>
     </div>
   </div>
   <div class="col-md-9">
-    {{outlet}}
+      <div class="row">
+        <div class="col-md-12">
+          {{outlet}}
+        </div>
+      </div>
   </div>
-</div>
+</div> -->

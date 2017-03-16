@@ -4,6 +4,7 @@ models:
   paymenttype: 'payment type'
   itemtype: 'item type'
   project: 'project'
+  projectStage: 'stage'
 fields:
   save: 'Save'
   cancel: 'Cancel'
@@ -34,13 +35,23 @@ product:
     title: 'Projects'
     new_project: 'New Project'
     project:
-      general_info: 'General Info'
-      stages: 'Stages'
+      label: 'Project'
+      main_info: 'Main Info'
+      main_info_subtext: 'View project info'
+      stages:
+        label: 'Stages'
+        main_info: 'Main Info'
+        main_info_subtext: 'View stage info'
+      breadcrumbs:
+        home: 'project'
+        stages: 'stages'
+        stage: 'stage'
   commonWords:
     add: 'Add'
     cancel: 'Cancel'
     done: 'Done'
     select: 'Select...'
+    more_info: 'More Info'
   messages:
     model_created: '{model} created.'
     model_updated: '{model} updated.'

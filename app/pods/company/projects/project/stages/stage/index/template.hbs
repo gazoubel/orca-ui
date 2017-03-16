@@ -1,3 +1,40 @@
-{{#link-to "company.projects.project.edit" tagName="i" class="pull-right fa fa-pencil"}}
-{{/link-to}}
-Stage: {{projectStage.name}}
+<div class ="row">
+  <div class="col-lg-3 col-xs-6">
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3>{{t 'product.projects.project.stages.main_info'}}</h3>
+        <p>{{t 'product.projects.project.stages.main_info_subtext'}}</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-ios-list-outline"></i>
+      </div>
+      {{#link-to "company.projects.project.stages.stage.info" tagName="a" class="small-box-footer"}}
+        {{t 'product.commonWords.more_info'}} <i class="fa fa-arrow-circle-right"></i>
+      {{/link-to}}
+    </div>
+  </div>
+
+  <!-- <div class="col-lg-3 col-xs-6">
+    <div class="small-box bg-aqua">
+      <div class="inner">
+        <h3>{{project.projectStages.length}}</h3>
+        <p>{{t 'product.projects.project.stages'}}</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-ios-albums-outline"></i>
+      </div>
+      {{#link-to "company.projects.project.stages" tagName="a" class="small-box-footer"}}
+        {{t 'product.commonWords.more_info'}} <i class="fa fa-arrow-circle-right"></i>
+      {{/link-to}}
+    </div>
+  </div> -->
+</div>
+
+<!--
+<div class="box box-solid" >
+  <div class="box-body" style="display: block;margin-top: 20px;" >
+    {{#link-to "company.projects.project.stages.stage.edit" tagName="i" class="pull-right fa fa-pencil"}}
+    {{/link-to}}
+    Stage: {{projectStage.name}}
+  </div>
+</div> -->

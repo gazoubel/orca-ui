@@ -16,10 +16,10 @@ export default Ember.Route.extend({
       var t_model = this.get('intl').t('models.project');
       var message = this.get('intl').t('product.messages.model_updated',{model: t_model});
       this.get('appManager').notify('success', message);
-      this.transitionTo('company.projects.project');
+      this.transitionTo('company.projects.project.info');
     },
     canceled(){
-      this.transitionTo('company.projects.project');
+      this.transitionTo('company.projects.project.info');
     },
     willTransition(transition) {
       var project = this.controller.get('project');

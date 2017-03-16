@@ -1,5 +1,47 @@
-<h2>{{project.name}}<small></small></h2>
-<div class="nav-tabs-custom">
+<section class="content-header" >
+  <h1>
+    {{t 'product.projects.project.label'}}: {{project.name}}
+  </h1>
+  {{#if showBreadCrumbs}}
+    <ol class="breadcrumb">
+      {{#link-to "company.projects.project.index" tagName="li"}}
+        <a href="#"><i class="fa fa-dashboard"></i>{{t 'product.projects.project.breadcrumbs.home'}}</a>
+      {{/link-to}}
+
+      {{#if showBreadCrumbsForStages}}
+        {{#link-to "company.projects.project.stages" tagName="li"}}
+          <a href="#">{{t 'product.projects.project.breadcrumbs.stages'}}</a>
+        {{/link-to}}
+      {{/if}}
+
+      {{#if showBreadCrumbsForStage}}
+        {{#link-to "company.projects.project.stages.stage" tagName="li"}}
+          <a href="#">{{t 'product.projects.project.breadcrumbs.stage'}}</a>
+        {{/link-to}}
+      {{/if}}
+    </ol>
+  {{/if}}
+</section>
+{{outlet}}
+
+<!-- <h2>{{project.name}}<small></small></h2> -->
+<!-- <ul class="nav nav-tabs">
+  {{#link-to "company.projects.project.index" tagName="li"}}
+    <a href={{view.href}}>{{t 'product.projects.project.general_info'}}</a>
+  {{/link-to}}
+
+  {{#link-to "company.projects.project.stages" tagName="li"}}
+    <a href={{view.href}}>{{t 'product.projects.project.stages'}}</a>
+  {{/link-to}}
+
+  {{#if showEditTab}}
+    {{#link-to "company.projects.project.edit" tagName="li" class="pull-right"}}
+      <a href={{view.href}} class="text-muted"><i class="fa fa-pencil"></i></a>
+    {{/link-to}}
+  {{/if}}
+</ul>
+{{outlet}} -->
+<!-- <div class="nav-tabs-custom">
   <ul class="nav nav-tabs">
     {{#link-to "company.projects.project.index" tagName="li"}}
       <a href={{view.href}}>{{t 'product.projects.project.general_info'}}</a>
@@ -19,4 +61,25 @@
   <div class="tab-content">
       {{outlet}}
   </div>
-</div>
+</div> -->
+<!-- <div class="nav-tabs-custom">
+  <ul class="nav nav-tabs">
+    {{#link-to "company.projects.project.index" tagName="li"}}
+      <a href={{view.href}}>{{t 'product.projects.project.general_info'}}</a>
+    {{/link-to}}
+
+    {{#link-to "company.projects.project.stages" tagName="li"}}
+      <a href={{view.href}}>{{t 'product.projects.project.stages'}}</a>
+    {{/link-to}}
+
+    {{#if showEditTab}}
+      {{#link-to "company.projects.project.edit" tagName="li" class="pull-right"}}
+        <a href={{view.href}} class="text-muted"><i class="fa fa-pencil"></i></a>
+      {{/link-to}}
+    {{/if}}
+  </ul>
+
+  <div class="tab-content">
+      {{outlet}}
+  </div>
+</div> -->

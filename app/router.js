@@ -31,8 +31,12 @@ Router.map(function() {
 
           this.route('stage', {
             path: ':stage_id'
-          }, function() {});
+          }, function() {
+            this.route('edit');
+            this.route('info');
+          });
         });
+        this.route('info');
       });
     });
   });
