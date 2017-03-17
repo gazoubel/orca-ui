@@ -1,0 +1,24 @@
+<!-- {{#link-to 'company.projects.new'}}
+<button class="btn btn-default">
+  <i class="glyphicon glyphicon-plus"></i>
+  {{t 'product.transactions.new_transaction'}}
+</button>
+{{/link-to}}
+<div class="box" style="margin-top: 5px">
+  <div class="box-body no-padding">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>{{t 'fields.name'}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each projects as |project|}}
+          {{#link-to 'company.projects.project' project.id tagName="tr"}}
+              <td>{{project.name}}</td>
+          {{/link-to}}
+        {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div> -->
