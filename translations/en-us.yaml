@@ -34,14 +34,17 @@ product:
     tabNameMobile: 'P'
     title: 'Projects'
     new_project: 'New Project'
+    edit_project: 'Edit Project'
     project:
       label: 'Project'
       main_info: 'Main Info'
-      main_info_subtext: 'View project info'
+      main_info_subtext: 'View and edit project info'
       stages:
         label: 'Stages'
         main_info: 'Main Info'
-        main_info_subtext: 'View stage info'
+        main_info_subtext: ' View and edit stage info'
+        new_stage: 'New Stage'
+        edit_stage: 'Edit Stage'
       breadcrumbs:
         home: 'project'
         stages: 'stages'

@@ -1,4 +1,23 @@
-{{#link-to "company.projects.project.edit" class="pull-right"}}
-  <a href={{view.href}} class="text-muted"><i class="fa fa-pencil"></i></a>
-{{/link-to}}
-Project Name: {{project.name}}
+<div class="box box-widget" style="margin-top: 30px;">
+  <div class="box-header with-border">
+    <div class="user-block">
+      <div><i class="ion ion-information-circled" style="font-size: 40px;float: left;"></i> </div>
+      <span class="username" >{{t 'product.projects.project.main_info'}}</span>
+      <span class="description">{{t 'product.projects.project.main_info_subtext'}}</span>
+    </div>
+    <div class="box-tools">
+      {{#link-to "company.projects.project.edit" class="btn btn-box-tool" data-toggle="tooltip" tagName="button" title="edit project"}}
+        <a href={{view.href}} class="text-muted" style="font-size: 15px;"><i class="fa fa-pencil"></i></a>
+      {{/link-to}}
+      <!-- <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
+        <i class="fa fa-circle-o"></i></button>
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+    </div>
+    <!-- /.box-tools -->
+  </div>
+  <div class="box-body">
+    Project Name: {{project.name}}
+  </div>
+</div>
