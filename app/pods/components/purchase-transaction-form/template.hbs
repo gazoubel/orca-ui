@@ -1,0 +1,10 @@
+<form  class="form-horizotal" role="form" {{action "save" purchaseTransaction on="submit"}}> <!-- horizontal form -->
+  <div class="row">
+    {{orca-input-with-label field = purchaseTransaction.description displayText=(t 'fields.description')
+     classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.description}}
+  </div>
+  <div class="box-footer">
+    <button type="submit" class="btn btn-default pull-right">{{t 'fields.save'}}</button>
+    <button class="btn btn-default pull-right" style="margin-right: 5px;" {{action "cancel" purchaseTransaction}}>{{t 'fields.cancel'}}</button>
+  </div>
+</form>

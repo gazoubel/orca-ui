@@ -2,7 +2,6 @@ import DS from 'ember-data';
 import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
-  name: validator('presence', true),
   company: [
     validator('presence', true),
     validator('belongs-to')
@@ -10,7 +9,7 @@ const Validations = buildValidations({
 });
 
 export default DS.Model.extend(Validations,{
-  name: DS.attr('string'),
-  company: DS.belongsTo('company',{inverse: 'providers'}),
-  purchaseTransactions: DS.hasMany('purchase-transaction',   {inverse: 'provider'}),
+  description: DS.attr('string'),
+  company: DS.belongsTo('company',{inverse: 'purchaseTransactions'}),
+  provider: DS.belongsTo('provider',{inverse: 'purchaseTransactions'})
 });

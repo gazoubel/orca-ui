@@ -39,7 +39,9 @@ Router.map(function() {
         this.route('info');
       });
     });
-    this.route('transactions', function() {});
+    this.route('transactions', function() {
+      this.route('new');
+    });
   });
 });
 

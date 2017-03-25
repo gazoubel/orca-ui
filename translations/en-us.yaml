@@ -5,15 +5,13 @@ models:
   itemtype: 'item type'
   project: 'project'
   projectStage: 'stage'
+  purchaseTransaction: 'purchase transaction'
 fields:
   save: 'Save'
   cancel: 'Cancel'
   edit: 'Edit'
   name: 'Name'
-  basicType: 'Basic Type'
-  basicTypes:
-    labor: 'Labor'
-    material: 'Material'
+  description: 'Description'
 product:
   info: '{product} will cost {price, number, USD} if ordered by {deadline, date, time}'
   subTitle: 'powered by orkaman'
@@ -33,6 +31,7 @@ product:
     tabName: 'Transactions'
     tabNameMobile: 'T'
     title: 'Transactions'
+    new_transaction: 'New Transaction'
   projects:
     tabName: 'Projects'
     tabNameMobile: 'P'

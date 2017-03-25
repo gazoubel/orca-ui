@@ -1,4 +1,4 @@
-<!-- {{#link-to 'company.projects.new'}}
+{{#link-to 'company.transactions.new'}}
 <button class="btn btn-default">
   <i class="glyphicon glyphicon-plus"></i>
   {{t 'product.transactions.new_transaction'}}
@@ -9,16 +9,17 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>{{t 'fields.name'}}</th>
+          <th>{{t 'fields.description'}}</th>
         </tr>
       </thead>
       <tbody>
-        {{#each projects as |project|}}
-          {{#link-to 'company.projects.project' project.id tagName="tr"}}
+        {{#each purchaseTransactions as |purchaseTransaction|}}
+          <tr><td>{{purchaseTransaction.description}}</td></tr>
+          <!-- {{#link-to 'company.transactions.transaction' purchaseTransaction.id tagName="tr"}}
               <td>{{project.name}}</td>
-          {{/link-to}}
+          {{/link-to}} -->
         {{/each}}
     </tbody>
   </table>
   </div>
-</div> -->
+</div>
