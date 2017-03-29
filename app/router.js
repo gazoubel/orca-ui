@@ -41,6 +41,10 @@ Router.map(function() {
     });
     this.route('transactions', function() {
       this.route('new');
+
+      this.route('transaction', {
+        path: ':transaction_id'
+      }, function() {});
     });
   });
 });

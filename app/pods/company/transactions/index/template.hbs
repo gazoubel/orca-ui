@@ -14,10 +14,10 @@
       </thead>
       <tbody>
         {{#each purchaseTransactions as |purchaseTransaction|}}
-          <tr><td>{{purchaseTransaction.description}}</td></tr>
-          <!-- {{#link-to 'company.transactions.transaction' purchaseTransaction.id tagName="tr"}}
-              <td>{{project.name}}</td>
-          {{/link-to}} -->
+          <!-- <tr><td>{{purchaseTransaction.description}}</td></tr> -->
+          {{#link-to 'company.transactions.transaction' purchaseTransaction.id tagName="tr"}}
+              <td>{{purchaseTransaction.description}}</td>
+          {{/link-to}}
         {{/each}}
     </tbody>
   </table>
