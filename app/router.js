@@ -50,6 +50,15 @@ Router.map(function() {
           path: ':purchase_transaction_id'
         }, function() {
           this.route('edit');
+          this.route('products', function() {
+            this.route('new');
+
+            this.route('product', {
+              path: ':purchase_transaction_item_id'
+            }, function() {
+              this.route('edit');
+            });
+          });
         });
       });
     });

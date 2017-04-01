@@ -14,5 +14,6 @@ export default DS.Model.extend(Validations,{
   }),
   description: DS.attr('string'),
   company: DS.belongsTo('company',{inverse: 'purchaseTransactions'}),
-  provider: DS.belongsTo('provider',{inverse: 'purchaseTransactions'})
+  provider: DS.belongsTo('provider',{inverse: 'purchaseTransactions'}),
+  purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'purchaseTransaction'})
 });

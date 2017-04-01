@@ -33,6 +33,7 @@ product:
     title: 'Transactions'
     new_transaction: 'New Transaction'
     edit_transaction: 'Edit Transaction'
+    new_transaction_item: 'New Product'
   projects:
     tabName: 'Projects'
     tabNameMobile: 'P'

@@ -59,10 +59,16 @@
      </button> -->
 
      <br>
+     {{#link-to 'company.transactions.purchase-transactions.purchase-transaction.products.new'}}
      <button class="btn btn-default">
        <i class="glyphicon glyphicon-plus"></i>
-       Add Item
+       {{t 'product.transactions.new_transaction_item'}}
      </button>
+     {{/link-to}}
+     <!-- <button class="btn btn-default">
+       <i class="glyphicon glyphicon-plus"></i>
+       Add Item
+     </button> -->
      <div class="row">
        <div class="col-xs-12 table-responsive">
          <table class="table table-striped">
@@ -77,47 +83,29 @@
            </tr>
            </thead>
            <tbody>
-           <tr>
-             <td>1</td>
-             <td>Call of Duty</td>
-             <td>455-981-221</td>
-             <td>El snort testosterone trophy driving gloves handsome</td>
-             <td>$64.50</td>
-             <td>
-               <button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
-               <button class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
-             </td>
-           </tr>
-           <tr>
-             <td>1</td>
-             <td>Need for Speed IV</td>
-             <td>247-925-726</td>
-             <td>Wes Anderson umami biodiesel</td>
-             <td>$50.00</td>
-             <td>
-               <button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
-               <button class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
-             </td>
-           </tr>
-           <tr>
-             <td>1</td>
-             <td>Monsters DVD</td>
-             <td>735-845-642</td>
-             <td>Terry Richardson helvetica tousled street art master</td>
-             <td>$10.70</td>
-             <td>
-               <button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
-               <button class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
-             </td>
-           </tr>
-           <tr>
-             <td></td>
-             <td>Other</td>
-             <td></td>
-             <td></td>
-             <td>$25.99</td>
-             <td></td>
-           </tr>
+             {{#each purchaseTransaction.purchaseTransactionItems as |item|}}
+             <tr>
+               <td>1</td>
+               <td>{{item.name}}</td>
+               <td>455-981-221</td>
+               <td>El snort testosterone trophy driving gloves handsome</td>
+               <td>$64.50</td>
+               <td>
+                {{#link-to 'company.transactions.purchase-transactions.purchase-transaction.products.product.edit' item.id}}
+                  <button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
+                {{/link-to}}
+                <button class="btn btn-default" {{action "remove" item}}><i class="glyphicon glyphicon-remove"></i></button>
+               </td>
+             </tr>
+             {{/each}}
+             <tr>
+               <td></td>
+               <td>Other</td>
+               <td></td>
+               <td></td>
+               <td>$25.99</td>
+               <td></td>
+             </tr>
            </tbody>
          </table>
        </div>
