@@ -32,6 +32,7 @@ product:
     tabNameMobile: 'T'
     title: 'Transactions'
     new_transaction: 'New Transaction'
+    edit_transaction: 'Edit Transaction'
   projects:
     tabName: 'Projects'
     tabNameMobile: 'P'

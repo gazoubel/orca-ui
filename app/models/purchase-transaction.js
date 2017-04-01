@@ -9,6 +9,9 @@ const Validations = buildValidations({
 });
 
 export default DS.Model.extend(Validations,{
+  route: Ember.computed(function(){
+    return 'company.transactions.purchase-transactions.purchase-transaction';
+  }),
   description: DS.attr('string'),
   company: DS.belongsTo('company',{inverse: 'purchaseTransactions'}),
   provider: DS.belongsTo('provider',{inverse: 'purchaseTransactions'})

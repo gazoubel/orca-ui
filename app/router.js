@@ -45,6 +45,13 @@ Router.map(function() {
       this.route('transaction', {
         path: ':transaction_id'
       }, function() {});
+      this.route('purchase-transactions', function() {
+        this.route('purchase-transaction', {
+          path: ':purchase_transaction_id'
+        }, function() {
+          this.route('edit');
+        });
+      });
     });
   });
 });
