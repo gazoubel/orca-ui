@@ -40,12 +40,8 @@ Router.map(function() {
       });
     });
     this.route('transactions', function() {
-      this.route('new');
-
-      this.route('transaction', {
-        path: ':transaction_id'
-      }, function() {});
       this.route('purchase-transactions', function() {
+        this.route('new');
         this.route('purchase-transaction', {
           path: ':purchase_transaction_id'
         }, function() {
