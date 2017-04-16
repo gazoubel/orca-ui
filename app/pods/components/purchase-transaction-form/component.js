@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   purchaseTransaction: null,
+  allProjects: null,
+  allProviders: null,
   actions: {
     save(purchaseTransaction) {
       var _ref = this;

@@ -1,7 +1,39 @@
 <form  class="form-horizotal" role="form" {{action "save" purchaseTransaction on="submit"}}> <!-- horizontal form -->
   <div class="row">
+    {{#orca-dropdown-label
+      classNames="col-sm-12"
+      validation=purchaseTransaction.validations.attrs.provider
+      options=allProviders
+      selected=purchaseTransaction.provider
+      onchange=(action (mut purchaseTransaction.provider))
+      placeholder = (t 'product.transactions.transaction.provider')
+      displayText=(t 'product.transactions.transaction.provider')
+      as |provider|}}
+       {{provider.name}}
+     {{/orca-dropdown-label}}
+
     {{orca-input-with-label field = purchaseTransaction.description displayText=(t 'fields.description')
      classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.description}}
+
+     {{#orca-dropdown-label
+       classNames="col-sm-12"
+       validation=purchaseTransaction.validations.attrs.defaultProject
+       options=allProjects
+       selected=purchaseTransaction.defaultProject
+       onchange=(action (mut purchaseTransaction.defaultProject))
+       placeholder = (t 'product.transactions.transaction.default_project')
+       displayText=(t 'product.transactions.transaction.default_project')
+       as |project|}}
+        {{project.name}}
+      {{/orca-dropdown-label}}
+
+
+      {{orca-input-with-label field = purchaseTransaction.tax displayText=(t 'product.commonWords.tax')
+        classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.tax numeric="true" scale="2"}}
+
+      {{orca-input-with-label field = purchaseTransaction.total displayText=(t 'product.commonWords.total')
+        classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.total numeric="true" scale="2"}}
+
   </div>
   <div class="box-footer">
     <button type="submit" class="btn btn-default pull-right">{{t 'fields.save'}}</button>

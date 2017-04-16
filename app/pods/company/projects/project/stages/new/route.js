@@ -10,11 +10,11 @@ export default Ember.Route.extend({
     return project.get('projectStages').then(function(projectStages){
       return projectStages.filter(function(item){
         return item.get('isLastItem')===true;
-      })
+      });
     }).then(function(records){
       var lastProjectStage=null;
       if(records.get('length')>0){
-        var lastProjectStage = records.get('firstObject');
+        lastProjectStage = records.get('firstObject');
         if (lastProjectStage==null || !lastProjectStage.get('id')) {
           lastProjectStage=null;
         }
@@ -55,22 +55,7 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    added(projectStage){
-      // var lastProjectStage = null;
-      // this.store.findAll('project-stage', {next: null, project: projectStage.get('project.id')})
-      // .then(function(records) {
-      //   if(records.get('length')>0){
-      //     lastProjectStage = records.get('firstObject');
-      //   }
-      //   return lastProjectStage;
-      // }).then(function (lastProjectStage) {
-      //   if (lastProjectStage!=null && lastProjectStage.get('id')) {
-      //     projectStage.set('previous', lastProjectStage);
-      //     projectStage.save();
-      //     // lastProjectStage.set('next', projectStage);
-      //     // lastProjectStage.save();
-      //   }
-      // });
+    added(){
       var t_model = this.get('intl').t('models.project');
       var message = this.get('intl').t('product.messages.model_created',{model: t_model});
       this.get('appManager').notify('success', message);

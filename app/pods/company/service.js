@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
 
 export default Ember.Service.extend({
   store: Ember.inject.service('store'),
@@ -8,7 +9,7 @@ export default Ember.Service.extend({
     var session = this.get('session');
     var store = this.get('store');
     var intl = this.get('intl');
-    var promise = new Promise(function(resolve, reject) {
+    var promise = new RSVP.Promise(function(resolve, reject) {
       store.query('company', {acronym: currentAcronym})
       .then(function(companies){
         var company = companies.get('firstObject');

@@ -7,16 +7,43 @@ export default Ember.Route.extend({
     var ref = this;
     // var sessionVariables = ref.get('session.sessionVariables');
     var company_id = this.get('session.sessionVariables.company_id');
-    return ref.get('store').findRecord('company', company_id)
-    .then(function(company){
-      var purchaseTransaction = ref.store.createRecord('purchase-transaction', {
-        company: company
+
+    let purchaseTransaction = ref.get('store').findRecord('company', company_id)
+      .then(function(company){
+        var purchaseTransaction = ref.store.createRecord('purchase-transaction', {
+          company: company
+        });
+        // return purchaseTransaction;
+        return Ember.RSVP.hash({
+          purchaseTransaction: purchaseTransaction,
+          allProjects: ref.get('store').findAll('project', {company: company_id}),
+          allProviders: ref.get('store').findAll('provider', {company: company_id})
+        });
       });
       return purchaseTransaction;
-    });
+
+    // return Ember.RSVP.hash({
+    //   purchaseTransaction: purchaseTransaction,
+    //   allProjects: this.store.findAll('project'),
+    //   allProviders: this.store.query('provider', {
+    //     filter: {
+    //       company: company
+    //     }
+    //   }),
+    // });
+
+    // return ref.get('store').findRecord('company', company_id)
+    // .then(function(company){
+    //   var purchaseTransaction = ref.store.createRecord('purchase-transaction', {
+    //     company: company
+    //   });
+    //   return purchaseTransaction;
+    // });
   },
-  setupController: function(controller, model) {
-    controller.set('purchaseTransaction', model);
+  setupController: function(controller, models) {
+    controller.set('purchaseTransaction', models.purchaseTransaction);
+    controller.set('allProjects', models.allProjects);
+    controller.set('allProviders', models.allProviders);
   },
 
   actions: {

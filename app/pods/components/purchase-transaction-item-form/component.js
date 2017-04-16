@@ -2,6 +2,13 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   purchaseTransactionItem: null,
+  allProjects: null,
+  selectedProject: null,
+  didReceiveAttrs() {
+    this._super(...arguments);
+    const project = this.get('purchaseTransactionItem.projectStage.project');
+    this.set('selectedProject', project);
+  },
   actions: {
     save(purchaseTransactionItem) {
       var _ref = this;

@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
-  model: function (params) {
+  model: function () {
     return this.modelFor('company.projects.project');
     // return this.get('store').findRecord('project', params.project_id);
   },

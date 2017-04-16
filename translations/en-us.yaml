@@ -34,6 +34,11 @@ product:
     new_transaction: 'New Transaction'
     edit_transaction: 'Edit Transaction'
     new_transaction_item: 'New Product'
+    transaction:
+      default_project: 'Default Project'
+      project: 'Project'
+      project_stage: 'Stage'
+      provider: 'Provider'
     breadcrumbs:
       home: 'transactions'
   projects:
@@ -62,6 +67,9 @@ product:
     done: 'Done'
     select: 'Select...'
     more_info: 'More Info'
+    total: 'Total'
+    tax: 'Tax'
+    quantity: 'Quantity'
   messages:
     model_created: '{model} created.'
     model_updated: '{model} updated.'

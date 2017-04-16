@@ -8,10 +8,17 @@ export default Ember.Route.extend({
     var purchaseTransactionItem = this.store.createRecord('purchase-transaction-item', {
       purchaseTransaction: purchaseTransaction
     });
-    return purchaseTransactionItem;
+    // return purchaseTransactionItem;
+
+    return Ember.RSVP.hash({
+      purchaseTransactionItem: purchaseTransactionItem,
+      allProjects: this.store.findAll('project'),
+    });
+
   },
-  setupController: function(controller, model) {
-    controller.set('purchaseTransactionItem', model);
+  setupController: function(controller, models) {
+    controller.set('purchaseTransactionItem', models.purchaseTransactionItem);
+    controller.set('allProjects', models.allProjects);
   },
 
   actions: {

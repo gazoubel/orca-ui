@@ -5,7 +5,7 @@
      <div class="row">
        <div class="col-xs-12">
          <h2 class="page-header">
-           <i class="fa fa-globe"></i> Provider Name {{purchaseTransaction.provider.name}}
+           <i class="fa fa-globe"></i> Provider: {{purchaseTransaction.provider.name}}
 
 
            <small class="pull-right">Date: 2/10/2014</small>
@@ -50,13 +50,7 @@
          <b>Payment Due:</b> 2/22/2014<br>
          <b>Account:</b> 968-34567
        </div>
-       <!-- /.col -->
      </div>
-     <!-- /.row -->
-
-     <!-- Table row -->
-     <!-- <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Add Item
-     </button> -->
 
      <br>
      {{#link-to 'company.transactions.purchase-transactions.purchase-transaction.products.new'}}
@@ -65,10 +59,6 @@
        {{t 'product.transactions.new_transaction_item'}}
      </button>
      {{/link-to}}
-     <!-- <button class="btn btn-default">
-       <i class="glyphicon glyphicon-plus"></i>
-       Add Item
-     </button> -->
      <div class="row">
        <div class="col-xs-12 table-responsive">
          <table class="table table-striped">
@@ -76,8 +66,9 @@
            <tr>
              <th>Qty</th>
              <th>Product</th>
-             <th>Serial #</th>
              <th>Description</th>
+             <th>Project</th>
+             <th>Stage</th>
              <th>Subtotal</th>
              <td></td>
            </tr>
@@ -85,11 +76,12 @@
            <tbody>
              {{#each purchaseTransaction.purchaseTransactionItems as |item|}}
              <tr>
-               <td>1</td>
+               <td>{{item.quantity}}</td>
                <td>{{item.name}}</td>
-               <td>455-981-221</td>
                <td>El snort testosterone trophy driving gloves handsome</td>
-               <td>$64.50</td>
+               <td>{{item.projectStage.project.name}}</td>
+               <td>{{item.projectStage.name}}</td>
+               <td>${{item.total}}</td>
                <td>
                 {{#link-to 'company.transactions.purchase-transactions.purchase-transaction.products.product.edit' item.id}}
                   <button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
@@ -98,30 +90,15 @@
                </td>
              </tr>
              {{/each}}
-             <tr>
-               <td></td>
-               <td>Other</td>
-               <td></td>
-               <td></td>
-               <td>$25.99</td>
-               <td></td>
-             </tr>
            </tbody>
          </table>
        </div>
-       <!-- /.col -->
      </div>
-     <!-- /.row -->
 
      <div class="row">
        <!-- accepted payments column -->
        <div class="col-xs-6">
          <p class="lead">Payment Methods:</p>
-         <!-- <img src="../../dist/img/credit/visa.png" alt="Visa">
-         <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-         <img src="../../dist/img/credit/american-express.png" alt="American Express">
-         <img src="../../dist/img/credit/paypal2.png" alt="Paypal"> -->
-
          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
            dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
@@ -133,30 +110,33 @@
 
          <div class="table-responsive">
            <table class="table">
-             <tbody><tr>
+             <tbody>
+               <tr>
+                 <th>Other:</th>
+                 <td>${{purchaseTransaction.other}}</td>
+               </tr>
+               <tr>
                <th style="width:50%">Subtotal:</th>
-               <td>$250.30</td>
+               <td>${{purchaseTransaction.subTotal}}</td>
              </tr>
+             {{#if purchaseTransaction.tax}}
              <tr>
                <th>Tax (9.3%)</th>
-               <td>$10.34</td>
+               <td>${{purchaseTransaction.tax}}</td>
              </tr>
-             <tr>
+             {{/if}}
+             <!-- <tr>
                <th>Shipping:</th>
                <td>$5.80</td>
-             </tr>
+             </tr> -->
              <tr>
                <th>Total:</th>
-               <td>$265.24</td>
+               <td>${{purchaseTransaction.total}}</td>
              </tr>
            </tbody></table>
          </div>
        </div>
-       <!-- /.col -->
      </div>
-     <!-- /.row -->
-
-     <!-- this row will not appear when printing -->
      <div class="row no-print">
        <div class="col-xs-12">
          <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>

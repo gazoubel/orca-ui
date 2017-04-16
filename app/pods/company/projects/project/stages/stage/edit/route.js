@@ -12,7 +12,7 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    added(projectStage){
+    added(){
       var t_model = this.get('intl').t('models.projectStage');
       var message = this.get('intl').t('product.messages.model_created',{model: t_model});
       this.get('appManager').notify('success', message);

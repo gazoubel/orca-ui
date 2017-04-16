@@ -3,11 +3,18 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
-  model: function (params) {
-    return this.modelFor('company.transactions.purchase-transactions.purchase-transaction');
+  model: function () {
+    var company_id = this.get('session.sessionVariables.company_id');
+    return Ember.RSVP.hash({
+      purchaseTransaction: this.modelFor('company.transactions.purchase-transactions.purchase-transaction'),
+      allProjects: this.store.findAll('project', {company: company_id}),
+      allProviders: this.store.findAll('provider', {company: company_id})
+    });
   },
-  setupController: function(controller, model) {
-    controller.set('purchaseTransaction', model);
+  setupController: function(controller, models) {
+    controller.set('purchaseTransaction', models.purchaseTransaction);
+    controller.set('allProjects', models.allProjects);
+    controller.set('allProviders', models.allProviders);
   },
   actions: {
     added(){

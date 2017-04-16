@@ -25,9 +25,11 @@ export default Ember.Route.extend({
       return project.get('company').then(function(company){
           var projectCompanyId = company.get('id');
           if(projectCompanyId===company_id)
+          {
             return project;
+          }
           RSVP.reject("Project does not belong to this company.");
-      })
+      });
     });
   },
   setupController: function(controller, model) {

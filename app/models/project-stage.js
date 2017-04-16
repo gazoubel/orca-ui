@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 import { validator, buildValidations } from 'ember-cp-validations';
+import Ember from 'ember';
 
 const Validations = buildValidations({
   name: validator('presence', true),
@@ -11,7 +12,9 @@ const Validations = buildValidations({
   ],
   next: [
     validator('belongs-to')
-  ]
+  ],
+  purchaseTransactionItems: validator('has-many')
+
 });
 
 export default DS.Model.extend(Validations,{
@@ -19,7 +22,7 @@ export default DS.Model.extend(Validations,{
   project: DS.belongsTo('project',{inverse: 'projectStages'}),
   previous: DS.belongsTo('project-stage',{inverse: 'next'}),
   next: DS.belongsTo('project-stage',{inverse: 'previous'}),
-
+  purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'projectStage'}),
   // isFirstItem: Ember.computed('previous', function() {
   //   var previous = this.get('previous');
   //   if (!previous) {

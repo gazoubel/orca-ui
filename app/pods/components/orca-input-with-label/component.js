@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import generateUuid from 'orca-ui/helpers/generate-uuid';
+//import generateUuid from 'orca-ui/helpers/generate-uuid';
 
 export default Ember.Component.extend({
   validation:{},
@@ -16,7 +16,7 @@ export default Ember.Component.extend({
 
   idInputElement: Ember.computed('idInput', function() {
     var idInput = this.get('idInput');
-    return (idInput === '') ? 'orca' + generateUuid.compute() : idInput;
+    return (idInput === '') ? 'orca' + Ember.generateGuid() : idInput;
   }),
 
   cssClass: Ember.computed('isUppercase', function() {
