@@ -13,7 +13,8 @@ const Validations = buildValidations({
   next: [
     validator('belongs-to')
   ],
-  purchaseTransactionItems: validator('has-many')
+  purchaseTransactionItems: validator('has-many'),
+  defaultPurchaseTransactions: validator('has-many'),
 
 });
 
@@ -23,6 +24,7 @@ export default DS.Model.extend(Validations,{
   previous: DS.belongsTo('project-stage',{inverse: 'next'}),
   next: DS.belongsTo('project-stage',{inverse: 'previous'}),
   purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'projectStage'}),
+  defaultPurchaseTransactions: DS.hasMany('purchase-transaction', {inverse: 'defaultProjectStage'}),
   // isFirstItem: Ember.computed('previous', function() {
   //   var previous = this.get('previous');
   //   if (!previous) {

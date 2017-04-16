@@ -7,10 +7,10 @@ const Validations = buildValidations({
     validator('presence', true),
     validator('belongs-to')
   ],
-  // defaultProject: [
-  //   // validator('presence', true),
-  //   validator('belongs-to')
-  // ],
+  defaultProjectStage: [
+    validator('presence', true),
+    // validator('belongs-to')
+  ],
   // provider: [
   //   // validator('presence', true),
   //   validator('belongs-to')
@@ -34,7 +34,8 @@ export default DS.Model.extend(Validations,{
   route: Ember.computed(function(){
     return 'company.transactions.purchase-transactions.purchase-transaction';
   }),
-  defaultProject: DS.belongsTo('project',   {inverse: 'defaultPurchaseTransactions'}),
+  // defaultProject: DS.belongsTo('project',   {inverse: 'defaultPurchaseTransactions'}),
+  defaultProjectStage: DS.belongsTo('project-stage',   {inverse: 'defaultPurchaseTransactions'}),
   description: DS.attr('string'),
   company: DS.belongsTo('company',{inverse: 'purchaseTransactions'}),
   provider: DS.belongsTo('provider',{inverse: 'purchaseTransactions'}),

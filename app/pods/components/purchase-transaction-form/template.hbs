@@ -15,7 +15,7 @@
     {{orca-input-with-label field = purchaseTransaction.description displayText=(t 'fields.description')
      classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.description}}
 
-     {{#orca-dropdown-label
+     <!-- {{#orca-dropdown-label
        classNames="col-sm-12"
        validation=purchaseTransaction.validations.attrs.defaultProject
        options=allProjects
@@ -25,7 +25,29 @@
        displayText=(t 'product.transactions.transaction.default_project')
        as |project|}}
         {{project.name}}
-      {{/orca-dropdown-label}}
+      {{/orca-dropdown-label}} -->
+      {{#orca-dropdown-label
+        classNames="col-sm-12"
+        options=allProjects
+        selected=selectedProject
+        onchange=(action (mut selectedProject))
+        placeholder = (t 'product.transactions.transaction.project')
+        displayText=(t 'product.transactions.transaction.project')
+        as |project|}}
+         {{project.name}}
+       {{/orca-dropdown-label}}
+
+      {{#orca-dropdown-label
+        classNames="col-sm-12"
+        validation=purchaseTransaction.validations.attrs.defaultProjectStage
+        options=selectedProject.projectStages
+        selected=purchaseTransaction.defaultProjectStage
+        onchange=(action (mut purchaseTransaction.defaultProjectStage))
+        placeholder = (t 'product.transactions.transaction.project_stage')
+        displayText=(t 'product.transactions.transaction.project_stage')
+        as |stage|}}
+         {{stage.name}}
+       {{/orca-dropdown-label}}
 
 
       {{orca-input-with-label field = purchaseTransaction.tax displayText=(t 'product.commonWords.tax')
