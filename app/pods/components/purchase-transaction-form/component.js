@@ -5,6 +5,11 @@ export default Ember.Component.extend({
   allProjects: null,
   allProviders: null,
   selectedProject: null,
+  didReceiveAttrs() {
+    this._super(...arguments);
+    const project = this.get('purchaseTransaction.defaultProjectStage.project');
+    this.set('selectedProject', project);
+  },
   actions: {
     save(purchaseTransaction) {
       var _ref = this;

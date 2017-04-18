@@ -80,7 +80,7 @@
                <td>El snort testosterone trophy driving gloves handsome</td>
                <td>{{item.projectStage.project.name}}</td>
                <td>{{item.projectStage.name}}</td>
-               <td>${{item.total}}</td>
+               <td>{{format-currency item.total fallback='n/a'}}</td>
                <td>
                 {{#link-to 'company.transactions.purchase-transactions.purchase-transaction.products.product.edit' item.id}}
                   <button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
@@ -112,16 +112,16 @@
              <tbody>
                <tr>
                  <th>Other:</th>
-                 <td>${{purchaseTransaction.other}}</td>
+                 <td>{{format-currency purchaseTransaction.other fallback='n/a'}}</td>
                </tr>
                <tr>
                <th style="width:50%">Subtotal:</th>
-               <td>${{purchaseTransaction.subTotal}}</td>
+               <td>{{format-currency purchaseTransaction.subTotal fallback='n/a'}}</td>
              </tr>
              {{#if purchaseTransaction.tax}}
              <tr>
                <th>Tax (9.3%)</th>
-               <td>${{purchaseTransaction.tax}}</td>
+               <td>{{format-currency purchaseTransaction.tax fallback='n/a'}}</td>
              </tr>
              {{/if}}
              <!-- <tr>
@@ -130,7 +130,7 @@
              </tr> -->
              <tr>
                <th>Total:</th>
-               <td>${{purchaseTransaction.total}}</td>
+               <td>{{format-currency purchaseTransaction.total fallback='n/a'}}</td>
              </tr>
            </tbody></table>
          </div>
