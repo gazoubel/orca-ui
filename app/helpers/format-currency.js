@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 export default Ember.Helper.extend({
   intl: Ember.inject.service(),
-  compute: function(params, hash) {
+  compute: function(params) {
     let value = (params[0] || 0) / 100;
     return this.get('intl').formatNumber(value, {
       style: 'currency',

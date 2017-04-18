@@ -12,6 +12,12 @@
        {{provider.name}}
      {{/orca-dropdown-label}}
 
+
+     {{orca-input-date-with-label field = purchaseTransaction.purchaseDate
+       displayText=(t 'fields.description')
+       classNames="col-sm-12"
+       validation=purchaseTransaction.validations.attrs.purchaseDate}}
+
     {{orca-input-with-label field = purchaseTransaction.description displayText=(t 'fields.description')
      classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.description}}
 

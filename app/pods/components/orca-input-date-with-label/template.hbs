@@ -1,0 +1,20 @@
+<div class="form-group {{if validation.isInvalid "has-error"}}">
+
+  <label>{{displayText}}</label>
+  {{#if validation.isInvalid}}
+    <label class="control-label">({{validation.message}})</label>
+  {{/if}}
+  <div class="input-group date">
+
+    {{orca-input-date  id          = idInputElement
+                       showOnFocus = true
+                       autoclose   = true
+                       value       = field
+                       class       = "form-control mousetrap"
+                       disabled    = isDisabled
+                       autofocus   = autofocus}}
+
+    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+
+  </div>
+</div>

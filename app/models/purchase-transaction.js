@@ -28,6 +28,10 @@ const Validations = buildValidations({
       positive : true
     })
   ],
+  purchaseDate : [
+    validator('date'),
+    validator('presence', true),
+  ],
 });
 
 export default DS.Model.extend(Validations,{
@@ -41,6 +45,8 @@ export default DS.Model.extend(Validations,{
   provider: DS.belongsTo('provider',{inverse: 'purchaseTransactions'}),
   total: DS.attr('number'),
   tax: DS.attr('number'),
+  purchaseDate: DS.attr('date'),
+
   purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'purchaseTransaction'}),
   other: Ember.computed('total','totalExpense', function() {
     var total = this.get('total');
