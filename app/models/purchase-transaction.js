@@ -32,6 +32,15 @@ const Validations = buildValidations({
     validator('date'),
     validator('presence', true),
   ],
+
+  paymentDueDate : [
+    validator('date'),
+    validator('presence', true),
+  ],
+
+  transactionPaidOn : [
+    validator('date'),
+  ],
 });
 
 export default DS.Model.extend(Validations,{
@@ -46,6 +55,8 @@ export default DS.Model.extend(Validations,{
   total: DS.attr('number'),
   tax: DS.attr('number'),
   purchaseDate: DS.attr('date'),
+  paymentDueDate: DS.attr('date'),
+  transactionPaidOn: DS.attr('date'),
 
   purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'purchaseTransaction'}),
   other: Ember.computed('total','totalExpense', function() {

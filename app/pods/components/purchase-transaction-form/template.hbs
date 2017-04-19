@@ -44,6 +44,17 @@
     {{/orca-dropdown-label}}
 
 
+    {{orca-input-date-with-label field = purchaseTransaction.paymentDueDate
+    displayText=(t 'fields.payment_due_date')
+    classNames="col-sm-12"
+    validation=purchaseTransaction.validations.attrs.paymentDueDate}}
+
+
+    {{orca-input-date-with-label field = purchaseTransaction.transactionPaidOn
+    displayText=(t 'fields.payment_paid_date')
+    classNames="col-sm-12"
+    validation=purchaseTransaction.validations.attrs.transactionPaidOn}}
+
     {{orca-input-currency-with-label field = purchaseTransaction.tax displayText=(t 'product.commonWords.tax')
     classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.tax }}
 

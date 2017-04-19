@@ -12,7 +12,10 @@ fields:
   edit: 'Edit'
   name: 'Name'
   description: 'Description'
-  purchase_date: 'Description'
+  purchase_date: 'Purchase Date'
+  payment_due_date: 'Payment Due'
+  payment_paid_date: 'Paid On'
+  amount_due: 'Amount Due'
 product:
   info: '{product} will cost {price, number, USD} if ordered by {deadline, date, time}'
   subTitle: 'powered by orkaman'
