@@ -9,58 +9,46 @@
       placeholder = (t 'product.transactions.transaction.provider')
       displayText=(t 'product.transactions.transaction.provider')
       as |provider|}}
-       {{provider.name}}
-     {{/orca-dropdown-label}}
+        {{provider.name}}
+    {{/orca-dropdown-label}}
 
-
-     {{orca-input-date-with-label field = purchaseTransaction.purchaseDate
-       displayText=(t 'fields.description')
-       classNames="col-sm-12"
-       validation=purchaseTransaction.validations.attrs.purchaseDate}}
+    {{orca-input-date-with-label field = purchaseTransaction.purchaseDate
+    displayText=(t 'fields.purchase_date')
+    classNames="col-sm-12"
+    validation=purchaseTransaction.validations.attrs.purchaseDate}}
 
     {{orca-input-with-label field = purchaseTransaction.description displayText=(t 'fields.description')
-     classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.description}}
+    classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.description}}
 
-     <!-- {{#orca-dropdown-label
-       classNames="col-sm-12"
-       validation=purchaseTransaction.validations.attrs.defaultProject
-       options=allProjects
-       selected=purchaseTransaction.defaultProject
-       onchange=(action (mut purchaseTransaction.defaultProject))
-       placeholder = (t 'product.transactions.transaction.default_project')
-       displayText=(t 'product.transactions.transaction.default_project')
-       as |project|}}
+    {{#orca-dropdown-label
+      classNames="col-sm-12"
+      options=allProjects
+      selected=selectedProject
+      onchange=(action (mut selectedProject))
+      placeholder = (t 'product.transactions.transaction.project')
+      displayText=(t 'product.transactions.transaction.project')
+      as |project|}}
         {{project.name}}
-      {{/orca-dropdown-label}} -->
-      {{#orca-dropdown-label
-        classNames="col-sm-12"
-        options=allProjects
-        selected=selectedProject
-        onchange=(action (mut selectedProject))
-        placeholder = (t 'product.transactions.transaction.project')
-        displayText=(t 'product.transactions.transaction.project')
-        as |project|}}
-         {{project.name}}
-       {{/orca-dropdown-label}}
+    {{/orca-dropdown-label}}
 
-      {{#orca-dropdown-label
-        classNames="col-sm-12"
-        validation=purchaseTransaction.validations.attrs.defaultProjectStage
-        options=selectedProject.projectStages
-        selected=purchaseTransaction.defaultProjectStage
-        onchange=(action (mut purchaseTransaction.defaultProjectStage))
-        placeholder = (t 'product.transactions.transaction.project_stage')
-        displayText=(t 'product.transactions.transaction.project_stage')
-        as |stage|}}
-         {{stage.name}}
-       {{/orca-dropdown-label}}
+    {{#orca-dropdown-label
+      classNames="col-sm-12"
+      validation=purchaseTransaction.validations.attrs.defaultProjectStage
+      options=selectedProject.projectStages
+      selected=purchaseTransaction.defaultProjectStage
+      onchange=(action (mut purchaseTransaction.defaultProjectStage))
+      placeholder = (t 'product.transactions.transaction.project_stage')
+      displayText=(t 'product.transactions.transaction.project_stage')
+      as |stage|}}
+       {{stage.name}}
+    {{/orca-dropdown-label}}
 
 
-      {{orca-input-with-label field = purchaseTransaction.tax displayText=(t 'product.commonWords.tax')
-        classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.tax numeric="true" scale="2"}}
+    {{orca-input-currency-with-label field = purchaseTransaction.tax displayText=(t 'product.commonWords.tax')
+    classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.tax }}
 
-      {{orca-input-with-label field = purchaseTransaction.total displayText=(t 'product.commonWords.total')
-        classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.total numeric="true" scale="2"}}
+    {{orca-input-currency-with-label field = purchaseTransaction.total displayText=(t 'product.commonWords.total')
+    classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.total}}
 
   </div>
   <div class="box-footer">

@@ -12,6 +12,7 @@ fields:
   edit: 'Edit'
   name: 'Name'
   description: 'Description'
+  purchase_date: 'Description'
 product:
   info: '{product} will cost {price, number, USD} if ordered by {deadline, date, time}'
   subTitle: 'powered by orkaman'

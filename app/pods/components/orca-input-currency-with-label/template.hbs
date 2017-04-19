@@ -1,0 +1,15 @@
+<div class="form-group {{if validation.isInvalid "has-error"}}">
+  <label>{{displayText}}</label>
+  {{#if validation.isInvalid}}
+    <label class="control-label">({{validation.message}})</label>
+  {{/if}}
+    {{orca-input-currency
+                  id        = idInputElement
+                  rawValue  = field
+                  class     = cssClass
+                  disabled  = isDisabled
+                  autofocus = autofocus
+                  onChange  = (action "onChange")
+                  maxlength = maxlength}}
+
+</div>

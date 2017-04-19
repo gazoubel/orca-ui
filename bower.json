@@ -7,6 +7,7 @@
     "components-font-awesome": "4.4.0",
     "ionicons": "2.0.1",
     "AdminLTE": "admin-lte#^2.3.11",
-    "bootstrap-datepicker": "^1.6.4"
+    "bootstrap-datepicker": "^1.6.4",
+    "jquery.inputmask": "3.2.7"
   }
 }

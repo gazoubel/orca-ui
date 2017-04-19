@@ -30,7 +30,7 @@
       {{orca-input-with-label field = purchaseTransactionItem.quantity displayText=(t 'product.commonWords.quantity')
         classNames="col-sm-12" validation=purchaseTransactionItem.validations.attrs.quantity numeric="true" scale="2"}}
 
-      {{orca-input-with-label field = purchaseTransactionItem.total displayText=(t 'product.commonWords.total')
+      {{orca-input-currency-with-label field = purchaseTransactionItem.total displayText=(t 'product.commonWords.total')
         classNames="col-sm-12" validation=purchaseTransactionItem.validations.attrs.total numeric="true" scale="2"}}
 
   </div>
