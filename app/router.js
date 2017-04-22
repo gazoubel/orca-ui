@@ -18,6 +18,7 @@ Router.map(function() {
       this.route('providers');
       this.route('payment-types');
       this.route('item-types');
+      this.route('items');
     });
     this.route('projects', function() {
       this.route('new');

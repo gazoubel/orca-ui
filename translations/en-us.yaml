@@ -32,6 +32,7 @@ product:
       providers: 'Providers'
       paymentTypes: 'Payment Types'
       itemTypes: 'Item Types'
+      items: 'Products'
   transactions:
     tabName: 'Transactions'
     tabNameMobile: 'T'
