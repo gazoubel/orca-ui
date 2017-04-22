@@ -3,6 +3,7 @@ import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
   name: validator('presence', true),
+  description: validator('presence', true),
   purchaseTransaction: [
     validator('presence', true),
     validator('belongs-to')
@@ -30,6 +31,7 @@ const Validations = buildValidations({
 
 export default DS.Model.extend(Validations, {
   name: DS.attr('string'),
+  description: DS.attr('string'),
   purchaseTransaction: DS.belongsTo('purchase-transaction',{inverse: 'purchaseTransactionItems'}),
   projectStage: DS.belongsTo('project-stage',{inverse: 'purchaseTransactionItems'}),
   total: DS.attr('number'),

@@ -1,8 +1,7 @@
 <form  class="form-horizotal" role="form" {{action "save" purchaseTransactionItem on="submit"}}> <!-- horizontal form -->
   <div class="row">
-    {{orca-input-with-label field = purchaseTransactionItem.name displayText=(t 'fields.name')
+    {{orca-input-with-label field = purchaseTransactionItem.description displayText=(t 'fields.description')
      classNames="col-sm-12" validation=purchaseTransactionItem.validations.attrs.description}}
-
 
      {{#orca-dropdown-label
        classNames="col-sm-12"

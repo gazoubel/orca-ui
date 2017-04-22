@@ -6,6 +6,7 @@ models:
   project: 'project'
   projectStage: 'stage'
   purchaseTransaction: 'purchase transaction'
+  purchaseTransactionItem: 'product'
 fields:
   save: 'Save'
   cancel: 'Cancel'
