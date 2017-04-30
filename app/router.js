@@ -58,6 +58,10 @@ Router.map(function() {
           });
         });
       });
+
+      this.route('payment-transactions', function() {
+        this.route('new');
+      });
     });
   });
 });

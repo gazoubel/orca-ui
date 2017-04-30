@@ -75,19 +75,19 @@
            </tr>
            </thead>
            <tbody>
-             {{#each purchaseTransaction.purchaseTransactionItems as |item|}}
+             {{#each purchaseTransaction.purchaseTransactionItems as |transactionItem|}}
              <tr>
-               <td>{{item.quantity}}</td>
-               <td>{{item.name}}</td>
-               <td>{{item.description}}</td>
-               <td>{{item.projectStage.project.name}}</td>
-               <td>{{item.projectStage.name}}</td>
-               <td>{{format-currency item.total fallback='n/a'}}</td>
+               <td>{{transactionItem.quantity}}</td>
+               <td>{{transactionItem.item.name}}</td>
+               <td>{{transactionItem.description}}</td>
+               <td>{{transactionItem.projectStage.project.name}}</td>
+               <td>{{transactionItem.projectStage.name}}</td>
+               <td>{{format-currency transactionItem.total fallback='n/a'}}</td>
                <td>
-                {{#link-to 'company.transactions.purchase-transactions.purchase-transaction.products.product.edit' item.id}}
+                {{#link-to 'company.transactions.purchase-transactions.purchase-transaction.products.product.edit' transactionItem.id}}
                   <button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
                 {{/link-to}}
-                <button class="btn btn-default" {{action "remove" item}}><i class="glyphicon glyphicon-remove"></i></button>
+                <button class="btn btn-default" {{action "remove" transactionItem}}><i class="glyphicon glyphicon-remove"></i></button>
                </td>
              </tr>
              {{/each}}

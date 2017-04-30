@@ -24,5 +24,6 @@ export default DS.Model.extend(Validations, {
   itemTypes: DS.hasMany('item-type', {inverse: 'company'}),
   projects: DS.hasMany('project', {inverse: 'company'}),
   purchaseTransactions: DS.hasMany('purchase-transaction', {inverse: 'company'}),
+  paymentTransactions: DS.hasMany('payment-transaction', {inverse: 'company'}),
   items: DS.hasMany('item', {inverse: 'company'})
 });

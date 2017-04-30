@@ -31,6 +31,8 @@ module.exports = function(defaults) {
   // app.import('bower_components/AdminLTE/dist/css/skins/_all-skins.css');
 
 
+  // app.import('ember-power-select-typeahead.scss');
+
   app.import('bower_components/AdminLTE/bootstrap/css/bootstrap.css');
   app.import('bower_components/AdminLTE/dist/css/AdminLTE.css');
   app.import('bower_components/AdminLTE/dist/css/skins/_all-skins.css');

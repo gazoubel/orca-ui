@@ -7,6 +7,7 @@ models:
   projectStage: 'stage'
   purchaseTransaction: 'purchase transaction'
   purchaseTransactionItem: 'product'
+  paymentTransaction: 'payment transaction'
 fields:
   save: 'Save'
   cancel: 'Cancel'
@@ -17,6 +18,9 @@ fields:
   payment_due_date: 'Payment Due'
   payment_paid_date: 'Paid On'
   amount_due: 'Amount Due'
+  paid_to: 'Paid To'
+  transaction_type: 'Transaction Type'
+  total: 'Total'
 product:
   info: '{product} will cost {price, number, USD} if ordered by {deadline, date, time}'
   subTitle: 'powered by orkaman'
@@ -45,8 +49,17 @@ product:
       project: 'Project'
       project_stage: 'Stage'
       provider: 'Provider'
+      item: 'Product'
     breadcrumbs:
       home: 'transactions'
+    purchase-transactions:
+      purchase-transaction:
+        type_name: 'Purchase Transaction'
+        new: 'New Purchase Transaction'
+    payment-transactions:
+      payment-transaction:
+        type_name: 'Payment Transaction'
+        new: 'New Payment Transaction'
   projects:
     tabName: 'Projects'
     tabNameMobile: 'P'
@@ -76,6 +89,7 @@ product:
     total: 'Total'
     tax: 'Tax'
     quantity: 'Quantity'
+    socialSecurity: 'Social Security'
   messages:
     model_created: '{model} created.'
     model_updated: '{model} updated.'

@@ -1,0 +1,52 @@
+<form  class="form-horizotal" role="form" {{action "save" paymentTransaction on="submit"}}> <!-- horizontal form -->
+  <div class="row">
+    {{orca-input-with-label field = paymentTransaction.description displayText=(t 'fields.description')
+    classNames="col-sm-12" validation=paymentTransaction.validations.attrs.description}}
+
+    {{#orca-dropdown-label
+      classNames="col-sm-12"
+      options=allProjects
+      selected=selectedProject
+      onchange=(action (mut selectedProject))
+      placeholder = (t 'product.transactions.transaction.project')
+      displayText=(t 'product.transactions.transaction.project')
+      as |project|}}
+        {{project.name}}
+    {{/orca-dropdown-label}}
+
+    {{#orca-dropdown-label
+      classNames="col-sm-12"
+      validation=paymentTransaction.validations.attrs.defaultProjectStage
+      options=selectedProject.projectStages
+      selected=paymentTransaction.defaultProjectStage
+      onchange=(action (mut paymentTransaction.defaultProjectStage))
+      placeholder = (t 'product.transactions.transaction.project_stage')
+      displayText=(t 'product.transactions.transaction.project_stage')
+      as |stage|}}
+       {{stage.name}}
+    {{/orca-dropdown-label}}
+
+
+    {{orca-input-date-with-label field = paymentTransaction.paymentDueDate
+    displayText=(t 'fields.payment_due_date')
+    classNames="col-sm-12"
+    validation=paymentTransaction.validations.attrs.paymentDueDate}}
+
+
+    {{orca-input-date-with-label field = paymentTransaction.transactionPaidOn
+    displayText=(t 'fields.payment_paid_date')
+    classNames="col-sm-12"
+    validation=paymentTransaction.validations.attrs.transactionPaidOn}}
+
+    {{orca-input-currency-with-label field = paymentTransaction.socialSecurity displayText=(t 'product.commonWords.socialSecurity')
+    classNames="col-sm-12" validation=paymentTransaction.validations.attrs.socialSecurity }}
+
+    {{orca-input-currency-with-label field = paymentTransaction.total displayText=(t 'product.commonWords.total')
+    classNames="col-sm-12" validation=paymentTransaction.validations.attrs.total}}
+
+  </div>
+  <div class="box-footer">
+    <button type="submit" class="btn btn-default pull-right">{{t 'fields.save'}}</button>
+    <button class="btn btn-default pull-right" style="margin-right: 5px;" {{action "cancel" paymentTransaction}}>{{t 'fields.cancel'}}</button>
+  </div>
+</form>

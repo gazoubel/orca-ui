@@ -1,8 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  itemService: Ember.inject.service(),
   purchaseTransactionItem: null,
   allProjects: null,
+  allItems: null,
   selectedProject: null,
   didReceiveAttrs() {
     this._super(...arguments);
@@ -26,6 +28,24 @@ export default Ember.Component.extend({
     cancel(purchaseTransactionItem) {
       purchaseTransactionItem.rollbackAttributes();
       this.sendAction('onCancelClicked');
+    },
+    addNewItem(name){
+      var _this = this;
+      let itemService = this.get('itemService');
+      return itemService.add(name).then(function(data) {
+        // on fulfillment
+        Ember.set(_this, 'purchaseTransactionItem.item', data.item);
+        _this.get('appManager').notify('success', data.message);
+      }, function(reason) {
+        // on rejection
+        _this.get('appManager').notify('error', "Item could not be added:" +reason);
+      });
+    },
+    search(key){
+      return this.get('allItems').filter(function(item){
+        let value = item.get('name');
+        return value.includes(key);
+      });
     }
   }
 });

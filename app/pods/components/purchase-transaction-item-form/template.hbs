@@ -1,38 +1,55 @@
 <form  class="form-horizotal" role="form" {{action "save" purchaseTransactionItem on="submit"}}> <!-- horizontal form -->
   <div class="row">
-    {{orca-input-with-label field = purchaseTransactionItem.description displayText=(t 'fields.description')
-     classNames="col-sm-12" validation=purchaseTransactionItem.validations.attrs.description}}
-
+    {{#orca-typeahead-with-label
+      classNames="col-sm-12"
+      validation=purchaseTransactionItem.validations.attrs.item
+      selected=purchaseTransactionItem.item
+      search=(action "search")
+      onchange=(action (mut purchaseTransactionItem.item))
+      placeholder = (t 'product.transactions.transaction.item')
+      displayText=(t 'product.transactions.transaction.item')
+      oncreate=(action 'addNewItem')
+      as |item|}}
+       {{item.name}}
+     {{/orca-typeahead-with-label}}
+   </div>
+   <div class="row">
+     {{orca-input-with-label field = purchaseTransactionItem.description displayText=(t 'fields.description')
+        classNames="col-sm-12" validation=purchaseTransactionItem.validations.attrs.description}}
+   </div>
+   <div class="row">
      {{#orca-dropdown-label
-       classNames="col-sm-12"
-       options=allProjects
-       selected=selectedProject
-       onchange=(action (mut selectedProject))
-       placeholder = (t 'product.transactions.transaction.project')
-       displayText=(t 'product.transactions.transaction.project')
-       as |project|}}
+      classNames="col-sm-12"
+      options=allProjects
+      selected=selectedProject
+      onchange=(action (mut selectedProject))
+      placeholder = (t 'product.transactions.transaction.project')
+      displayText=(t 'product.transactions.transaction.project')
+      as |project|}}
         {{project.name}}
       {{/orca-dropdown-label}}
-
-     {{#orca-dropdown-label
-       classNames="col-sm-12"
-       validation=purchaseTransactionItem.validations.attrs.projectStage
-       options=selectedProject.projectStages
-       selected=purchaseTransactionItem.projectStage
-       onchange=(action (mut purchaseTransactionItem.projectStage))
-       placeholder = (t 'product.transactions.transaction.project_stage')
-       displayText=(t 'product.transactions.transaction.project_stage')
-       as |stage|}}
-        {{stage.name}}
+    </div>
+    <div class="row">
+      {{#orca-dropdown-label
+         classNames="col-sm-12"
+         validation=purchaseTransactionItem.validations.attrs.projectStage
+         options=selectedProject.projectStages
+         selected=purchaseTransactionItem.projectStage
+         onchange=(action (mut purchaseTransactionItem.projectStage))
+         placeholder = (t 'product.transactions.transaction.project_stage')
+         displayText=(t 'product.transactions.transaction.project_stage')
+         as |stage|}}
+          {{stage.name}}
       {{/orca-dropdown-label}}
-
+    </div>
+    <div class="row">
       {{orca-input-with-label field = purchaseTransactionItem.quantity displayText=(t 'product.commonWords.quantity')
         classNames="col-sm-12" validation=purchaseTransactionItem.validations.attrs.quantity numeric="true" scale="2"}}
-
+    </div>
+    <div class="row">
       {{orca-input-currency-with-label field = purchaseTransactionItem.total displayText=(t 'product.commonWords.total')
         classNames="col-sm-12" validation=purchaseTransactionItem.validations.attrs.total numeric="true" scale="2"}}
-
-  </div>
+    </div>
   <div class="box-footer">
     <button type="submit" class="btn btn-default pull-right">{{t 'fields.save'}}</button>
     <button class="btn btn-default pull-right" style="margin-right: 5px;" {{action "cancel" purchaseTransactionItem}}>{{t 'fields.cancel'}}</button>

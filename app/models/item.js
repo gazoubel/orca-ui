@@ -6,10 +6,16 @@ const Validations = buildValidations({
   company: [
     validator('presence', true),
     validator('belongs-to')
-  ]
+  ],
+  purchaseTransactionItems: validator('has-many')
+  // purchaseTransactionItems: [
+  //   // validator('presence', true),
+  //   validator('has-many')
+  // ]
 });
 
 export default DS.Model.extend(Validations, {
   name: DS.attr('string'),
-  company: DS.belongsTo('company',{inverse: 'items'})
+  company: DS.belongsTo('company',{inverse: 'items'}),
+  purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'item'})
 });

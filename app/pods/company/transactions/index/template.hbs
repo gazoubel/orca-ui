@@ -1,7 +1,7 @@
 {{#link-to 'company.transactions.purchase-transactions.new'}}
 <button class="btn btn-default">
   <i class="glyphicon glyphicon-plus"></i>
-  {{t 'product.transactions.new_transaction'}}
+  {{t 'product.transactions.purchase-transactions.purchase-transaction.new'}}
 </button>
 {{/link-to}}
 <div class="box" style="margin-top: 5px">
@@ -9,14 +9,55 @@
     <table class="table table-hover">
       <thead>
         <tr>
+          <th>{{t 'fields.paid_to'}}</th>
+          <th>{{t 'fields.transaction_type'}}</th>
           <th>{{t 'fields.description'}}</th>
+          <th>{{t 'fields.purchase_date'}}</th>
+          <th>{{t 'fields.total'}}</th>
         </tr>
       </thead>
       <tbody>
         {{#each purchaseTransactions as |purchaseTransaction|}}
-          <!-- <tr><td>{{purchaseTransaction.description}}</td></tr> -->
           {{#link-to purchaseTransaction.route purchaseTransaction.id tagName="tr"}}
-              <td>{{purchaseTransaction.description}}</td>
+          <td>{{purchaseTransaction.provider.name}}</td>
+          <td>{{t purchaseTransaction.transactionType}}</td>
+          <td>{{purchaseTransaction.description}}</td>
+          <td>{{format-date purchaseTransaction.purchaseDate}}</td>
+          <td>{{format-currency purchaseTransaction.total fallback='n/a'}}</td>
+          {{/link-to}}
+        {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+{{#link-to 'company.transactions.payment-transactions.new'}}
+<button class="btn btn-default">
+  <i class="glyphicon glyphicon-plus"></i>
+  {{t 'product.transactions.payment-transactions.payment-transaction.new'}}
+</button>
+{{/link-to}}
+<div class="box" style="margin-top: 5px">
+  <div class="box-body no-padding">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>{{t 'fields.paid_to'}}</th>
+          <th>{{t 'fields.transaction_type'}}</th>
+          <th>{{t 'fields.description'}}</th>
+          <th>{{t 'fields.purchase_date'}}</th>
+          <th>{{t 'fields.total'}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each paymentTransactions as |paymentTransaction|}}
+          {{#link-to paymentTransaction.route paymentTransaction.id tagName="tr"}}
+          <td>{{paymentTransaction.provider.name}}</td>
+          <td>{{t paymentTransaction.transactionType}}</td>
+          <td>{{paymentTransaction.description}}</td>
+          <td>{{format-date paymentTransaction.purchaseDate}}</td>
+          <td>{{format-currency paymentTransaction.total fallback='n/a'}}</td>
           {{/link-to}}
         {{/each}}
     </tbody>

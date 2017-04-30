@@ -47,6 +47,9 @@ export default DS.Model.extend(Validations,{
   route: Ember.computed(function(){
     return 'company.transactions.purchase-transactions.purchase-transaction';
   }),
+  transactionType: Ember.computed(function(){
+    return 'product.transactions.purchase-transactions.purchase-transaction.type_name';
+  }),
   // defaultProject: DS.belongsTo('project',   {inverse: 'defaultPurchaseTransactions'}),
   defaultProjectStage: DS.belongsTo('project-stage',   {inverse: 'defaultPurchaseTransactions'}),
   description: DS.attr('string'),
