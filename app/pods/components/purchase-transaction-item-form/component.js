@@ -32,7 +32,7 @@ export default Ember.Component.extend({
     addNewItem(name){
       var _this = this;
       let itemService = this.get('itemService');
-      return itemService.add(name, false).then(function(data) {
+      return itemService.add(name).then(function(data) {
         // on fulfillment
         Ember.set(_this, 'purchaseTransactionItem.item', data.item);
         _this.get('appManager').notify('success', data.message);

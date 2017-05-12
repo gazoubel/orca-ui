@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  itemService: Ember.inject.service(),
+  laborItemService: Ember.inject.service(),
   paymentTransactionItem: null,
   allProjects: null,
-  allItems: null,
+  allLaborItems: null,
   selectedProject: null,
   didReceiveAttrs() {
     this._super(...arguments);
@@ -31,10 +31,10 @@ export default Ember.Component.extend({
     },
     addNewItem(name){
       var _this = this;
-      let itemService = this.get('itemService');
-      return itemService.add(name, true).then(function(data) {
+      let laborItemService = this.get('laborItemService');
+      return laborItemService.add(name).then(function(data) {
         // on fulfillment
-        Ember.set(_this, 'paymentTransactionItem.item', data.item);
+        Ember.set(_this, 'paymentTransactionItem.laborItem', data.item);
         _this.get('appManager').notify('success', data.message);
       }, function(reason) {
         // on rejection
@@ -42,7 +42,7 @@ export default Ember.Component.extend({
       });
     },
     search(key){
-      return this.get('allItems').filter(function(item){
+      return this.get('allLaborItems').filter(function(item){
         let value = item.get('name');
         // let isLabor = item.get('isLabor');
         return value.toLowerCase().includes(key.toLowerCase());

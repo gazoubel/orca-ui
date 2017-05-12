@@ -75,9 +75,4 @@ export default DS.Model.extend(Validations,{
       return (prev || 0) + Number(item.get('total'));
     });
   }),
-  // subTotal: Ember.computed('totalExpense', 'other', function() {
-  //   var totalExpense = this.get('totalExpense') || 0;
-  //   var other = this.get('other') || 0;
-  //   return totalExpense + other;
-  // }),
 });

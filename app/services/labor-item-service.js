@@ -11,7 +11,7 @@ export default Ember.Service.extend({
 
     let promise = new Ember.RSVP.Promise(function(resolve, reject) {
       store.findRecord('company', sessionVariables.company_id).then(function(company){
-        var item = store.createRecord('item', {
+        var item = store.createRecord('labor-item', {
           name: name,
           company: company
         });
@@ -23,7 +23,7 @@ export default Ember.Service.extend({
         }
 
         item.save().then(function(item) {
-            var t_model = intl.t('models.item');
+            var t_model = intl.t('models.laborItem');
             var message = intl.t('product.messages.model_created',{model: t_model});
             resolve({item: item, message:message});
             return;
@@ -39,7 +39,7 @@ export default Ember.Service.extend({
 
     return promise;
   },
-  remove: function (item){
-    return item.destroyRecord();
+  remove: function (laborItem){
+    return laborItem.destroyRecord();
   }
 });

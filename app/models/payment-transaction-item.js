@@ -12,7 +12,7 @@ const Validations = buildValidations({
     validator('presence', true),
     // validator('belongs-to')
   ],
-  item: [
+  laborItem: [
     validator('presence', true),
     // validator('belongs-to')
   ],
@@ -39,7 +39,7 @@ export default DS.Model.extend(Validations, {
   paymentTransaction: DS.belongsTo('payment-transaction',{inverse: 'paymentTransactionItems'}),
   projectStage: DS.belongsTo('project-stage',{inverse: 'paymentTransactionItems'}),
   // item: DS.belongsTo('item',{inverse: 'paymentTransactionItems'}),
-  item: DS.belongsTo('item',{inverse: 'paymentTransactionItems'}),
+  laborItem: DS.belongsTo('labor-item',{inverse: 'paymentTransactionItems'}),
   total: DS.attr('number'),
   quantity: DS.attr('number'),
 });

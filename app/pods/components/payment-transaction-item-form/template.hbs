@@ -2,12 +2,12 @@
   <div class="row">
     {{#orca-typeahead-with-label
       classNames="col-sm-12"
-      validation=paymentTransactionItem.validations.attrs.item
-      selected=paymentTransactionItem.item
+      validation=paymentTransactionItem.validations.attrs.laborItem
+      selected=paymentTransactionItem.laborItem
       search=(action "search")
-      onchange=(action (mut paymentTransactionItem.item))
-      placeholder = (t 'product.transactions.payment-transactions.payment-transaction.item')
-      displayText=(t 'product.transactions.payment-transactions.payment-transaction.item')
+      onchange=(action (mut paymentTransactionItem.laborItem))
+      placeholder = (t 'product.transactions.payment-transactions.payment-transaction.labor-item')
+      displayText=(t 'product.transactions.payment-transactions.payment-transaction.labor-item')
       oncreate=(action 'addNewItem')
       as |item|}}
        {{item.name}}

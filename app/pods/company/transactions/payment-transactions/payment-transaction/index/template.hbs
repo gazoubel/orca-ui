@@ -66,7 +66,7 @@
            <thead>
            <tr>
              <th>Qty</th>
-             <th>Product</th>
+             <th>Type</th>
              <th>Description</th>
              <th>Project</th>
              <th>Stage</th>
@@ -78,7 +78,7 @@
              {{#each paymentTransaction.paymentTransactionItems as |transactionItem|}}
              <tr>
                <td>{{transactionItem.quantity}}</td>
-               <td>{{transactionItem.item.name}}</td>
+               <td>{{transactionItem.laborItem.name}}</td>
                <td>{{transactionItem.description}}</td>
                <td>{{transactionItem.projectStage.project.name}}</td>
                <td>{{transactionItem.projectStage.name}}</td>

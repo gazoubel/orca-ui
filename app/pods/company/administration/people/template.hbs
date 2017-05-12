@@ -1,5 +1,5 @@
 <!-- <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-plus"></i></button> -->
-<h2>{{t 'product.administration.menu.items'}}<small></small></h2>
+<h2>{{t 'product.administration.menu.people'}}<small></small></h2>
 {{#show-on-click  modelIsInValid=modelIsInValid
     onCloseClicked="closeAddPanel" onAddClicked="add" itemAdded=name }}
   <div class="form-group {{if modelIsInValid "has-error"}}">
@@ -17,10 +17,14 @@
         </tr>
       </thead>
       <tbody>
-        {{#each model as |item|}}
+        {{#each model as |person|}}
         <tr>
-          <td>{{item.name}}</td>
-          <!-- <td><button type="submit" class="btn btn-default" {{action "removeStage" stage}}>{{t 'product.basic.buttonText.delete'}}</button></td> -->
+          <td>{{person.firstName}}</td>
+          {{#if person.user}}
+          <td>Has User</td>
+          {{else}}
+          <td>No User</td>
+          {{/if}}
         </tr>
         {{/each}}
     </tbody>

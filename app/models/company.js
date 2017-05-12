@@ -10,7 +10,9 @@ const Validations = buildValidations({
   paymentTypes: validator('has-many'),
   itemTypes: validator('has-many'),
   projects: validator('has-many'),
-  items: validator('has-many')
+  items: validator('has-many'),
+  laborItems: validator('has-many'),
+  people: validator('has-many')
 
 });
 
@@ -25,5 +27,7 @@ export default DS.Model.extend(Validations, {
   projects: DS.hasMany('project', {inverse: 'company'}),
   purchaseTransactions: DS.hasMany('purchase-transaction', {inverse: 'company'}),
   paymentTransactions: DS.hasMany('payment-transaction', {inverse: 'company'}),
-  items: DS.hasMany('item', {inverse: 'company'})
+  items: DS.hasMany('item', {inverse: 'company'}),
+  laborItems: DS.hasMany('labor-item', {inverse: 'company'}),
+  people: DS.hasMany('person', {inverse: 'company'})
 });

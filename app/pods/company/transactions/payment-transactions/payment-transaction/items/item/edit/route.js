@@ -10,14 +10,14 @@ export default Ember.Route.extend({
     return Ember.RSVP.hash({
       paymentTransactionItem: this.modelFor('company.transactions.payment-transactions.payment-transaction.items.item'),
       allProjects: this.store.query('project', {company: company_id}),
-      allItems: this.store.query('item', {company: company_id, isLabor: true})
+      allLaborItems: this.store.query('labor-item', {company: company_id})
     });
 
   },
   setupController: function(controller, models) {
     controller.set('paymentTransactionItem', models.paymentTransactionItem);
     controller.set('allProjects', models.allProjects);
-    controller.set('allItems', models.allItems);
+    controller.set('allLaborItems', models.allLaborItems);
   },
 
   actions: {
