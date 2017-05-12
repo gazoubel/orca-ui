@@ -16,8 +16,8 @@ export default Ember.Route.extend({
         // return purchaseTransaction;
         return Ember.RSVP.hash({
           purchaseTransaction: purchaseTransaction,
-          allProjects: ref.get('store').findAll('project', {company: company_id}),
-          allProviders: ref.get('store').findAll('provider', {company: company_id})
+          allProjects: ref.get('store').query('project', {company: company_id}),
+          allProviders: ref.get('store').query('provider', {company: company_id})
         });
       });
       return purchaseTransaction;

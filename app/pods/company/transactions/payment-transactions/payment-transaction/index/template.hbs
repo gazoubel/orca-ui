@@ -5,10 +5,9 @@
      <div class="row">
        <div class="col-xs-12">
          <h2 class="page-header">
-           <i class="fa fa-globe"></i> Provider: {{purchaseTransaction.provider.name}}
+           <i class="fa fa-user"></i> Paid To: {{paymentTransaction.description}}
 
-           <small class="pull-right">{{format-date purchaseTransaction.purchaseDate}}</small>
-           <small >{{purchaseTransaction.description}}</small>
+           <small>{{paymentTransaction.description}}</small>
          </h2>
        </div>
        <!-- /.col -->
@@ -17,10 +16,11 @@
      <div class="row invoice-info">
 
        <div class="col-sm-4 invoice-col">
+         <!-- <b>Description:</b> {{paymentTransaction.description}}<br> -->
          <b>Invoice #007612</b><br>
-         <b>Payment Due:</b> {{format-date purchaseTransaction.paymentDueDate}}<br>
-         <b>Default Project:</b> {{purchaseTransaction.defaultProjectStage.project.name}}<br>
-         <b>Default Project Stage:</b> {{purchaseTransaction.defaultProjectStage.name}}<br>
+         <b>Payment Due:</b> {{format-date paymentTransaction.paymentDueDate}}<br>
+         <b>Default Project:</b> {{paymentTransaction.defaultProjectStage.project.name}}<br>
+         <b>Default Project Stage:</b> {{paymentTransaction.defaultProjectStage.name}}<br>
        </div>
        <!-- /.col -->
        <div class="col-sm-4 invoice-col">
@@ -38,13 +38,13 @@
        </div>
        <!-- /.col -->
        <div class="col-sm-4 invoice-col">
-         {{#if purchaseTransaction.transactionPaidOn}}
-            <b>Paid on:</b> {{format-date purchaseTransaction.transactionPaidOn}}
+         {{#if paymentTransaction.transactionPaidOn}}
+            <b>Paid on:</b> {{format-date paymentTransaction.transactionPaidOn}}
          {{else}}
             <b>NOT PAID</b>
          {{/if}}
 
-         {{#link-to "company.transactions.purchase-transactions.purchase-transaction.edit" class="pull-right" data-toggle="tooltip" title="edit transaction"}}
+         {{#link-to "company.transactions.payment-transactions.payment-transaction.edit" class="pull-right" data-toggle="tooltip" title="edit transaction"}}
           <a href={{view.href}} class="text-muted" style="font-size: 15px;margin-left:10px;"><i class="fa fa-pencil"></i></a>
          {{/link-to}}<br>
          <br>
@@ -54,10 +54,10 @@
      </div>
 
      <br>
-     {{#link-to 'company.transactions.purchase-transactions.purchase-transaction.products.new'}}
+     {{#link-to 'company.transactions.payment-transactions.payment-transaction.items.new'}}
      <button class="btn btn-default">
        <i class="glyphicon glyphicon-plus"></i>
-       {{t 'product.transactions.purchase-transactions.purchase-transaction.add_item'}}
+       {{t 'product.transactions.payment-transactions.payment-transaction.add_item'}}
      </button>
      {{/link-to}}
      <div class="row">
@@ -75,7 +75,7 @@
            </tr>
            </thead>
            <tbody>
-             {{#each purchaseTransaction.purchaseTransactionItems as |transactionItem|}}
+             {{#each paymentTransaction.paymentTransactionItems as |transactionItem|}}
              <tr>
                <td>{{transactionItem.quantity}}</td>
                <td>{{transactionItem.item.name}}</td>
@@ -84,7 +84,7 @@
                <td>{{transactionItem.projectStage.name}}</td>
                <td>{{format-currency transactionItem.total fallback='n/a'}}</td>
                <td>
-                {{#link-to 'company.transactions.purchase-transactions.purchase-transaction.products.product.edit' transactionItem.id}}
+                {{#link-to 'company.transactions.payment-transactions.payment-transaction.items.item.edit' transactionItem.id}}
                   <button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
                 {{/link-to}}
                 <button class="btn btn-default" {{action "remove" transactionItem}}><i class="glyphicon glyphicon-remove"></i></button>
@@ -107,32 +107,28 @@
        </div>
        <!-- /.col -->
        <div class="col-xs-6">
-         <p class="lead">Amount Due {{format-date purchaseTransaction.paymentDueDate}}</p>
+         <p class="lead">Amount Due {{format-date paymentTransaction.paymentDueDate}}</p>
 
          <div class="table-responsive">
            <table class="table">
              <tbody>
-               <tr>
+               <!-- <tr>
                  <th>Other:</th>
-                 <td>{{format-currency purchaseTransaction.other fallback='n/a'}}</td>
-               </tr>
+                 <td>{{format-currency paymentTransaction.other fallback='n/a'}}</td>
+               </tr> -->
                <tr>
                <th style="width:50%">Subtotal:</th>
-               <td>{{format-currency purchaseTransaction.subTotal fallback='n/a'}}</td>
+               <td>{{format-currency paymentTransaction.subTotal fallback='n/a'}}</td>
              </tr>
-             {{#if purchaseTransaction.tax}}
+             {{#if paymentTransaction.socialSecurity}}
              <tr>
-               <th>Tax</th>
-               <td>{{format-currency purchaseTransaction.tax fallback='n/a'}}</td>
+               <th>Social Security</th>
+               <td>{{format-currency paymentTransaction.socialSecurity fallback='n/a'}}</td>
              </tr>
              {{/if}}
-             <!-- <tr>
-               <th>Shipping:</th>
-               <td>$5.80</td>
-             </tr> -->
              <tr>
                <th>Total:</th>
-               <td>{{format-currency purchaseTransaction.total fallback='n/a'}}</td>
+               <td>{{format-currency paymentTransaction.total fallback='n/a'}}</td>
              </tr>
            </tbody></table>
          </div>

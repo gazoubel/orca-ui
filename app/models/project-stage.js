@@ -24,6 +24,8 @@ export default DS.Model.extend(Validations,{
   previous: DS.belongsTo('project-stage',{inverse: 'next'}),
   next: DS.belongsTo('project-stage',{inverse: 'previous'}),
   purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'projectStage'}),
+  paymentTransactionItems: DS.hasMany('payment-transaction-item', {inverse: 'projectStage'}),
+
   defaultPurchaseTransactions: DS.hasMany('purchase-transaction', {inverse: 'defaultProjectStage'}),
   defaultPaymentTransactions: DS.hasMany('payment-transaction', {inverse: 'defaultProjectStage'}),
   // isFirstItem: Ember.computed('previous', function() {

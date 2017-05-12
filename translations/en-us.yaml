@@ -8,6 +8,7 @@ models:
   purchaseTransaction: 'purchase transaction'
   purchaseTransactionItem: 'product'
   paymentTransaction: 'payment transaction'
+  paymentTransactionItem: 'item'
 fields:
   save: 'Save'
   cancel: 'Cancel'
@@ -49,17 +50,23 @@ product:
       project: 'Project'
       project_stage: 'Stage'
       provider: 'Provider'
-      item: 'Product'
     breadcrumbs:
       home: 'transactions'
     purchase-transactions:
       purchase-transaction:
         type_name: 'Purchase Transaction'
         new: 'New Purchase Transaction'
+        edit: 'Edit Purchase Transaction'
+        add_item: 'Add New Product'
+        item: 'Product'
     payment-transactions:
       payment-transaction:
         type_name: 'Payment Transaction'
         new: 'New Payment Transaction'
+        edit: 'Edit Payment Transaction'
+        add_item: 'Add New Item'
+        item: 'Item'
+        new_item: 'New Item'
   projects:
     tabName: 'Projects'
     tabNameMobile: 'P'

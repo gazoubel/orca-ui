@@ -61,6 +61,21 @@ Router.map(function() {
 
       this.route('payment-transactions', function() {
         this.route('new');
+
+        this.route('payment-transaction', {
+          path: ':payment_transaction_id'
+        }, function() {
+          this.route('edit');
+          this.route('items', function() {
+            this.route('new');
+
+            this.route('item', {
+              path: ':payment_transaction_item_id'
+            }, function() {
+              this.route('edit');
+            });
+          });
+        });
       });
     });
   });

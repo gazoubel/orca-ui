@@ -4,16 +4,17 @@ export default Ember.Service.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
   store: Ember.inject.service(),
-  add: function (name){
+  add: function (name, isLabor){
     var store = this.get('store');
     var intl = this.get('intl');
     var sessionVariables = this.get('session.sessionVariables');
 
-    let promise = new Ember.Promise(function(resolve, reject) {
+    let promise = new Ember.RSVP.Promise(function(resolve, reject) {
       store.findRecord('company', sessionVariables.company_id).then(function(company){
         var item = store.createRecord('item', {
           name: name,
-          company: company
+          company: company,
+          isLabor: isLabor
         });
 
         if (!item.get('validations.isValid')) {
