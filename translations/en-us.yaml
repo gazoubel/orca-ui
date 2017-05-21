@@ -71,6 +71,7 @@ product:
         new: 'New Payment Transaction'
         edit: 'Edit Payment Transaction'
         add_item: 'Add New Labor Item'
+        paid_to: 'Paid To'
         labor-item: 'Labor Type'
         labor-items:
           new: 'New labor type for transaction'

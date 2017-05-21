@@ -14,7 +14,8 @@ export default Ember.Route.extend({
         });
         return Ember.RSVP.hash({
           paymentTransaction: paymentTransaction,
-          allProjects: ref.get('store').query('project', {company: company_id})
+          allProjects: ref.get('store').query('project', {company: company_id}),
+          allPeople: ref.get('store').query('person', {company: company_id})
         });
       });
       return paymentTransaction;
@@ -22,6 +23,7 @@ export default Ember.Route.extend({
   setupController: function(controller, models) {
     controller.set('paymentTransaction', models.paymentTransaction);
     controller.set('allProjects', models.allProjects);
+    controller.set('allPeople', models.allPeople);
   },
 
   actions: {

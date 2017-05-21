@@ -5,6 +5,17 @@
 
     {{#orca-dropdown-label
       classNames="col-sm-12"
+      options=allPeople
+      selected=paymentTransaction.person
+      onchange=(action (mut paymentTransaction.person))
+      placeholder = (t 'product.transactions.payment-transactions.payment-transaction.paid_to')
+      displayText=(t 'product.transactions.payment-transactions.payment-transaction.paid_to')
+      as |person|}}
+        {{person.firstName}}
+    {{/orca-dropdown-label}}
+
+    {{#orca-dropdown-label
+      classNames="col-sm-12"
       options=allProjects
       selected=selectedProject
       onchange=(action (mut selectedProject))

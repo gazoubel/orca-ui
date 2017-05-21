@@ -62,10 +62,10 @@ export default DS.Model.extend(Validations,{
   transactionPaidOn: DS.attr('date'),
 
   purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'purchaseTransaction'}),
-  other: Ember.computed('total','totalExpense', function() {
-    var total = this.get('total');
+  other: Ember.computed('total','totalExpense', 'tax', function() {
+    var total = this.get('total')||0;
     var tax = this.get('tax') || 0;
-    var totalExpense = this.get('totalExpense');
+    var totalExpense = this.get('totalExpense') || 0;
     var totalOther = total - tax - totalExpense;
     if (!totalOther) {
       return 0;

@@ -28,9 +28,9 @@ export default Ember.Controller.extend({
         }
 
         provider.save().then(function() {
+          controller.send('refreshModel');
           controller.set('modelIsInValid', false);
           controller.set('name', '');
-
           var t_model = controller.get('intl').t('models.provider');
           var message = controller.get('intl').t('product.messages.model_created',{model: t_model});
           controller.get('appManager').notify('success', message);

@@ -49,7 +49,7 @@ export default DS.Model.extend(Validations,{
   defaultProjectStage: DS.belongsTo('project-stage',   {inverse: 'defaultPaymentTransactions'}),
   description: DS.attr('string'),
   company: DS.belongsTo('company',{inverse: 'paymentTransactions'}),
-  // provider: DS.belongsTo('provider',{inverse: 'purchaseTransactions'}),
+  person: DS.belongsTo('person',{inverse: 'paymentTransactions'}),
   // total: DS.attr('number'),
   socialSecurity: DS.attr('number'),
   // purchaseDate: DS.attr('date'),

@@ -7,8 +7,8 @@ export default Ember.Route.extend({
     // return this.store.findAll('purchase-transaction', {company: company_id});
 
     return Ember.RSVP.hash({
-      purchaseTransactions: this.store.findAll('purchase-transaction', {company: company_id}),
-      paymentTransactions: this.store.findAll('payment-transaction', {company: company_id})
+      purchaseTransactions: this.store.query('purchase-transaction', {company: company_id}),
+      paymentTransactions: this.store.query('payment-transaction', {company: company_id})
     });
   },
   setupController: function(controller, models) {

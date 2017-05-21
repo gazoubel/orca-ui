@@ -53,7 +53,7 @@
       <tbody>
         {{#each paymentTransactions as |paymentTransaction|}}
           {{#link-to paymentTransaction.route paymentTransaction.id tagName="tr"}}
-          <td>{{paymentTransaction.provider.name}}</td>
+          <td>{{paymentTransaction.person.firstName}}</td>
           <td>{{t paymentTransaction.transactionType}}</td>
           <td>{{paymentTransaction.description}}</td>
           <td>{{format-date paymentTransaction.purchaseDate}}</td>

@@ -4,11 +4,16 @@ export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   model: function () {
     var company_id = this.get('session.sessionVariables.company_id');
-    return this.store.findAll('provider', {company: company_id});
+    return this.store.query('provider', {company: company_id});
   },
   setupController: function(controller, model) {
     controller.set('modelIsInValid', false);
     controller.set('name', "");
     controller.set('model', model);
+  },
+  actions:{
+    refreshModel: function(){
+      this.refresh();
+    }
   }
 });
