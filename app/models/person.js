@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 
 import { validator, buildValidations } from 'ember-cp-validations';
 
@@ -16,5 +17,7 @@ export default DS.Model.extend(Validations, {
   user: DS.belongsTo('user', {inverse: 'person', async: true}),
   company: DS.belongsTo('company',{inverse: 'people'}),
   paymentTransactions: DS.hasMany('payment-transaction',   {inverse: 'person'}),
-
+  name: Ember.computed('firstName','lastName', function(){
+    return Ember.get(this, 'firstName')+' '+Ember.get(this, 'lastName');
+  })
 });

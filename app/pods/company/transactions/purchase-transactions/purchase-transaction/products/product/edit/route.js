@@ -4,12 +4,13 @@ export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
   model: function () {
-    var company_id = this.get('session.sessionVariables.company_id');
+    // var company_id = this.get('session.sessionVariables.company_id');
+    let company = this.modelFor('company').reload();
 
     return Ember.RSVP.hash({
-      purchaseTransactionItem: this.modelFor('company.transactions.purchase-transactions.purchase-transaction.products.product'),
-      allProjects: this.store.query('project', {company: company_id}),
-      allItems: this.store.query('item', {company: company_id, isLabor: false})
+      purchaseTransactionItem: this.modelFor('company.transactions.purchase-transactions.purchase-transaction.products.product').reload(),
+      allProjects: company.get('projects'),
+      allItems: company.get('items')
     });
   },
   setupController: function(controller, models) {

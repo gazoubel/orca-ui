@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
         }
 
         provider.save().then(function() {
-          controller.send('refreshModel');
+          // controller.send('refreshModel');
           controller.set('modelIsInValid', false);
           controller.set('name', '');
           var t_model = controller.get('intl').t('models.provider');

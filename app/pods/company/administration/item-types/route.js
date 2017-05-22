@@ -8,7 +8,7 @@ export default Ember.Route.extend({
   },
   setupController: function(controller, model) {
     controller.set('modelIsInValid', false);
-    controller.set('newItemType', {name: '', isLabor: false});
+    controller.set('newItemType', {name: ''});
     controller.set('model', model);
   }
 });

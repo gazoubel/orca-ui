@@ -28,10 +28,12 @@ export default Ember.Route.extend({
     }
   },
   model: function (params) {
-    return Ember.RSVP.hash({
-      companyAcronym: params.company_acronym
-      // intl: this.get('intl').setLocale(config.APP.language),
-    });
+    var company_id = this.get('session.sessionVariables.company_id');
+    return this.get('store').findRecord('company', company_id, { reload: true });
+    // return Ember.RSVP.hash({
+    //   companyAcronym: params.company_acronym
+    //   // intl: this.get('intl').setLocale(config.APP.language),
+    // });
   },
   actions:{
       doSignOut(){

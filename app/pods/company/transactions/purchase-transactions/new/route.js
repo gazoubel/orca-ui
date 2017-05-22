@@ -5,40 +5,34 @@ export default Ember.Route.extend({
   intl: Ember.inject.service(),
   model: function () {
     var ref = this;
-    // var sessionVariables = ref.get('session.sessionVariables');
-    var company_id = this.get('session.sessionVariables.company_id');
+    let company = this.modelFor('company').reload();
+    var purchaseTransaction = ref.store.createRecord('purchase-transaction', {
+      company: company
+    });
+    // return purchaseTransaction;
+    return Ember.RSVP.hash({
+      purchaseTransaction: purchaseTransaction,
+      allProjects: company.get('projects'),
+      allProviders: company.get('providers')
+    });
 
-    let purchaseTransaction = ref.get('store').findRecord('company', company_id)
-      .then(function(company){
-        var purchaseTransaction = ref.store.createRecord('purchase-transaction', {
-          company: company
-        });
-        // return purchaseTransaction;
-        return Ember.RSVP.hash({
-          purchaseTransaction: purchaseTransaction,
-          allProjects: ref.get('store').query('project', {company: company_id}),
-          allProviders: ref.get('store').query('provider', {company: company_id})
-        });
-      });
-      return purchaseTransaction;
 
-    // return Ember.RSVP.hash({
-    //   purchaseTransaction: purchaseTransaction,
-    //   allProjects: this.store.findAll('project'),
-    //   allProviders: this.store.query('provider', {
-    //     filter: {
+
+    // var company_id = this.get('session.sessionVariables.company_id');
+    //
+    // let purchaseTransaction = ref.get('store').findRecord('company', company_id)
+    //   .then(function(company){
+    //     var purchaseTransaction = ref.store.createRecord('purchase-transaction', {
     //       company: company
-    //     }
-    //   }),
-    // });
-
-    // return ref.get('store').findRecord('company', company_id)
-    // .then(function(company){
-    //   var purchaseTransaction = ref.store.createRecord('purchase-transaction', {
-    //     company: company
+    //     });
+    //     // return purchaseTransaction;
+    //     return Ember.RSVP.hash({
+    //       purchaseTransaction: purchaseTransaction,
+    //       allProjects: ref.get('store').query('project', {company: company_id}),
+    //       allProviders: ref.get('store').query('provider', {company: company_id})
+    //     });
     //   });
     //   return purchaseTransaction;
-    // });
   },
   setupController: function(controller, models) {
     controller.set('purchaseTransaction', models.purchaseTransaction);

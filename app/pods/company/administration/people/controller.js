@@ -8,16 +8,16 @@ export default Ember.Controller.extend({
   actions: {
     closeAddPanel: function(){
       this.set('modelIsInValid', false);
-      this.set('name', "");
+      this.set('newPerson', {});
     },
 
-    add: function (name){
+    add: function (newPerson){
       var controller = this;
       var sessionVariables = this.get('session.sessionVariables');
       this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
         var person = controller.store.createRecord('person', {
-          firstName: name,
-          lastName: name,
+          firstName: newPerson.firstName,
+          lastName: newPerson.lastName,
           company: company
         });
 
@@ -30,9 +30,10 @@ export default Ember.Controller.extend({
 
         person.save().then(function() {
           controller.set('modelIsInValid', false);
-          controller.set('name', '');
+          controller.set('newPerson', {});
 
           // var company_id = controller.get('session.sessionVariables.company_id');
+          // controller.set('model', controller.get('store').query('person', {company: company_id}));
           // controller.set('model', controller.get('store').query('person', {company: company_id}));
           controller.send('refreshModel');
 

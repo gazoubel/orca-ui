@@ -33,6 +33,8 @@ export default Ember.Controller.extend({
           var t_model = controller.get('intl').t('models.paymenttype');
           var message = controller.get('intl').t('product.messages.model_created',{model: t_model});
           controller.get('appManager').notify('success', message);
+          // controller.get('model').pushObject(paymentType);
+          // controller.set('model', controller.store.query('payment-type', {company: company.id}));
         }).catch(function(error){
           controller.set('modelIsInValid', true);
           controller.get('appManager').notify('error', error.detailedMessage);

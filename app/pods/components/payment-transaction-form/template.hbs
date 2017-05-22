@@ -11,7 +11,7 @@
       placeholder = (t 'product.transactions.payment-transactions.payment-transaction.paid_to')
       displayText=(t 'product.transactions.payment-transactions.payment-transaction.paid_to')
       as |person|}}
-        {{person.firstName}}
+        {{person.firstName}} {{person.lastName}}
     {{/orca-dropdown-label}}
 
     {{#orca-dropdown-label
