@@ -5,36 +5,23 @@ export default Ember.Route.extend({
   intl: Ember.inject.service(),
   model: function () {
     var ref = this;
-    let company = this.modelFor('company').reload();
-    var paymentTransaction = ref.store.createRecord('payment-transaction', {
-      company: company
+    return this.modelFor('company').reload().then(function(company){
+      var paymentTransaction = ref.store.createRecord('payment-transaction', {
+        company: company
+      });
+      return Ember.RSVP.hash({
+        paymentTransaction: paymentTransaction,
+        allProjects: company.get('projects'),
+        allPeople: company.get('people'),
+        allPaymentTypes: company.get('paymentTypes')
+      });
     });
-    return Ember.RSVP.hash({
-      paymentTransaction: paymentTransaction,
-      allProjects: company.get('projects'),
-      allPeople: company.get('people')
-    });
-
-
-    // var company_id = this.get('session.sessionVariables.company_id');
-    //
-    // let paymentTransaction = ref.get('store').findRecord('company', company_id)
-    //   .then(function(company){
-    //     var paymentTransaction = ref.store.createRecord('payment-transaction', {
-    //       company: company
-    //     });
-    //     return Ember.RSVP.hash({
-    //       paymentTransaction: paymentTransaction,
-    //       allProjects: ref.get('store').query('project', {company: company_id}),
-    //       allPeople: ref.get('store').query('person', {company: company_id})
-    //     });
-    //   });
-    //   return paymentTransaction;
   },
   setupController: function(controller, models) {
     controller.set('paymentTransaction', models.paymentTransaction);
     controller.set('allProjects', models.allProjects);
     controller.set('allPeople', models.allPeople);
+    controller.set('allPaymentTypes', models.allPaymentTypes);
   },
 
   actions: {

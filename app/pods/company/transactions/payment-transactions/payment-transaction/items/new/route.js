@@ -4,16 +4,18 @@ export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
   model: function () {
-    var company_id = this.get('session.sessionVariables.company_id');
-    var paymentTransaction = this.modelFor('company.transactions.payment-transactions.payment-transaction');
+    // var company_id = this.get('session.sessionVariables.company_id');
+    let company = this.modelFor('company').reload();
+
+    var paymentTransaction = this.modelFor('company.transactions.payment-transactions.payment-transaction').reload();
     var paymentTransactionItem = this.store.createRecord('payment-transaction-item', {
       paymentTransaction: paymentTransaction
     });
 
     return Ember.RSVP.hash({
       paymentTransactionItem: paymentTransactionItem,
-      allProjects: this.store.query('project', {company: company_id}),
-      allLaborItems: this.store.query('labor-item', {company: company_id})
+      allProjects: company.get('projects'),
+      allLaborItems: company.get('laborItems')
     });
 
   },

@@ -27,7 +27,7 @@ export default Ember.Route.extend({
       });
     }
   },
-  model: function (params) {
+  model: function () {
     var company_id = this.get('session.sessionVariables.company_id');
     return this.get('store').findRecord('company', company_id, { reload: true });
     // return Ember.RSVP.hash({

@@ -56,6 +56,7 @@ product:
       project: 'Project'
       project_stage: 'Stage'
       provider: 'Provider'
+      payment_type: 'Payment Method'
     breadcrumbs:
       home: 'transactions'
     purchase-transactions:

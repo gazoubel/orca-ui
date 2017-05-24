@@ -55,6 +55,7 @@ export default DS.Model.extend(Validations,{
   // purchaseDate: DS.attr('date'),
   paymentDueDate: DS.attr('date'),
   transactionPaidOn: DS.attr('date'),
+  paymentType: DS.belongsTo('payment-type',{inverse: 'paymentTransactions'}),
 
   paymentTransactionItems: DS.hasMany('payment-transaction-item', {inverse: 'paymentTransaction'}),
   total: Ember.computed('socialSecurity','subTotal', function() {

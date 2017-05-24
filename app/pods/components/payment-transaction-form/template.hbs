@@ -52,8 +52,19 @@
     {{orca-input-currency-with-label field = paymentTransaction.socialSecurity displayText=(t 'product.commonWords.socialSecurity')
     classNames="col-sm-12" validation=paymentTransaction.validations.attrs.socialSecurity }}
 
-    <!-- {{orca-input-currency-with-label field = paymentTransaction.total displayText=(t 'product.commonWords.total')
-    classNames="col-sm-12" validation=paymentTransaction.validations.attrs.total}} -->
+
+    {{#orca-dropdown-label
+      classNames="col-sm-12"
+      validation=paymentTransaction.validations.attrs.paymentType
+      options=allPaymentTypes
+      selected=paymentTransaction.paymentType
+      onchange=(action (mut paymentTransaction.paymentType))
+      placeholder = (t 'product.transactions.transaction.payment_type')
+      displayText=(t 'product.transactions.transaction.payment_type')
+      as |paymentType|}}
+        {{paymentType.name}}
+    {{/orca-dropdown-label}}
+
 
   </div>
   <div class="box-footer">

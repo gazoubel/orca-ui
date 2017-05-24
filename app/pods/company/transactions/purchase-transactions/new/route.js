@@ -5,15 +5,17 @@ export default Ember.Route.extend({
   intl: Ember.inject.service(),
   model: function () {
     var ref = this;
-    let company = this.modelFor('company').reload();
-    var purchaseTransaction = ref.store.createRecord('purchase-transaction', {
-      company: company
-    });
-    // return purchaseTransaction;
-    return Ember.RSVP.hash({
-      purchaseTransaction: purchaseTransaction,
-      allProjects: company.get('projects'),
-      allProviders: company.get('providers')
+    return this.modelFor('company').reload().then(function(company){
+      var purchaseTransaction = ref.store.createRecord('purchase-transaction', {
+        company: company
+      });
+      // return purchaseTransaction;
+      return Ember.RSVP.hash({
+        purchaseTransaction: purchaseTransaction,
+        allProjects: company.get('projects'),
+        allProviders: company.get('providers'),
+        allPaymentTypes: company.get('paymentTypes')
+      });
     });
 
 
@@ -38,6 +40,7 @@ export default Ember.Route.extend({
     controller.set('purchaseTransaction', models.purchaseTransaction);
     controller.set('allProjects', models.allProjects);
     controller.set('allProviders', models.allProviders);
+    controller.set('allPaymentTypes', models.allPaymentTypes);
   },
 
   actions: {

@@ -4,6 +4,7 @@ export default Ember.Component.extend({
   purchaseTransaction: null,
   allProjects: null,
   allProviders: null,
+  allPaymentTypes: null,
   selectedProject: null,
   didReceiveAttrs() {
     this._super(...arguments);
