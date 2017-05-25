@@ -3,6 +3,9 @@
     {{orca-input-with-label field = paymentTransaction.description displayText=(t 'fields.description')
     classNames="col-sm-12" validation=paymentTransaction.validations.attrs.description}}
 
+    {{orca-input-with-label field = paymentTransaction.invoiceNumber displayText=(t 'fields.invoiceNumber')
+    classNames="col-sm-12" validation=paymentTransaction.validations.attrs.invoiceNumber}}
+
     {{#orca-dropdown-label
       classNames="col-sm-12"
       options=allPeople

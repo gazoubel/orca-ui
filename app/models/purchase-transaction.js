@@ -61,6 +61,7 @@ export default DS.Model.extend(Validations,{
   paymentDueDate: DS.attr('date'),
   transactionPaidOn: DS.attr('date'),
   paymentType: DS.belongsTo('payment-type',{inverse: 'purchaseTransactions'}),
+  invoiceNumber: DS.attr('string'),
 
   purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'purchaseTransaction'}),
   other: Ember.computed('total','totalExpense', 'tax', function() {

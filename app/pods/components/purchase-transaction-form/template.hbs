@@ -20,6 +20,9 @@
     {{orca-input-with-label field = purchaseTransaction.description displayText=(t 'fields.description')
     classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.description}}
 
+    {{orca-input-with-label field = purchaseTransaction.invoiceNumber displayText=(t 'fields.invoiceNumber')
+    classNames="col-sm-12" validation=purchaseTransaction.validations.attrs.invoiceNumber}}
+
     {{#orca-dropdown-label
       classNames="col-sm-12"
       options=allProjects

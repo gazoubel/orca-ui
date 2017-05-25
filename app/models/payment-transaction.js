@@ -52,6 +52,7 @@ export default DS.Model.extend(Validations,{
   person: DS.belongsTo('person',{inverse: 'paymentTransactions'}),
   // total: DS.attr('number'),
   socialSecurity: DS.attr('number'),
+  invoiceNumber: DS.attr('string'),
   // purchaseDate: DS.attr('date'),
   paymentDueDate: DS.attr('date'),
   transactionPaidOn: DS.attr('date'),

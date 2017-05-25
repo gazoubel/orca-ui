@@ -17,16 +17,15 @@
      <div class="row invoice-info">
 
        <div class="col-sm-4 invoice-col">
-         <b>Invoice #007612</b><br>
-         <b>Payment Due:</b> {{format-date purchaseTransaction.paymentDueDate}}<br>
+         <b>Reference #{{purchaseTransaction.id}}</b><br>
          <b>Default Project:</b> {{purchaseTransaction.defaultProjectStage.project.name}}<br>
          <b>Default Project Stage:</b> {{purchaseTransaction.defaultProjectStage.name}}<br>
        </div>
        <!-- /.col -->
        <div class="col-sm-4 invoice-col">
-         <br>
-         <b>Order ID:</b> 4F3S8J<br>
-         <b>Account:</b> 968-34567
+         <b>Invoice #{{purchaseTransaction.invoiceNumber}}</b><br>
+         <b>Payment Due:</b> {{format-date purchaseTransaction.paymentDueDate}}<br>
+         <!-- <b>Account:</b> 968-34567 -->
          <!-- To
          <address>
            <strong>John Doe</strong><br>
@@ -47,9 +46,9 @@
          {{#link-to "company.transactions.purchase-transactions.purchase-transaction.edit" class="pull-right" data-toggle="tooltip" title="edit transaction"}}
           <a href={{view.href}} class="text-muted" style="font-size: 15px;margin-left:10px;"><i class="fa fa-pencil"></i></a>
          {{/link-to}}<br>
-         <br>
+         <!-- <br>
          <b>Order ID:</b> 4F3S8J<br>
-         <b>Account:</b> 968-34567
+         <b>Account:</b> 968-34567 -->
        </div>
      </div>
 
@@ -101,8 +100,7 @@
        <div class="col-xs-6">
          <p class="lead">Payment Method: {{purchaseTransaction.paymentType.name}}</p>
          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-           Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
-           dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+           Nothing to display here
          </p>
        </div>
        <!-- /.col -->
