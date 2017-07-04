@@ -5,7 +5,7 @@ const Validations = buildValidations({
   // name: validator('presence', true),
   // description: validator('presence', true),
   paymentTransaction: [
-    validator('presence', true),
+    // validator('presence', true),
     validator('belongs-to')
   ],
   projectStage: [

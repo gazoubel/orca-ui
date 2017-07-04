@@ -50,6 +50,11 @@ export default DS.Model.extend(Validations,{
   transactionType: Ember.computed(function(){
     return 'product.transactions.purchase-transactions.purchase-transaction.type_name';
   }),
+  isUnpaid: Ember.computed.empty('transactionPaidOn'),
+  // isPaid: Ember.computed('transactionPaidOn', function(){
+  //   let transactionPaidOn = this.get('transactionPaidOn');
+  //   return transactionPaidOn && transactionPaidOn!=null && transactionPaidOn!='';
+  // }),
   // defaultProject: DS.belongsTo('project',   {inverse: 'defaultPurchaseTransactions'}),
   defaultProjectStage: DS.belongsTo('project-stage',   {inverse: 'defaultPurchaseTransactions'}),
   description: DS.attr('string'),

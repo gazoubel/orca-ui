@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 
 import { validator, buildValidations } from 'ember-cp-validations';
 
@@ -29,5 +30,21 @@ export default DS.Model.extend(Validations, {
   paymentTransactions: DS.hasMany('payment-transaction', {inverse: 'company'}),
   items: DS.hasMany('item', {inverse: 'company'}),
   laborItems: DS.hasMany('labor-item', {inverse: 'company'}),
-  people: DS.hasMany('person', {inverse: 'company'})
+  people: DS.hasMany('person', {inverse: 'company'}),
+
+  unpaidPurchaseTransactions: Ember.computed('purchaseTransactions.@each', 'purchaseTransactions.@each.isUnpaid', 'purchaseTransactions.[]', function(){
+    let transactions = Ember.get(this, 'purchaseTransactions');
+    return transactions.filterBy('isUnpaid', true);
+  }),
+  // unpaidPaymentTransactions: Ember.computed.filterBy('purchaseTransactions.[]','purchaseTransactions.@each.isPaid', 'isPaid', false),
+  // unpaidPurchaseTransactions: Ember.computed('purchaseTransactions.@each.isUnpaid', 'purchaseTransactions.[]', function(){
+  //   let transactions = Ember.get(this, 'purchaseTransactions');
+  //   return transactions.filterBy('isUnpaid', true);
+  // }),
+  unpaidPaymentTransactions: Ember.computed('paymentTransactions.@each','paymentTransactions.@each.isUnpaid', 'paymentTransactions.[]', function(){
+    let transactions = Ember.get(this, 'paymentTransactions');
+    return transactions.filterBy('isUnpaid', true);
+  })
+  // unpaidPurchaseTransactions: Ember.computed.filterBy('purchaseTransactions.[]', 'isPaid', false),
+  // unpaidPaymentTransactions: Ember.computed.filterBy('paymentTransactions.[]', 'isPaid', false)
 });

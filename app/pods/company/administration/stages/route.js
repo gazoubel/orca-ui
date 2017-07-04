@@ -5,9 +5,10 @@ export default Ember.Route.extend({
   model: function () {
     // var company_id = this.get('session.sessionVariables.company_id');
     // return this.store.query('stage', {company: company_id});
-    // let company = this.modelFor('company');
-    // company.reload();
-    return this.modelFor('company').reload();
+    let company = this.modelFor('company');
+    company.reload();
+    return company;
+    // return this.modelFor('company').reload();
   },
   setupController: function(controller, model) {
     controller.set('modelIsInValid', false);

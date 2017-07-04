@@ -4,8 +4,8 @@ export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
   model: function () {
-    let company = this.modelFor('company').reload();
-    var purchaseTransaction = this.modelFor('company.transactions.purchase-transactions.purchase-transaction').reload();
+    let company = this.modelFor('company');
+    var purchaseTransaction = this.modelFor('company.transactions.purchase-transactions.purchase-transaction');
     var purchaseTransactionItem = this.store.createRecord('purchase-transaction-item', {
       purchaseTransaction: purchaseTransaction
     });

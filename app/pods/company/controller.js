@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   company: Ember.inject.service(),
+  // store: Ember.inject.service(),
   actions: {
     doSignIn(email, password){
       var _this = this;
@@ -16,6 +17,10 @@ export default Ember.Controller.extend({
         _this.get('company').checkUserAccess(_this.get('model.companyAcronym'), userId)
         .then(function() {
           // on fulfillment
+          var company_id = _this.get('session.sessionVariables.company_id');
+          var company = _this.get('store').findRecord('company', company_id, { reload: true });
+          _this.set('model', company);
+          return;
         }, function() {
           _this.set('session.attemptedTransition', null);
           _this.get('session').invalidate();

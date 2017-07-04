@@ -5,18 +5,21 @@ export default Ember.Route.extend({
   intl: Ember.inject.service(),
   model: function () {
     // var company_id = this.get('session.sessionVariables.company_id');
-    let company = this.modelFor('company').reload();
+    var _this = this;
+    return this.modelFor('company').reload().then(function(company){
+      var paymentTransaction = _this.modelFor('company.transactions.payment-transactions.payment-transaction');
+      var paymentTransactionItem = _this.store.createRecord('payment-transaction-item', {
+        paymentTransaction: paymentTransaction
+      });
 
-    var paymentTransaction = this.modelFor('company.transactions.payment-transactions.payment-transaction').reload();
-    var paymentTransactionItem = this.store.createRecord('payment-transaction-item', {
-      paymentTransaction: paymentTransaction
+      return Ember.RSVP.hash({
+        paymentTransactionItem: paymentTransactionItem,
+        allProjects: company.get('projects'),
+        allLaborItems: company.get('laborItems')
+      });
     });
 
-    return Ember.RSVP.hash({
-      paymentTransactionItem: paymentTransactionItem,
-      allProjects: company.get('projects'),
-      allLaborItems: company.get('laborItems')
-    });
+
 
   },
   setupController: function(controller, models) {

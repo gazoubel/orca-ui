@@ -59,6 +59,8 @@ product:
       payment_type: 'Payment Method'
     breadcrumbs:
       home: 'transactions'
+      payment_transactions: 'payments'
+      purchase_transactions: 'purchases'
     purchase-transactions:
       purchase-transaction:
         type_name: 'Purchase Transaction'

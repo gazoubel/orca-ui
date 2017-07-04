@@ -1,9 +1,18 @@
-{{#link-to 'company.transactions.purchase-transactions.new'}}
-<button class="btn btn-default">
-  <i class="glyphicon glyphicon-plus"></i>
-  {{t 'product.transactions.purchase-transactions.purchase-transaction.new'}}
-</button>
-{{/link-to}}
+<!-- <div class="row"> -->
+  <!-- <div class="col-sm-4"> -->
+    {{#link-to 'company.transactions.purchase-transactions.new'}}
+    <button class="btn btn-default">
+      <i class="glyphicon glyphicon-plus"></i>
+      {{t 'product.transactions.purchase-transactions.purchase-transaction.new'}}
+    </button>
+    {{/link-to}}
+  <!-- </div> -->
+  <div class="pull-right"  style="margin-top: 15px">
+    {{#link-to 'company.transactions.purchase-transactions' }}
+    view all
+    {{/link-to}}
+  </div>
+<!-- </div> -->
 <div class="box" style="margin-top: 5px">
   <div class="box-body no-padding">
     <table class="table table-hover">
@@ -24,6 +33,7 @@
           <td>{{purchaseTransaction.description}}</td>
           <td>{{format-date purchaseTransaction.purchaseDate}}</td>
           <td>{{format-currency purchaseTransaction.total fallback='n/a'}}</td>
+          <!-- <td>{{purchaseTransaction.isUnpaid}}</td> -->
           {{/link-to}}
         {{/each}}
     </tbody>
@@ -31,13 +41,17 @@
   </div>
 </div>
 
-
 {{#link-to 'company.transactions.payment-transactions.new'}}
 <button class="btn btn-default">
   <i class="glyphicon glyphicon-plus"></i>
   {{t 'product.transactions.payment-transactions.payment-transaction.new'}}
 </button>
 {{/link-to}}
+<div class="pull-right"  style="margin-top: 15px">
+  {{#link-to 'company.transactions.payment-transactions' }}
+  view all
+  {{/link-to}}
+</div>
 <div class="box" style="margin-top: 5px">
   <div class="box-body no-padding">
     <table class="table table-hover">
@@ -58,6 +72,7 @@
           <td>{{paymentTransaction.description}}</td>
           <td>{{format-date paymentTransaction.purchaseDate}}</td>
           <td>{{format-currency paymentTransaction.total fallback='n/a'}}</td>
+          <td>{{paymentTransaction.isUnpaid}}</td>
           {{/link-to}}
         {{/each}}
     </tbody>

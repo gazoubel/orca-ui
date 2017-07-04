@@ -27,14 +27,28 @@ export default Ember.Route.extend({
       });
     }
   },
-  model: function () {
-    var company_id = this.get('session.sessionVariables.company_id');
-    return this.get('store').findRecord('company', company_id, { reload: true });
-    // return Ember.RSVP.hash({
-    //   companyAcronym: params.company_acronym
-    //   // intl: this.get('intl').setLocale(config.APP.language),
-    // });
+  model: function (params) {
+    // var company_id = this.get('session.sessionVariables.company_id');
+    // return this.get('store').findRecord('company', company_id, { reload: true });
+
+    var session = this.get('session');
+    if (session.get('isAuthenticated')) {
+      var company_id = this.get('session.sessionVariables.company_id');
+      return this.get('store').findRecord('company', company_id, { reload: true });
+    } else {
+      return Ember.RSVP.hash({
+        companyAcronym: params.company_acronym
+        // intl: this.get('intl').setLocale(config.APP.language),
+      });
+    }
+
   },
+
+  // setupController: function(controller, model) {
+  //   controller.set('modelIsInValid', false);
+  //   controller.set('newItemType', {name: ''});
+  //   controller.set('model', model);
+  // },
   actions:{
       doSignOut(){
         this.get('session').invalidate().then(function(){
