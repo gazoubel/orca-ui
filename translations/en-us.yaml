@@ -26,6 +26,7 @@ fields:
   paid_to: 'Paid To'
   transaction_type: 'Transaction Type'
   total: 'Total'
+  invoiceNumber: 'Invoice Number'
 product:
   info: '{product} will cost {price, number, USD} if ordered by {deadline, date, time}'
   subTitle: 'powered by orkaman'

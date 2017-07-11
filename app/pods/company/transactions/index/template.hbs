@@ -33,7 +33,6 @@
           <td>{{purchaseTransaction.description}}</td>
           <td>{{format-date purchaseTransaction.purchaseDate}}</td>
           <td>{{format-currency purchaseTransaction.total fallback='n/a'}}</td>
-          <!-- <td>{{purchaseTransaction.isUnpaid}}</td> -->
           {{/link-to}}
         {{/each}}
     </tbody>

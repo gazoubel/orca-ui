@@ -3,10 +3,10 @@
 {{#show-on-click  modelIsInValid=modelIsInValid
     onCloseClicked="closeAddPanel" onAddClicked="add" itemAdded=newPerson }}
   <div class="form-group {{if modelIsInValid "has-error"}}">
-    <label for="firstNameInput">{{t 'fields.name'}}</label>
+    <label for="firstNameInput">{{t 'fields.first_name'}}</label>
     {{input value=newPerson.firstName class="form-control" id="firstNameInput" }}
 
-    <label for="lastNameInput">{{t 'fields.name'}}</label>
+    <label for="lastNameInput">{{t 'fields.last_name'}}</label>
     {{input value=newPerson.lastName class="form-control" id="lastNameInput" }}
   </div>
 {{/show-on-click}}

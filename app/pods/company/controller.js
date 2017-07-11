@@ -18,9 +18,12 @@ export default Ember.Controller.extend({
         .then(function() {
           // on fulfillment
           var company_id = _this.get('session.sessionVariables.company_id');
-          var company = _this.get('store').findRecord('company', company_id, { reload: true });
-          _this.set('model', company);
-          return;
+          // var company = _this.get('store').findRecord('company', company_id, { reload: true });
+          // _this.set('model', company);
+          return _this.get('store').findRecord('company', company_id, { reload: true }).then(function(company){
+            _this.set('model', company);
+          });
+          // return;
         }, function() {
           _this.set('session.attemptedTransition', null);
           _this.get('session').invalidate();

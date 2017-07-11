@@ -39,7 +39,7 @@
     "ember-inputmask": "0.2.3",
     "ember-intl": "2.21.0",
     "ember-load-initializers": "^0.5.1",
-    "ember-moment": "7.3.0",
+    "ember-moment": "^7.3.1",
     "ember-power-select": "1.4.3",
     "ember-power-select-typeahead-with-create": "0.1.1",
     "ember-resolver": "^2.0.3",
@@ -54,6 +54,6 @@
   "private": true,
   "dependencies": {
     "admin-lte": "^2.3.11",
-    "ember-moment": "^7.3.0"
+    "bower": "^1.8.0"
   }
 }
