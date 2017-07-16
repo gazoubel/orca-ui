@@ -8,6 +8,11 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('registration');
+  this.route('public', function(){
+    this.route('company', {
+      path: ':company_acronym'
+    });
+  });
 
   this.route('company', {
     path: ':company_acronym'

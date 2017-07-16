@@ -11,9 +11,11 @@ export default Ember.Route.extend({
   beforeModel: function(transition) {
     var _this = this;
     var session = _this.get('session');
+
     if (session.get('isAuthenticated')) {
       var userId = session.get('data.authenticated.user.id');
-      var currentAcronym = transition.params.company.company_acronym;
+      var currentAcronym = this.get('session.sessionVariables.company_acronym');
+      // var currentAcronym = transition.params.company.company_acronym;
       return _this.get('company')
       .checkUserAccess(currentAcronym, userId)
       .then(function() {
@@ -25,6 +27,12 @@ export default Ember.Route.extend({
         _this.set('session.attemptedTransition', null);
         _this.get('session').invalidate();
       });
+    } else {
+      // var publicModel = Ember.RSVP.hash({
+      //   companyAcronym: currentAcronym
+      // });
+      var currentAcronym = transition.params.company.company_acronym;
+      this.transitionTo('public.company', currentAcronym);
     }
   },
   model: function (params) {
@@ -38,7 +46,6 @@ export default Ember.Route.extend({
     } else {
       return Ember.RSVP.hash({
         companyAcronym: params.company_acronym
-        // intl: this.get('intl').setLocale(config.APP.language),
       });
     }
 
@@ -51,7 +58,10 @@ export default Ember.Route.extend({
   // },
   actions:{
       doSignOut(){
+        var self = this;
+        var currentAcronym = this.get('session.sessionVariables.company_acronym');
         this.get('session').invalidate().then(function(){
+          self.transitionTo('public.company', currentAcronym);
         });
       }
   }
