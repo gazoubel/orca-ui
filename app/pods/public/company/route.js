@@ -9,6 +9,11 @@ export default Ember.Route.extend({
       companyAcronym: params.company_acronym
     });
   },
+  setupController: function(controller, model) {
+    controller.set('companyAcronym', model.companyAcronym);
+    controller.set('email', '');
+    controller.set('password', '');
+  },
   actions: {
     doSignIn(email, password){
       var _this = this;
@@ -23,13 +28,7 @@ export default Ember.Route.extend({
         _this.get('company').checkUserAccess(acronym, userId)
         .then(function() {
           // on fulfillment
-          // _this.transitionTo('company', {'company_acronym': acronym});
           _this.transitionTo('company', acronym);
-          // var company_id = _this.get('session.sessionVariables.company_id');
-          // return _this.get('store').findRecord('company', company_id, { reload: true }).then(function(company){
-          //   _this.set('model', company);
-          // });
-          // return;
         }, function() {
           _this.set('session.attemptedTransition', null);
           _this.get('session').invalidate();
