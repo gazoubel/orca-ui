@@ -18,6 +18,25 @@
     <!-- /.box-tools -->
   </div>
   <div class="box-body">
-    Project Name: {{project.name}}
+    <div class="row">
+      <div class="col-sm-12">
+        <b>{{t 'fields.name'}}:</b> {{project.name}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <b>{{t 'fields.totalClosingAmount'}}:</b> {{format-currency project.totalClosingAmount fallback='n/a'}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <b>{{t 'fields.total_spent'}}:</b> {{format-currency project.totalSpent fallback='n/a'}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <b>{{t 'fields.predicted_total'}}:</b> {{format-currency project.predictedTotal fallback='n/a'}}
+      </div>
+    </div>
   </div>
 </div>

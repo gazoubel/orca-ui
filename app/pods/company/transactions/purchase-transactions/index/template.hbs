@@ -10,20 +10,29 @@
       <thead>
         <tr>
           <th>{{t 'fields.paid_to'}}</th>
-          <th>{{t 'fields.transaction_type'}}</th>
+          <!-- <th>{{t 'fields.transaction_type'}}</th> -->
           <th>{{t 'fields.description'}}</th>
           <th>{{t 'fields.purchase_date'}}</th>
           <th>{{t 'fields.total'}}</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         {{#each purchaseTransactions as |purchaseTransaction|}}
           {{#link-to purchaseTransaction.route purchaseTransaction.id tagName="tr"}}
           <td>{{purchaseTransaction.provider.name}}</td>
-          <td>{{t purchaseTransaction.transactionType}}</td>
+          <!-- <td>{{t purchaseTransaction.transactionType}}</td> -->
           <td>{{purchaseTransaction.description}}</td>
           <td>{{format-date purchaseTransaction.purchaseDate}}</td>
           <td>{{format-currency purchaseTransaction.total fallback='n/a'}}</td>
+          <td>
+            {{#if purchaseTransaction.isLate}}
+              <span class="label label-danger">late</span>
+            {{else if purchaseTransaction.isUnpaid}}
+              <span class="label label-warning">not paid</span>
+            {{else}}
+              <span class="label label-success">paid</span>
+            {{/if}}</td>
           {{/link-to}}
         {{/each}}
     </tbody>

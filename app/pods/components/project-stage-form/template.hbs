@@ -3,6 +3,10 @@
     {{orca-input-with-label field = projectStage.name displayText=(t 'fields.name')
      classNames="col-sm-12" validation=projectStage.validations.attrs.name}}
   </div>
+  <div class="row">
+    {{orca-input-currency-with-label field = projectStage.predictedTotal displayText=(t 'fields.predicted_total')
+      classNames="col-sm-12" validation=projectStage.validations.attrs.predictedTotal numeric="true" scale="2"}}
+  </div>
   <!-- <div class="row">
     <div class="form-group">
       <div class="pull-right" style="margin-top: 20px;padding-right:20px;">

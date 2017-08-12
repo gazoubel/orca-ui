@@ -32,9 +32,13 @@ export default DS.Model.extend(Validations, {
   laborItems: DS.hasMany('labor-item', {inverse: 'company'}),
   people: DS.hasMany('person', {inverse: 'company'}),
 
-  unpaidPurchaseTransactions: Ember.computed('purchaseTransactions.@each', 'purchaseTransactions.@each.isUnpaid', 'purchaseTransactions.[]', function(){
-    let transactions = Ember.get(this, 'purchaseTransactions');
-    return transactions.filterBy('isUnpaid', true);
+  // activeProjects: Ember.computed.filterBy('projects','isArchived', false),
+  unpaidPurchaseTransactions: Ember.computed('purchaseTransactions.@each','purchaseTransactions.@each.isUnpaid', 'purchaseTransactions.[]', function(){
+    return this.get('purchaseTransactions').then(function(purchaseTransactions){
+      return purchaseTransactions.filterBy('isUnpaid', true);
+    });
+    // let transactions = Ember.get(this, 'purchaseTransactions');
+    // return transactions.filterBy('isUnpaid', true);
   }),
   // unpaidPaymentTransactions: Ember.computed.filterBy('purchaseTransactions.[]','purchaseTransactions.@each.isPaid', 'isPaid', false),
   // unpaidPurchaseTransactions: Ember.computed('purchaseTransactions.@each.isUnpaid', 'purchaseTransactions.[]', function(){
@@ -42,8 +46,11 @@ export default DS.Model.extend(Validations, {
   //   return transactions.filterBy('isUnpaid', true);
   // }),
   unpaidPaymentTransactions: Ember.computed('paymentTransactions.@each','paymentTransactions.@each.isUnpaid', 'paymentTransactions.[]', function(){
-    let transactions = Ember.get(this, 'paymentTransactions');
-    return transactions.filterBy('isUnpaid', true);
+    return this.get('paymentTransactions').then(function(paymentTransactions){
+      return paymentTransactions.filterBy('isUnpaid', true);
+    });
+    // let transactions = Ember.get(this, 'paymentTransactions');
+    // return transactions.filterBy('isUnpaid', true);
   })
   // unpaidPurchaseTransactions: Ember.computed.filterBy('purchaseTransactions.[]', 'isPaid', false),
   // unpaidPaymentTransactions: Ember.computed.filterBy('paymentTransactions.[]', 'isPaid', false)

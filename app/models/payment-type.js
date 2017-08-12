@@ -6,7 +6,8 @@ const Validations = buildValidations({
   company: [
     validator('presence', true),
     validator('belongs-to')
-  ]
+  ],
+  purchaseTransactions: validator('has-many'),
 });
 
 export default DS.Model.extend(Validations,{

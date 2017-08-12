@@ -17,30 +17,6 @@
         {{person.firstName}} {{person.lastName}}
     {{/orca-dropdown-label}}
 
-    {{#orca-dropdown-label
-      classNames="col-sm-12"
-      options=allProjects
-      selected=selectedProject
-      onchange=(action (mut selectedProject))
-      placeholder = (t 'product.transactions.transaction.project')
-      displayText=(t 'product.transactions.transaction.project')
-      as |project|}}
-        {{project.name}}
-    {{/orca-dropdown-label}}
-
-    {{#orca-dropdown-label
-      classNames="col-sm-12"
-      validation=paymentTransaction.validations.attrs.defaultProjectStage
-      options=selectedProject.projectStages
-      selected=paymentTransaction.defaultProjectStage
-      onchange=(action (mut paymentTransaction.defaultProjectStage))
-      placeholder = (t 'product.transactions.transaction.project_stage')
-      displayText=(t 'product.transactions.transaction.project_stage')
-      as |stage|}}
-       {{stage.name}}
-    {{/orca-dropdown-label}}
-
-
     {{orca-input-date-with-label field = paymentTransaction.paymentDueDate
     displayText=(t 'fields.payment_due_date')
     classNames="col-sm-12"
@@ -51,10 +27,6 @@
     displayText=(t 'fields.payment_paid_date')
     classNames="col-sm-12"
     validation=paymentTransaction.validations.attrs.transactionPaidOn}}
-
-    {{orca-input-currency-with-label field = paymentTransaction.socialSecurity displayText=(t 'product.commonWords.socialSecurity')
-    classNames="col-sm-12" validation=paymentTransaction.validations.attrs.socialSecurity }}
-
 
     {{#orca-dropdown-label
       classNames="col-sm-12"

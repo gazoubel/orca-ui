@@ -1,5 +1,5 @@
 export function initialize(instance) {
-  const applicationRoute = instance.lookup('route:application');
+  // const applicationRoute = instance.lookup('route:application');
   const session          = instance.lookup('service:session');
   // var   currentAcronym;
   session.on('authenticationSucceeded', function() {

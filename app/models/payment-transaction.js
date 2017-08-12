@@ -7,10 +7,10 @@ const Validations = buildValidations({
     validator('presence', true),
     validator('belongs-to')
   ],
-  defaultProjectStage: [
-    validator('presence', true),
+  // defaultProjectStage: [
+  //   validator('presence', true),
     // validator('belongs-to')
-  ],
+  // ],
   // provider: [
   //   // validator('presence', true),
   //   validator('belongs-to')
@@ -22,12 +22,12 @@ const Validations = buildValidations({
   //     positive : true
   //   })
   // ],
-  socialSecurity : [
-    validator('number', {
-      allowString: true,
-      positive : true
-    })
-  ],
+  // socialSecurity : [
+  //   validator('number', {
+  //     allowString: true,
+  //     positive : true
+  //   })
+  // ],
 
   paymentDueDate : [
     validator('date'),
@@ -47,16 +47,26 @@ export default DS.Model.extend(Validations,{
     return 'product.transactions.payment-transactions.payment-transaction.type_name';
   }),
   isUnpaid: Ember.computed.empty('transactionPaidOn', null),
+  isLate: Ember.computed('isUnpaid','paymentDueDate', function(){
+    var isUnpaid = this.get('isUnpaid');
+    var paymentDueDate = this.get('paymentDueDate');
+    var dueDate = new Date(paymentDueDate);
+    var today = new Date() ;
+    if (isUnpaid && dueDate<today) {
+      return true;
+    }
+    return false;
+  }),
   // isPaid: Ember.computed('transactionPaidOn', function(){
   //   let transactionPaidOn = this.get('transactionPaidOn');
   //   return transactionPaidOn && transactionPaidOn!=null && transactionPaidOn!='';
   // }),
-  defaultProjectStage: DS.belongsTo('project-stage',   {inverse: 'defaultPaymentTransactions'}),
+  // defaultProjectStage: DS.belongsTo('project-stage',   {inverse: 'defaultPaymentTransactions'}),
   description: DS.attr('string'),
   company: DS.belongsTo('company',{inverse: 'paymentTransactions'}),
   person: DS.belongsTo('person',{inverse: 'paymentTransactions'}),
   // total: DS.attr('number'),
-  socialSecurity: DS.attr('number'),
+  // socialSecurity: DS.attr('number'),
   invoiceNumber: DS.attr('string'),
   // purchaseDate: DS.attr('date'),
   paymentDueDate: DS.attr('date'),
@@ -64,16 +74,8 @@ export default DS.Model.extend(Validations,{
   paymentType: DS.belongsTo('payment-type',{inverse: 'paymentTransactions'}),
 
   paymentTransactionItems: DS.hasMany('payment-transaction-item', {inverse: 'paymentTransaction'}),
-  total: Ember.computed('socialSecurity','subTotal', function() {
-    var subTotal = this.get('subTotal')|| 0;
-    var socialSecurity = this.get('socialSecurity') || 0;
-    var total = subTotal + socialSecurity;
-    if (!total) {
-      return 0;
-    }
-    return total;
-  }),
-  subTotal: Ember.computed('paymentTransactionItems.@each.total', 'paymentTransactionItems.[]', function() {
+
+  total: Ember.computed('paymentTransactionItems.@each.total', 'paymentTransactionItems.[]', function() {
     var expenseItems = this.get('paymentTransactionItems');
     if (!expenseItems) {
       return 0;

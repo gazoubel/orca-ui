@@ -21,7 +21,7 @@
           <th>{{t 'fields.paid_to'}}</th>
           <th>{{t 'fields.transaction_type'}}</th>
           <th>{{t 'fields.description'}}</th>
-          <th>{{t 'fields.purchase_date'}}</th>
+          <th>{{t 'fields.payment_due_date'}}</th>
           <th>{{t 'fields.total'}}</th>
         </tr>
       </thead>
@@ -31,7 +31,7 @@
           <td>{{purchaseTransaction.provider.name}}</td>
           <td>{{t purchaseTransaction.transactionType}}</td>
           <td>{{purchaseTransaction.description}}</td>
-          <td>{{format-date purchaseTransaction.purchaseDate}}</td>
+          <td>{{format-date purchaseTransaction.paymentDueDate}}</td>
           <td>{{format-currency purchaseTransaction.total fallback='n/a'}}</td>
           {{/link-to}}
         {{/each}}
@@ -59,7 +59,7 @@
           <th>{{t 'fields.paid_to'}}</th>
           <th>{{t 'fields.transaction_type'}}</th>
           <th>{{t 'fields.description'}}</th>
-          <th>{{t 'fields.purchase_date'}}</th>
+          <th>{{t 'fields.payment_due_date'}}</th>
           <th>{{t 'fields.total'}}</th>
         </tr>
       </thead>
@@ -69,9 +69,8 @@
           <td>{{paymentTransaction.person.firstName}}</td>
           <td>{{t paymentTransaction.transactionType}}</td>
           <td>{{paymentTransaction.description}}</td>
-          <td>{{format-date paymentTransaction.purchaseDate}}</td>
+          <td>{{format-date paymentTransaction.paymentDueDate}}</td>
           <td>{{format-currency paymentTransaction.total fallback='n/a'}}</td>
-          <td>{{paymentTransaction.isUnpaid}}</td>
           {{/link-to}}
         {{/each}}
     </tbody>

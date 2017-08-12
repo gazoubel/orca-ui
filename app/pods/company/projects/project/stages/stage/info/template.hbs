@@ -18,6 +18,15 @@
     <!-- /.box-tools -->
   </div>
   <div class="box-body">
-  Stage Name: {{projectStage.name}}
+    <div class="row">
+      <div class="col-sm-12">
+        <b>{{t 'fields.name'}}:</b> {{projectStage.name}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <b>{{t 'fields.predicted_total'}}:</b> {{format-currency projectStage.predictedTotal fallback='n/a'}}
+      </div>
+    </div>
   </div>
 </div>

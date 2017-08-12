@@ -11,10 +11,10 @@ export default Ember.Route.extend({
   beforeModel: function(transition) {
     var _this = this;
     var session = _this.get('session');
-
+    var currentAcronym = transition.params.company.company_acronym;
     if (session.get('isAuthenticated')) {
       var userId = session.get('data.authenticated.user.id');
-      var currentAcronym = this.get('session.sessionVariables.company_acronym');
+      // currentAcronym = this.get('session.sessionVariables.company_acronym');
       // var currentAcronym = transition.params.company.company_acronym;
       return _this.get('company')
       .checkUserAccess(currentAcronym, userId)
@@ -31,7 +31,7 @@ export default Ember.Route.extend({
       // var publicModel = Ember.RSVP.hash({
       //   companyAcronym: currentAcronym
       // });
-      var currentAcronym = transition.params.company.company_acronym;
+      // currentAcronym = transition.params.company.company_acronym;
       this.transitionTo('public.company', currentAcronym);
     }
   },

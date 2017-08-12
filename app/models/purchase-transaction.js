@@ -7,10 +7,10 @@ const Validations = buildValidations({
     validator('presence', true),
     validator('belongs-to')
   ],
-  defaultProjectStage: [
-    validator('presence', true),
-    // validator('belongs-to')
-  ],
+  // defaultProjectStage: [
+  //   // validator('presence', true),
+  //   validator('belongs-to')
+  // ],
   // provider: [
   //   // validator('presence', true),
   //   validator('belongs-to')
@@ -51,6 +51,17 @@ export default DS.Model.extend(Validations,{
     return 'product.transactions.purchase-transactions.purchase-transaction.type_name';
   }),
   isUnpaid: Ember.computed.empty('transactionPaidOn'),
+
+  isLate: Ember.computed('isUnpaid','paymentDueDate', function(){
+    var isUnpaid = this.get('isUnpaid');
+    var paymentDueDate = this.get('paymentDueDate');
+    var dueDate = new Date(paymentDueDate);
+    var today = new Date() ;
+    if (isUnpaid && dueDate<today) {
+      return true;
+    }
+    return false;
+  }),
   // isPaid: Ember.computed('transactionPaidOn', function(){
   //   let transactionPaidOn = this.get('transactionPaidOn');
   //   return transactionPaidOn && transactionPaidOn!=null && transactionPaidOn!='';

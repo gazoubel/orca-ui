@@ -25,6 +25,7 @@ export default Ember.Route.extend({
       var message = this.get('intl').t('product.messages.model_created',{model: t_model});
       this.get('appManager').notify('success', message);
       this.transitionTo('company.projects');
+      return false;
     },
     canceled(){
       this.transitionTo('company.projects');
