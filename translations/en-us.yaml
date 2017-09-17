@@ -28,6 +28,7 @@ fields:
   total: 'Total'
   total_spent: 'Total Spent'
   totalClosingAmount: 'Total to receive'
+  quantity: 'Quantity'
   invoiceNumber: 'Invoice Number'
   predicted_total: 'Estimated Total'
   finished_stages: 'Finished Stages'

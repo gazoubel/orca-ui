@@ -83,6 +83,14 @@ export default DS.Model.extend(Validations,{
   other: Ember.computed('total','totalExpense', 'tax', function() {
     var total = this.get('total')||0;
     var tax = this.get('tax') || 0;
+    // return  this.get('totalExpense').then(function(totalExpense){
+    //   totalExpense = totalExpense || 0;
+    //   var totalOther = total - tax - totalExpense;
+    //   if (!totalOther) {
+    //     return 0;
+    //   }
+    //   return totalOther;
+    // });
     var totalExpense = this.get('totalExpense') || 0;
     var totalOther = total - tax - totalExpense;
     if (!totalOther) {
@@ -92,16 +100,39 @@ export default DS.Model.extend(Validations,{
   }),
   totalExpense: Ember.computed('purchaseTransactionItems.@each.total', 'purchaseTransactionItems.[]', function() {
     var expenseItems = this.get('purchaseTransactionItems');
-    if (!expenseItems) {
-      return 0;
-    }
-    return expenseItems.reduce(function(prev, item) {
-      return (prev || 0) + Number(item.get('total'));
-    });
+    // yield (expenseItems);
+    // this.get('purchaseTransactionItems').then(function(expenseItems){
+      if (!expenseItems || expenseItems.get('length')===0) {
+        return 0;
+      }
+      return expenseItems.reduce(function(prev, item) {
+        return (prev || 0) + Number(item.get('total'));
+      });
+    // });
+    // var expenseItems = this.get('purchaseTransactionItems');
+    // if (!expenseItems) {
+    //   return 0;
+    // }
+    // return expenseItems.reduce(function(prev, item) {
+    //   return (prev || 0) + Number(item.get('total'));
+    // });
   }),
   subTotal: Ember.computed('totalExpense', 'other', function() {
-    var totalExpense = this.get('totalExpense') || 0;
-    var other = this.get('other') || 0;
-    return totalExpense + other;
+    // this.get('totalExpense').then(function(totalExpense){
+      var totalExpense = this.get('totalExpense')  || 0;
+      var other = this.get('other') || 0;
+      return totalExpense + other;
+    // })
+
+    // return Ember.RSVP.Promise.all([
+    //   this.get('totalExpense'),
+    //   this.get('other')
+    // ]).then(function(values){
+    //   return (values[0]||0)+ (values[1]||0) ;
+    // });
+
+    // var totalExpense = this.get('totalExpense');
+    // var other = this.get('other');
+    // return totalExpense + other;
   }),
 });

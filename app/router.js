@@ -42,6 +42,10 @@ Router.map(function() {
           }, function() {
             this.route('edit');
             this.route('info');
+
+            this.route('items', function() {
+              this.route('purchases');
+            });
           });
         });
         this.route('info');
