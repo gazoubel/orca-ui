@@ -110,15 +110,15 @@ export default DS.Model.extend(Validations,{
     }
     return total;
   }),
-  // totalPaymentTransactionItems: Ember.computed( 'paymentTransactionItems.@each.total', 'paymentTransactionItems.[]',function() {
-  //   var paymentTransactionItems = this.get('paymentTransactionItems');
-  //   if (!paymentTransactionItems) {
-  //     return 0;
-  //   }
-  //   return paymentTransactionItems.reduce(function(prev, item) {
-  //     return (prev || 0) + Number(item.get('total'));
-  //   });
-  // }),
+  quantityOfPaymentItems: Ember.computed( 'paymentTransactionItems.@each.quantity', 'paymentTransactionItems.[]',function() {
+    var paymentTransactionItems = this.get('paymentTransactionItems');
+    if (!paymentTransactionItems) {
+      return 0;
+    }
+    return paymentTransactionItems.reduce(function(prev, item) {
+      return (prev || 0) + Number(item.get('quantity'));
+    });
+  }),
   totalPayments: Ember.computed( 'paymentTransactionItems.@each.total', 'paymentTransactionItems.[]',function() {
     var paymentTransactionItems = this.get('paymentTransactionItems');
     if (!paymentTransactionItems) {
