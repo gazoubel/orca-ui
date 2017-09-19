@@ -1,0 +1,32 @@
+{{#link-to 'company.projects.project.stages.new'}}
+<button class="btn btn-default" style="margin-top: 30px;">
+  <i class="glyphicon glyphicon-plus"></i>
+  {{t 'product.projects.project.stages.new_stage'}}
+</button>
+{{/link-to}}
+<div class="box" style="margin-top: 5px">
+  <div class="box-body no-padding">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>{{t 'fields.name'}}</th>
+          <th>{{t 'fields.service'}}</th>
+          <th>{{t 'fields.total'}}</th>
+          <th>{{t 'fields.quantity'}}</th>
+          <th>{{t 'fields.payment_paid_date'}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each paymentTransactionItems as |item|}}
+          {{#link-to 'company.transactions.payment-transactions.payment-transaction.index' item.paymentTransaction.id tagName="tr" style="vertical-align:middle;"}}
+          <td style="vertical-align:middle;">{{item.paymentTransaction.person.firstName}} {{item.paymentTransaction.person.lastName}}</td>
+            <td style="vertical-align:middle;">{{item.laborItem.name}}</td>
+            <td style="vertical-align:middle;">{{format-currency item.total fallback='n/a'}} </td>
+            <td style="vertical-align:middle;">{{item.quantity}}</td>
+            <td style="vertical-align:middle;">{{format-date item.paymentTransaction.transactionPaidOn fallback=''}}</td>
+          {{/link-to}}
+        {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>

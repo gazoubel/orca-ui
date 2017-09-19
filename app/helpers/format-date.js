@@ -9,6 +9,9 @@ export default Ember.Helper.extend({
 
   compute: function(params) {
     // let value = params[0];
+    if (!params[0]) {
+      return '';
+    }
 
     return moment(params[0]).format(this.get('moment.defaultFormat'));
     // return this.get('moment').format(params[0], this.get('moment.defaultFormat'));

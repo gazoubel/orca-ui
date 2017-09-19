@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import { validator, buildValidations } from 'ember-cp-validations';
 import Ember from 'ember';
+import moment from 'moment';
 
 const Validations = buildValidations({
   name: validator('presence', true),
@@ -44,8 +45,9 @@ export default DS.Model.extend(Validations,{
   isWaiting: Ember.computed('startedOn', 'finishedOn', function(){
     var startedOn = this.get('startedOn');
     var finishedOn = this.get('finishedOn');
-    if(!startedOn && !finishedOn)
+    if(!startedOn && !finishedOn) {
       return true;
+    }
 
     return !moment(startedOn).isValid() && !moment(finishedOn).isValid();
   }),
@@ -59,8 +61,9 @@ export default DS.Model.extend(Validations,{
   isFinished: Ember.computed('startedOn', 'finishedOn', function(){
     var startedOn = moment(this.get('startedOn'));
     var finishedOn = moment(this.get('finishedOn'));
-    if(!startedOn || !finishedOn)
+    if(!startedOn || !finishedOn) {
       return false;
+    }
 
     return startedOn.isValid() && finishedOn.isValid();
   }),
@@ -112,7 +115,7 @@ export default DS.Model.extend(Validations,{
   }),
   quantityOfPaymentItems: Ember.computed( 'paymentTransactionItems.@each.quantity', 'paymentTransactionItems.[]',function() {
     var paymentTransactionItems = this.get('paymentTransactionItems');
-    if (!paymentTransactionItems) {
+    if (!paymentTransactionItems || paymentTransactionItems.get('length')===0) {
       return 0;
     }
     return paymentTransactionItems.reduce(function(prev, item) {
@@ -121,7 +124,7 @@ export default DS.Model.extend(Validations,{
   }),
   totalPayments: Ember.computed( 'paymentTransactionItems.@each.total', 'paymentTransactionItems.[]',function() {
     var paymentTransactionItems = this.get('paymentTransactionItems');
-    if (!paymentTransactionItems) {
+    if (!paymentTransactionItems || paymentTransactionItems.get('length')===0) {
       return 0;
     }
     return paymentTransactionItems.reduce(function(prev, item) {

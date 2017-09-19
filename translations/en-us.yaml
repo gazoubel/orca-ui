@@ -33,6 +33,7 @@ fields:
   predicted_total: 'Estimated Total'
   finished_stages: 'Finished Stages'
   close_projects: 'Close Project'
+  service: 'Service'
 product:
   info: '{product} will cost {price, number, USD} if ordered by {deadline, date, time}'
   subTitle: 'powered by orkaman'

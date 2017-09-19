@@ -45,6 +45,7 @@ Router.map(function() {
 
             this.route('items', function() {
               this.route('purchases');
+              this.route('payments');
             });
           });
         });
