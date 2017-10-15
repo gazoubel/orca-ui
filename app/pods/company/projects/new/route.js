@@ -12,11 +12,18 @@ export default Ember.Route.extend({
       var project = ref.store.createRecord('project', {
         company: company
       });
-      return project;
+
+      return Ember.RSVP.hash({
+        project: project,
+        availableProjectAssignees: company.get('people')
+      });
+      //
+      // return project;
     });
   },
   setupController: function(controller, model) {
-    controller.set('project', model);
+    controller.set('project', model.project);
+    controller.set('availableProjectAssignees', model.availableProjectAssignees);
   },
 
   actions: {

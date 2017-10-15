@@ -113,7 +113,6 @@
                <tr>
                  <th>Other:</th>
                  <td>{{format-currency purchaseTransaction.other fallback='n/a'}}</td>
-                 <td>{{purchaseTransaction.other}}</td>
                </tr>
                <tr>
                <th style="width:50%">Subtotal:</th>
@@ -140,11 +139,11 @@
      <div class="row no-print">
        <div class="col-xs-12">
          <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-         <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
+         <button type="button" class="btn btn-success pull-right" {{action "markAsPaidToday" purchaseTransaction}}><i class="fa fa-credit-card"></i> {{t 'product.transactions.paid_today'}}
          </button>
-         <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+         <!-- <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
            <i class="fa fa-download"></i> Generate PDF
-         </button>
+         </button> -->
        </div>
      </div>
    </section>

@@ -20,6 +20,7 @@ export default DS.Model.extend(Validations,{
   name: DS.attr('string'),
   projectStages: DS.hasMany('project-stage', {inverse: 'project'}),
   company: DS.belongsTo('company',{inverse: 'projects'}),
+  assignee: DS.belongsTo('person',{inverse: 'projects'}),
   // defaultPurchaseTransactions: DS.hasMany('purchase-transaction', {inverse: 'defaultProject'}),
   totalClosingAmount: DS.attr('number'),
   isArchived: DS.attr('boolean'),
@@ -53,11 +54,11 @@ export default DS.Model.extend(Validations,{
     });
   }),
 
-  canBeClosed: Ember.computed( 'finishedStages',function() {
+  canBeClosed: Ember.computed( 'projectStages.[]', 'finishedStages',function() {
     var finishedStages = this.get('finishedStages');
     var projectStagesLength = this.get('projectStages.length');
 
-    return finishedStages === projectStagesLength;
+    return projectStagesLength!=0 && finishedStages === projectStagesLength;
   }),
 
   wasVeryProfitable: Ember.computed( 'totalSpent','predictedTotal',function() {

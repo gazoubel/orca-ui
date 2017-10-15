@@ -34,6 +34,7 @@ fields:
   finished_stages: 'Finished Stages'
   close_projects: 'Close Project'
   service: 'Service'
+  assignee: 'Assignee'
 product:
   info: '{product} will cost {price, number, USD} if ordered by {deadline, date, time}'
   subTitle: 'powered by orkaman'
@@ -59,6 +60,7 @@ product:
     new_transaction: 'New Transaction'
     edit_transaction: 'Edit Transaction'
     new_transaction_item: 'New Product'
+    paid_today: 'Paid Today'
     transaction:
       default_project: 'Default Project'
       project: 'Project'
@@ -94,6 +96,8 @@ product:
     new_project: 'New Project'
     edit_project: 'Edit Project'
     project:
+      view_active_only: 'show active only'
+      show_all: 'show all'
       label: 'Project'
       main_info: 'Main Info'
       main_info_subtext: 'View and edit project info'
@@ -103,6 +107,17 @@ product:
         main_info_subtext: ' View and edit stage info'
         new_stage: 'New Stage'
         edit_stage: 'Edit Stage'
+        stage:
+          start_stage: 'start stage'
+          finish_stage: 'finish stage'
+          stage_closed: 'stage closed'
+          above_budget: 'above budget'
+          on_track: 'on track'
+          purchased_items: 'Purchased Items'
+          payment_items: 'Payment Items'
+          estimated_total: 'Estimated Total'
+          total_payments: 'Total Payments'
+          total_purchase: 'Total Purchase'
       breadcrumbs:
         home: 'project'
         stages: 'stages'
@@ -113,6 +128,7 @@ product:
     done: 'Done'
     select: 'Select...'
     more_info: 'More Info'
+    view_all: 'View All'
     total: 'Total'
     tax: 'Tax'
     quantity: 'Quantity'

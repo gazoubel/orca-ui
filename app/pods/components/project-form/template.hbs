@@ -4,6 +4,19 @@
      classNames="col-sm-12" validation=project.validations.attrs.name}}
   </div>
   <div class="row">
+    {{#orca-dropdown-label
+      classNames="col-sm-12"
+      validation=purchaseTransaction.validations.attrs.provider
+      options=availableProjectAssignees
+      selected=project.assignee
+      onchange=(action (mut project.assignee))
+      placeholder = (t 'fields.assignee')
+      displayText=(t 'fields.assignee')
+      as |assignee|}}
+        {{assignee.name}}
+    {{/orca-dropdown-label}}
+  </div>
+  <div class="row">
     {{orca-input-currency-with-label field = project.totalClosingAmount displayText=(t 'fields.totalClosingAmount')
       classNames="col-sm-12" validation=project.validations.attrs.totalClosingAmount numeric="true" scale="2"}}
   </div>

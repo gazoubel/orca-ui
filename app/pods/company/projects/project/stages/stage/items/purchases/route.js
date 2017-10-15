@@ -28,6 +28,11 @@ export default Ember.Route.extend({
               name: 'Other',
               total: item.get('other'),
               quantity:1});
+            arr.addObject({
+              id: item.get('id'),
+              name: 'Tax',
+              total: item.get('tax'),
+              quantity:''});
             // });
           });
         return arr;

@@ -1,10 +1,10 @@
 <div class="row">
-  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
     <div class="info-box">
       <span class="info-box-icon {{if projectStage.isOnTrack "bg-green" "bg-red"}}"><i class="fa fa-flag-o"></i></span>
 
       <div class="info-box-content">
-        <span class="info-box-text">{{if projectStage.isOnTrack "On track" "above budget"}}</span>
+        <span class="info-box-text">{{if projectStage.isOnTrack (t 'product.projects.project.stages.stage.on_track') (t 'product.projects.project.stages.stage.above_budget')}}</span>
         <span class="info-box-number">
           {{#if projectStage.isOnTrack}}
             {{projectStage.percentageSpent}}%
@@ -13,9 +13,42 @@
       </div>
     </div>
   </div>
+  <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+    <div class="info-box">
+      <!-- <div class="box-header">Summary</div> -->
+        <div class="box-body no-padding">
+          <table style="width:100%;margin-top:5px;">
+            <tbody>
+              <!-- <tr>
+                <th></th>
+                <th>Estimated</th>
+                <th>Total</th>
+              </tr> -->
+              <tr>
+                <td style="text-align:right;width:50%;padding-right:5px;"><b>{{t 'product.projects.project.stages.stage.estimated_total'}}:</b></td>
+                <td>{{format-currency projectStage.predictedTotal fallback='n/a'}}</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-right:5px;"><b>{{t 'product.commonWords.total'}}:</b></td>
+                <td>{{format-currency projectStage.total fallback='n/a'}}</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-right:5px;"><b>{{t 'product.projects.project.stages.stage.total_payments'}}:</b></td>
+                <td>{{format-currency projectStage.totalPayments fallback='n/a'}}</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-right:5px;"><b>{{t 'product.projects.project.stages.stage.total_purchase'}}:</b></td>
+                <td>{{format-currency projectStage.totalPurchase fallback='n/a'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+    </div>
+  </div>
 </div>
 <div class ="row">
-  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
     <div class="small-box bg-yellow">
       <div class="inner">
         <h3>{{t 'product.projects.project.stages.main_info'}}</h3>
@@ -30,32 +63,32 @@
     </div>
   </div>
 
-  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
     <div class="small-box bg-aqua">
       <div class="inner">
         <h3>{{projectStage.quantityOfTotalItems}}</h3>
 
-        <p>Purchased items</p>
+        <p>{{t 'product.projects.project.stages.stage.purchased_items'}}</p>
       </div>
       <div class="icon">
         <i class="fa fa-shopping-cart"></i>
       </div>
       {{#link-to "company.projects.project.stages.stage.items.purchases" tagName="a" class="small-box-footer"}}
-        View all <i class="fa fa-arrow-circle-right"></i>
+        {{t 'product.commonWords.view_all'}} <i class="fa fa-arrow-circle-right"></i>
       {{/link-to}}
     </div>
   </div>
-  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
     <div class="small-box bg-green">
       <div class="inner">
         <h3>{{projectStage.quantityOfPaymentItems}}</h3>
-        <p>Payment items</p>
+        <p>{{t 'product.projects.project.stages.stage.payment_items'}}</p>
       </div>
       <div class="icon">
         <i class="fa fa-bank"></i>
       </div>
       {{#link-to "company.projects.project.stages.stage.items.payments" tagName="a" class="small-box-footer"}}
-        View all <i class="fa fa-arrow-circle-right"></i>
+        {{t 'product.commonWords.view_all'}}  <i class="fa fa-arrow-circle-right"></i>
       {{/link-to}}
     </div>
   </div>

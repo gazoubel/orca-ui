@@ -24,11 +24,11 @@
             <td style="vertical-align:middle;">{{format-currency projectStage.total fallback='n/a'}} </td>
             <td style="vertical-align:middle;">
               {{#if projectStage.isWaiting}}
-                <button class="btn btn-xs btn-flat btn-success pull-right" style="margin-right: 5px;" {{action "start" projectStage bubbles=false}}>start stage</button>
+                <button class="btn btn-xs btn-flat btn-success pull-right" style="margin-right: 5px;" {{action "start" projectStage bubbles=false}}>{{t 'product.projects.project.stages.stage.start_stage'}}</button>
               {{else if projectStage.isInProgress}}
-                <button class="btn btn-xs btn-flat btn-danger pull-right" style="margin-right: 5px;" {{action "finish" projectStage bubbles=false}}>finish stage</button>
+                <button class="btn btn-xs btn-flat btn-danger pull-right" style="margin-right: 5px;" {{action "finish" projectStage bubbles=false}}>{{t 'product.projects.project.stages.stage.finish_stage'}}</button>
               {{else}}
-                <span class="pull-right" style="margin-right: 5px">stage closed</span>
+                <span class="pull-right" style="margin-right: 5px">{{t 'product.projects.project.stages.stage.stage_closed'}}</span>
               {{/if}}
             </td>
             {{/link-to}}
