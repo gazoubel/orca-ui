@@ -1,5 +1,18 @@
 <form  class="form-horizotal" role="form" {{action "save" projectStage on="submit"}}>
   <div class="row">
+    {{#orca-dropdown-label
+      classNames="col-sm-12"
+      validation=projectStage.validations.attrs.stage
+      options=allStages
+      selected=projectStage.stage
+      onchange=(action (mut projectStage.stage))
+      placeholder = (t 'product.projects.project.stages.stage.basic_stage')
+      displayText=(t 'product.projects.project.stages.stage.basic_stage')
+      as |stage|}}
+        {{stage.name}}
+    {{/orca-dropdown-label}}
+  </div>
+  <div class="row">
     {{orca-input-with-label field = projectStage.name displayText=(t 'fields.name')
      classNames="col-sm-12" validation=projectStage.validations.attrs.name}}
   </div>

@@ -32,6 +32,7 @@ const Validations = buildValidations({
 export default DS.Model.extend(Validations,{
   name: DS.attr('string'),
   project: DS.belongsTo('project',{inverse: 'projectStages'}),
+  stage: DS.belongsTo('stage',{inverse: 'projectStages'}),
   previous: DS.belongsTo('project-stage',{inverse: 'next'}),
   next: DS.belongsTo('project-stage',{inverse: 'previous'}),
   purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'projectStage'}),

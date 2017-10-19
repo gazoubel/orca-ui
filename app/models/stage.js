@@ -11,5 +11,6 @@ const Validations = buildValidations({
 
 export default DS.Model.extend(Validations, {
   name: DS.attr('string'),
-  company: DS.belongsTo('company',{inverse: 'stages'})
+  company: DS.belongsTo('company',{inverse: 'stages'}),
+  projectStages: DS.hasMany('project-stage', {inverse: 'stage'}),
 });

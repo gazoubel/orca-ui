@@ -1,4 +1,4 @@
-<div class="form-group {{if validation.isInvalid "has-error"}}">
+<div class="{{if validation.isInvalid "has-error"}}">
   <label>{{displayText}}</label>
   {{#if validation.isInvalid}}
     <label class="control-label">({{validation.message}})</label>

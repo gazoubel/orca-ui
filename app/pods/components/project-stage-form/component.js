@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   projectStage: null,
+  allStages: null,
   actions: {
     save(projectStage) {
       var _ref = this;

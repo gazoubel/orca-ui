@@ -25,6 +25,11 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
+        <b>{{t 'fields.assignee'}}:</b> {{project.assignee.name}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
         <b>{{t 'fields.totalClosingAmount'}}:</b> {{format-currency project.totalClosingAmount fallback='n/a'}}
       </div>
     </div>

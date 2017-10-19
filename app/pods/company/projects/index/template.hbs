@@ -25,7 +25,13 @@
             <td>{{format-currency project.totalSpent fallback='n/a'}}</td>
             <td>{{format-currency project.totalClosingAmount fallback='n/a'}}</td>
             <td>{{format-currency project.predictedTotal fallback='n/a'}}</td>
-            <td>{{project.finishedStages}} of {{project.projectStages.length}}</td>
+            <td>
+              {{#if project.isActive}}
+                {{project.finishedStages}} of {{project.projectStages.length}}
+              {{else}}
+                {{t 'product.projects.project.project_closed'}}
+              {{/if}}
+            </td>
             <td>
               {{#if project.canBeClosed}}
                 {{#if project.isActive}}
