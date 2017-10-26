@@ -14,20 +14,46 @@ export default Ember.Service.extend({
       .then(function(companies){
         var company = companies.get('firstObject');
         if(company && company.get('id')){
-          store.findAll('company-to-user', {user: userId, company: company.get('id')})
+        //   store.findAll('person', {user: userId, company: company.get('id')})
+        //   .then(function(records) {
+        //     if(records.get('length')>0){
+        //       var person = records.get('firstObject');
+        //       intl.setLocale('en-us');
+        //       var sessionVariables = {
+        //         company_id: company.get('id'),
+        //         company_name: company.get('name'),
+        //         company_acronym: currentAcronym,
+        //         privilege:person.get('privilege'),
+        //         person_id:person.get('id'),
+        //         name: person.get('firstName')+' '+person.get('lastName')
+        //       };
+        //       session.set('sessionVariables', sessionVariables);
+        //       resolve(true);
+        //     } else {
+        //       reject('user does not have access to this company');
+        //     }
+        //   });
+        // } else {
+        //   reject('company does not exist');
+        // }
+
+
+          store.query('company-to-user', {user: userId, company: company.get('id')})
           .then(function(records) {
               if(records.get('length')>0){
                 var companyRelationship = records.get('firstObject');
-                companyRelationship.get('user')
-                .then(function(user){
-                  return user.get('person');
-                }).then(function(person){
+                companyRelationship.get('person')
+                // .then(function(user){
+                //   return user.get('person');
+                // })
+                .then(function(person){
                   intl.setLocale('en-us');
                   var sessionVariables = {
                     company_id: company.get('id'),
                     company_name: company.get('name'),
                     company_acronym: currentAcronym,
                     privilege:companyRelationship.get('privilege'),
+                    person_id:person.get('id'),
                     name: person.get('firstName')+' '+person.get('lastName')
                   };
                   session.set('sessionVariables', sessionVariables);

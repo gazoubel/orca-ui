@@ -25,7 +25,11 @@ Router.map(function() {
       this.route('item-types');
       this.route('items');
       this.route('labor-items');
-      this.route('people');
+      this.route('people', function() {
+        this.route('person', {
+          path: ':person_id'
+        });
+      });
     });
     this.route('projects', function() {
       this.route('new');

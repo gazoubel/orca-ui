@@ -3,10 +3,12 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   model: function () {
-    return this.modelFor('company').reload().then(function(company){
-      // return company.get('activeProjects');
+    let company = this.modelFor('company');
+    // return this.modelFor('company').then(function(company){
+    return company.reload().then(function(){
       return company.get('projects');
     });
+    // });
     // let company = this.modelFor('company');
     // company.reload();
     // return company.get('projects');

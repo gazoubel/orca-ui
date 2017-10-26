@@ -1,0 +1,11 @@
+{{person.name}} <br>
+
+{{#if person.companyRelationship.user}}
+Privilege: {{person.companyRelationship.privilege}}
+{{else}}
+No User
+{{/if}}
+<br>
+Projects: {{person.projects.length}}
+<br>
+Total PayChecks: {{person.paymentTransactions.length}}
