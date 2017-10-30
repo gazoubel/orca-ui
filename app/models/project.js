@@ -46,7 +46,7 @@ export default DS.Model.extend(Validations,{
 
   finishedStages: Ember.computed( 'projectStages.@each.isFinished',function() {
     var projectStages = this.get('projectStages');
-    if (!projectStages || projectStages.get('length')==0) {
+    if (!projectStages || projectStages.get('length')===0) {
       return 0;
     }
     return projectStages.reduce(function(prev, item) {
@@ -58,7 +58,7 @@ export default DS.Model.extend(Validations,{
     var finishedStages = this.get('finishedStages');
     var projectStagesLength = this.get('projectStages.length');
 
-    return projectStagesLength!=0 && finishedStages === projectStagesLength;
+    return projectStagesLength!==0 && finishedStages === projectStagesLength;
   }),
 
   wasVeryProfitable: Ember.computed( 'totalSpent','predictedTotal',function() {

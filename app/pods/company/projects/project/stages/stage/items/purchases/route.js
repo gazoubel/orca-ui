@@ -8,7 +8,7 @@ export default Ember.Route.extend({
   setupController: function(controller, model) {
     return model.get('purchaseTransactionItems').then(function(items){
       var arr = Ember.A();
-      items.forEach(function(item, index) {
+      items.forEach(function(item) {
         item.get('item').then(function(purchasedItem){
           arr.addObject({
             id: item.get('purchaseTransaction.id'),
@@ -21,7 +21,7 @@ export default Ember.Route.extend({
       // controller.set('purchasedItems', arr);
     }).then(function(arr){
       model.get('defaultPurchaseTransactions').then(function(purchaseTransactions){
-        purchaseTransactions.forEach(function(item, index) {
+        purchaseTransactions.forEach(function(item) {
           // item.get('other').then(function(other){
             arr.addObject({
               id: item.get('id'),

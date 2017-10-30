@@ -11,7 +11,7 @@ export default Ember.Route.extend({
           {
             return person;
           }
-          RSVP.reject("Person does not belong to this company.");
+          Ember.RSVP.reject("Person does not belong to this company.");
       });
     });
   },

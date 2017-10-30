@@ -158,7 +158,7 @@ export default DS.Model.extend(Validations,{
     if (!defaultPurchaseTransactions) {
       return 0;
     }
-    return defaultPurchaseTransactions.reduce(function(prev, item) {
+    return defaultPurchaseTransactions.reduce(function(prev) {
       return (prev || 0) + 1;
     });
   }),

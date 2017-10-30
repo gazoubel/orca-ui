@@ -54,6 +54,7 @@
   "private": true,
   "dependencies": {
     "admin-lte": "^2.3.11",
-    "bower": "^1.8.0"
+    "bower": "^1.8.0",
+    "ember-adminlte-components": "^0.2.1"
   }
 }
