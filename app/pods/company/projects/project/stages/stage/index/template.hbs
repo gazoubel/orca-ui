@@ -7,7 +7,7 @@
         <span class="info-box-text">{{if projectStage.isOnTrack (t 'product.projects.project.stages.stage.on_track') (t 'product.projects.project.stages.stage.above_budget')}}</span>
         <span class="info-box-number">
           {{#if projectStage.isOnTrack}}
-            {{projectStage.percentageSpent}}%
+            {{format-number projectStage.percentageSpent fallback='0' maximumFractionDigits=2}}%
           {{/if}}
         </span>
       </div>

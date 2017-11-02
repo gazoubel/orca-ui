@@ -21,6 +21,10 @@ export default DS.Model.extend(Validations, {
   projects: DS.hasMany('project', {inverse: 'assignee'}),
   companyRelationship: DS.belongsTo('company-to-user',{inverse: 'person'}),
   // privilege: DS.attr('string'),
+  isActive: DS.attr('boolean'),
+  phone: DS.attr('string'),
+  notes: DS.attr('string'),
+
   name: Ember.computed('firstName','lastName', function(){
     return Ember.get(this, 'firstName')+' '+Ember.get(this, 'lastName');
   })
