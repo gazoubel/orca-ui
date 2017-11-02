@@ -1,0 +1,23 @@
+<form  class="form-horizotal" role="form" {{action "save" person on="submit"}}> <!-- horizontal form -->
+  <div class="row">
+    {{orca-input-with-label field = person.firstName displayText=(t 'fields.first_name')
+     classNames="col-sm-12" validation=person.validations.attrs.firstname}}
+  </div>
+  <div class="row">
+    {{orca-input-with-label field = person.lastName displayText=(t 'fields.last_name')
+     classNames="col-sm-12" validation=person.validations.attrs.lastName}}
+  </div>
+  <div class="row">
+    {{orca-input-with-label field = person.phone displayText=(t 'fields.phone')
+     classNames="col-sm-12" validation=person.validations.attrs.phone}}
+  </div>
+  <div class="row">
+    {{orca-input-with-label isMultiline=true field = person.notes displayText=(t 'fields.notes')
+     classNames="col-sm-12" validation=person.validations.attrs.notes}}
+  </div>
+
+  <div class="box-footer">
+    <button type="submit" class="btn btn-default pull-right">{{t 'fields.save'}}</button>
+    <button class="btn btn-default pull-right" style="margin-right: 5px;" {{action "cancel" person}}>{{t 'fields.cancel'}}</button>
+  </div>
+</form>

@@ -1,15 +1,25 @@
 <!-- <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-plus"></i></button> -->
-<h2>{{t 'product.administration.menu.people'}}<small></small></h2>
-{{#show-on-click  modelIsInValid=modelIsInValid
-    onCloseClicked="closeAddPanel" onAddClicked="add" itemAdded=newPerson }}
-  <div class="form-group {{if modelIsInValid "has-error"}}">
-    <label for="firstNameInput">{{t 'fields.first_name'}}</label>
-    {{input value=newPerson.firstName class="form-control" id="firstNameInput" }}
+<h2>{{#if showAll}}{{t 'product.administration.people.title'}}{{else}}{{t 'product.administration.people.active_people'}}{{/if}}<small></small></h2>
+<div class="row">
+  <div class="col-md-10">
+  {{#show-on-click  modelIsInValid=modelIsInValid
+      onCloseClicked="closeAddPanel" onAddClicked="add" itemAdded=newPerson }}
+    <div class="form-group {{if modelIsInValid "has-error"}}">
+      <label for="firstNameInput">{{t 'fields.first_name'}}</label>
+      {{input value=newPerson.firstName class="form-control" id="firstNameInput" }}
 
-    <label for="lastNameInput">{{t 'fields.last_name'}}</label>
-    {{input value=newPerson.lastName class="form-control" id="lastNameInput" }}
+      <label for="lastNameInput">{{t 'fields.last_name'}}</label>
+      {{input value=newPerson.lastName class="form-control" id="lastNameInput" }}
+    </div>
+  {{/show-on-click}}
   </div>
-{{/show-on-click}}
+  <div class="col-md-2">
+    <a class="pull-right" style="padding-top:10px;" {{action "toggleShowAll"}}>
+      {{#if showAll}}{{t 'product.projects.project.view_active_only'}}{{else}}{{t 'product.projects.project.show_all'}}{{/if}}
+    </a>
+  </div>
+</div>
+
 
 <div class="box" style="margin-top: 5px">
   <div class="box-body no-padding">
@@ -17,18 +27,29 @@
       <thead>
         <tr>
           <th>{{t 'fields.name'}}</th>
+          {{#if showAll}}
+            <th>{{t 'fields.status'}}</th>
+          {{/if}}
         </tr>
       </thead>
       <tbody>
-        {{#each model as |person|}}
+        {{#each displayPeople as |person|}}
           {{#link-to 'company.administration.people.person' person.id tagName="tr"}}
-            <td>{{person.firstName}}</td>
-            <td>{{person.lastName}}</td>
-            {{#if person.companyRelationship.user}}
-            <td>Has User</td>
-            {{else}}
-            <td>No User</td>
+            <td>{{person.name}}</td>
+            {{#if showAll}}
+              {{#if person.isActive}}
+                <td><span class="label label-success">Active</span></td>
+              {{else}}
+                <td><span class="label label-danger">Inactive</span></td>
+              {{/if}}
             {{/if}}
+
+            {{#if person.companyRelationship.user}}
+              <td>Has User</td>
+            {{else}}
+              <td>No User</td>
+            {{/if}}
+
           {{/link-to}}
         {{/each}}
     </tbody>

@@ -1,5 +1,13 @@
-
-
+<section class="content-header" >
+  <h1>
+    {{t 'product.administration.people.person.title'}}
+  </h1>
+    <ol class="breadcrumb">
+      {{#link-to "company.administration.people" tagName="li"}}
+        <a href="#"><i class="fa fa-dashboard"></i>{{t 'product.administration.people.title'}}</a>
+      {{/link-to}}
+    </ol>
+</section>
 
 <section class="content">
 
@@ -32,9 +40,9 @@
                 </li>
               </ul>
               {{#if person.isActive}}
-                <a href="#" class="btn btn-primary btn-block"><b>Deactivate</b></a>
+                <a href="#" class="btn btn-danger btn-block" {{action "activate" person false}}><b>Deactivate</b></a>
               {{else}}
-                <a href="#" class="btn btn-primary btn-block"><b>Activate</b></a>
+                <a href="#" class="btn btn-success btn-block" {{action "activate" person true}}><b>Activate</b></a>
               {{/if}}
             </div>
             <!-- /.box-body -->
@@ -93,7 +101,11 @@
             <div class="tab-content">
 
               <div class="tab-pane active" id="settings">
-                <form class="form-horizontal">
+                {{person-form
+                  onCancelClicked="canceled"
+                  onSaveClicked="added"
+                  person=person }}
+                <!-- <form class="form-horizontal">
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
@@ -143,7 +155,7 @@
                       <button type="submit" class="btn btn-danger">Submit</button>
                     </div>
                   </div>
-                </form>
+                </form> -->
               </div>
               <!-- /.tab-pane -->
             </div>

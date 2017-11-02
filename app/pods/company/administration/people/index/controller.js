@@ -4,13 +4,24 @@ export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
   modelIsInValid: false,
-
+  activePeople: Ember.computed.filterBy('people','isActive', true),
+  showAll: false,
+  displayPeople: Ember.computed('showAll', function(){
+    var showAll = this.get('showAll');
+    if (showAll) {
+        return this.get('people');
+    }
+    return this.get('activePeople');
+  }),
   actions: {
     closeAddPanel: function(){
       this.set('modelIsInValid', false);
       this.set('newPerson', {});
     },
-
+    toggleShowAll(){
+      var showAll = this.get('showAll');
+      this.set('showAll', !showAll);
+    },
     add: function (newPerson){
       var controller = this;
       var sessionVariables = this.get('session.sessionVariables');

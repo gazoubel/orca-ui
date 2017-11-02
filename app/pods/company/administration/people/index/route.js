@@ -10,7 +10,8 @@ export default Ember.Route.extend({
   setupController: function(controller, model) {
     controller.set('modelIsInValid', false);
     controller.set('newPerson', {});
-    controller.set('model', model.get('people'));
+    controller.set('people', model.get('people'));
+    controller.set('showAll', false);
   },
   actions:{
     refreshModel: function(){

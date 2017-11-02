@@ -76,7 +76,10 @@
             </li>
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">{{t 'product.user.profile'}}</a>
+                {{#link-to 'company.administration.people.person' session.sessionVariables.person_id tagName="a" href=false class="btn btn-default btn-flat"}}
+                  {{t 'product.user.profile'}}
+                {{/link-to}}
+                <!-- <a href="#" class="btn btn-default btn-flat">{{t 'product.user.profile'}}</a> -->
               </div>
               <div class="pull-right">
                 <a {{action 'doSignOut'}} class="btn btn-default btn-flat">{{t 'product.user.signOut'}}</a>
