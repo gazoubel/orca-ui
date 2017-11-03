@@ -5,8 +5,9 @@ export default Ember.Controller.extend({
   intl: Ember.inject.service(),
   modelIsInValid: false,
   activePeople: Ember.computed.filterBy('people','isActive', true),
+  people: {},
   showAll: false,
-  displayPeople: Ember.computed('showAll', function(){
+  displayPeople: Ember.computed('showAll', 'people', 'people.@each.isActive', function(){
     var showAll = this.get('showAll');
     if (showAll) {
         return this.get('people');
@@ -23,38 +24,38 @@ export default Ember.Controller.extend({
       this.set('showAll', !showAll);
     },
     add: function (newPerson){
+      // var controller = this;
+      // var sessionVariables = this.get('session.sessionVariables');
+
       var controller = this;
       var sessionVariables = this.get('session.sessionVariables');
       this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
-        var person = controller.store.createRecord('person', {
+        var createdPerson = controller.store.createRecord('person', {
           firstName: newPerson.firstName,
           lastName: newPerson.lastName,
-          company: company
+          company: company,
+          isActive: true
         });
 
-        if (!person.get('validations.isValid')) {
+        if (!createdPerson.get('validations.isValid')) {
           controller.set('modelIsInValid', true);
-          controller.get('appManager').notify('error', person.get('validations.messages'));
-          person.rollbackAttributes();
+          controller.get('appManager').notify('error', createdPerson.get('validations.messages'));
+          createdPerson.rollbackAttributes();
           return;
         }
 
-        person.save().then(function() {
+        createdPerson.save().then(function(addedPerson) {
           controller.set('modelIsInValid', false);
           controller.set('newPerson', {});
-
-          // var company_id = controller.get('session.sessionVariables.company_id');
-          // controller.set('model', controller.get('store').query('person', {company: company_id}));
-          // controller.set('model', controller.get('store').query('person', {company: company_id}));
-          controller.send('refreshModel');
-
           var t_model = controller.get('intl').t('models.person');
           var message = controller.get('intl').t('product.messages.model_created',{model: t_model});
           controller.get('appManager').notify('success', message);
-        }).catch(function(error){
-          controller.set('modelIsInValid', true);
+        }, function(error){
           controller.get('appManager').notify('error', error.detailedMessage);
-          person.rollbackAttributes();
+          createdPerson.rollbackAttributes();
+        }).catch(function(reason){
+          controller.get('appManager').notify('error', reason);
+          createdPerson.rollbackAttributes();
         });
       });
 
