@@ -15,7 +15,7 @@ const Validations = buildValidations({
 export default DS.Model.extend(Validations, {
   firstName: DS.attr('string'),
   lastName: DS.attr('string'),
-  // user: DS.belongsTo('user', {inverse: 'people', async: true}),
+  user: DS.belongsTo('user', {inverse: 'people', async: true}),
   company: DS.belongsTo('company',{inverse: 'people'}),
   paymentTransactions: DS.hasMany('payment-transaction',   {inverse: 'person'}),
   projectsAssignedTo: DS.hasMany('project', {inverse: 'assignee'}),
@@ -24,8 +24,12 @@ export default DS.Model.extend(Validations, {
   isActive: DS.attr('boolean'),
   phone: DS.attr('string'),
   notes: DS.attr('string'),
+  isAdmin: DS.attr('boolean'),
 
   name: Ember.computed('firstName','lastName', function(){
     return Ember.get(this, 'firstName')+' '+Ember.get(this, 'lastName');
+  }),
+  privilege: Ember.computed('isAdmin', function(){
+    return Ember.get(this, 'isAdmin')?'admin':'other';
   })
 });

@@ -11,143 +11,176 @@
 
 <section class="content">
 
-      <div class="row">
-        <div class="col-md-3">
+  <div class="row">
+    <div class="col-md-3">
 
-          <!-- Profile Image -->
-          <div class="box box-primary">
-            <div class="box-body box-profile">
-              <h3 class="text-center img-circle"><span class="fa fa-user" style="font-size: 75px;"></span></h3>
-              <!-- <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg"
-              alt="User profile picture"> -->
+      <!-- Profile Image -->
+      <div class="box box-primary">
+        <div class="box-body box-profile">
+          <h3 class="text-center img-circle"><span class="fa fa-user" style="font-size: 75px;"></span></h3>
+          <!-- <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg"
+          alt="User profile picture"> -->
 
-              <h3 class="profile-username text-center">{{person.name}}</h3>
+          <h3 class="profile-username text-center">{{person.name}}</h3>
 
-              <p class="text-muted text-center">
-                {{#if person.companyRelationship.user}}
-                {{person.companyRelationship.privilege}}
-                {{else}}
-                No User
-                {{/if}}
-              </p>
+          <p class="text-muted text-center">
+            {{#if person.isActive}}
+              <span class="label label-success">
+                {{t 'product.administration.people.person.person_is_active'}}
+              </span>
+            {{else}}
+              <span class="label label-danger">
+                {{t 'product.administration.people.person.person_is_inactive'}}
+              </span>
+            {{/if}}
+          </p>
 
-              <ul class="list-group list-group-unbordered">
-                <li class="list-group-item">
-                  <b>Projects</b> <a class="pull-right">{{person.projectsAssignedTo.length}}</a>
-                </li>
-                <li class="list-group-item">
-                  <b>PayChecks</b> <a class="pull-right">{{person.paymentTransactions.length}}</a>
-                </li>
-              </ul>
-              {{#if person.isActive}}
-                <a href="#" class="btn btn-danger btn-block" {{action "activate" person false}}><b>Deactivate</b></a>
-              {{else}}
-                <a href="#" class="btn btn-success btn-block" {{action "activate" person true}}><b>Activate</b></a>
-              {{/if}}
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-          <!-- About Me Box -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">About Me</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <!-- <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-
-              <p class="text-muted">
-                B.S. in Computer Science from the University of Tennessee at Knoxville
-              </p>
-
-              <hr> -->
-
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
-              <p class="text-muted">n/a</p>
-
-              <hr>
-
-              <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-
-              <p>
-                <!-- <span class="label label-danger">UI Design</span>
-                <span class="label label-success">Coding</span>
-                <span class="label label-info">Javascript</span>
-                <span class="label label-warning">PHP</span>
-                <span class="label label-primary">Node.js</span> -->
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-              <p>{{person.notes}}</p>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+          <ul class="list-group list-group-unbordered">
+            <li class="list-group-item">
+              <b>Projects</b> <a class="pull-right">{{person.projectsAssignedTo.length}}</a>
+            </li>
+            <li class="list-group-item">
+              <b>PayChecks</b> <a class="pull-right">{{person.paymentTransactions.length}}</a>
+            </li>
+          </ul>
+          {{#if person.isActive}}
+            <a href="#" class="btn btn-danger btn-block" {{action "activate" person false}}><b>Deactivate</b></a>
+          {{else}}
+            <a href="#" class="btn btn-success btn-block" {{action "activate" person true}}><b>Activate</b></a>
+          {{/if}}
         </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+      <!-- About Me Box -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">About Me</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+
+          <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+          <p class="text-muted">n/a</p>
+
+          <hr>
+
+          <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+
+          <p>
+            <!-- <span class="label label-danger">UI Design</span>
+            <span class="label label-success">Coding</span>
+            <span class="label label-info">Javascript</span>
+            <span class="label label-warning">PHP</span>
+            <span class="label label-primary">Node.js</span> -->
+          </p>
+
+          <hr>
+
+          <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+          <p>{{person.notes}}</p>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
 
 
-        <!-- /.col -->
-        <div class="col-md-9">
+    <!-- /.col -->
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
           <div class="box box-widget" >
-            <div class="box-header with-border">
-              <div class="user-block">
-                <div><i class="ion ion-information-circled" style="font-size: 40px;float: left;"></i> </div>
-                <span class="username" >{{t 'product.administration.people.person.main_info'}}</span>
-                <span class="description">{{t 'product.administration.people.person.main_info_subtext'}}</span>
-              </div>
-              <div class="box-tools">
-                {{#link-to "company.administration.people.person.edit" class="btn btn-box-tool" data-toggle="tooltip" tagName="button" title="edit project"}}
-                  <a href={{view.href}} class="text-muted" style="font-size: 15px;"><i class="fa fa-pencil"></i></a>
-                {{/link-to}}
-              </div>
-            </div>
-            <div class="box-body">
-              <div class="row">
-                <div class="col-sm-12">
-                  <b>{{t 'fields.first_name'}}:</b> {{person.firstName}}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <b>{{t 'fields.last_name'}}:</b> {{person.lastName}}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <b>{{t 'fields.phone'}}:</b> {{person.phone}}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <b>{{t 'fields.notes'}}:</b> {{person.notes}}
-                </div>
-              </div>
+        <div class="box-header with-border">
+          <div class="user-block">
+            <div><i class="ion ion-information-circled" style="font-size: 40px;float: left;"></i> </div>
+            <span class="username" >{{t 'product.administration.people.person.main_info'}}</span>
+            <span class="description">{{t 'product.administration.people.person.main_info_subtext'}}</span>
+          </div>
+          <div class="box-tools">
+            {{#link-to "company.administration.people.person.edit" class="btn btn-box-tool" data-toggle="tooltip" tagName="button" title="edit project"}}
+              <a href={{view.href}} class="text-muted" style="font-size: 15px;"><i class="fa fa-pencil"></i></a>
+            {{/link-to}}
+          </div>
+        </div>
+        <div class="box-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <b>{{t 'fields.first_name'}}:</b> {{person.firstName}}
             </div>
           </div>
-
-          <!-- <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
-            </ul>
-            <div class="tab-content">
-
-              <div class="tab-pane active" id="settings">
-                {{person-form
-                  onCancelClicked="canceled"
-                  onSaveClicked="added"
-                  person=person }}
-              </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <b>{{t 'fields.last_name'}}:</b> {{person.lastName}}
             </div>
-          </div> -->
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <b>{{t 'fields.phone'}}:</b> {{person.phone}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <b>{{t 'fields.notes'}}:</b> {{person.notes}}
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
       </div>
 
-    <div>
-</div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-widget" >
+              <div class="box-header with-border">
+                <div class="user-block">
+                  <div><i class="ion {{if person.user 'ion-key' 'ion-android-person-add'}}" style="font-size: 40px;float: left;{{if person.user 'padding-left:15px;'}}"></i> </div>
+                  <span class="username" >{{t 'product.administration.people.person.user_info'}}</span>
+                  <span class="description">{{#if person.user}}{{t 'product.administration.people.person.user_info_subtext'}}{{else}}{{t 'product.administration.people.person.add_new_user_subtext'}}{{/if}}</span>
+                </div>
+                <!-- <div class="box-tools">
+                  {{#link-to "company.administration.people.person.edit" class="btn btn-box-tool" data-toggle="tooltip" tagName="button" title="edit project"}}
+                    <a href={{view.href}} class="text-muted" style="font-size: 15px;"><i class="fa fa-pencil"></i></a>
+                  {{/link-to}}
+                </div> -->
+              </div>
+                <div class="box-body">
+                  {{#if person.user}}
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <b>{{t 'fields.privilege'}}:</b> {{person.privilege}}
+                    </div>
+                  </div>
+                  {{else}}
+                    <form {{action "doRegisterNewUserAndAssignCompany" newUser person.id on="submit"}}>
+                      <label for="email">Email</label>
+                      <div class="form-group has-feedback {{if emailIsTaken 'has-error' 'has-success'}}">
+                        {{input value=newUser.email class="form-control" aria-describedby="inputEmailStatus"}}
+                        <span class="glyphicon {{if emailIsTaken 'glyphicon-remove' 'glyphicon-ok'}} form-control-feedback" aria-hidden="true"></span>
+                        <span id="inputEmailStatus" class="sr-only">{{#if emailIsTaken}}(error){{else}}(success){{/if}}</span>
+                      </div>
+
+                      <label for="password">Password</label>
+                      {{input value=newUser.password type="password" class="form-control"}}
+
+                      <label for="passwordConfirmation">Confirm Password</label>
+                      <div class="form-group has-feedback {{if passwordMatches 'has-success' 'has-error'}}">
+                        {{input value=newUser.passwordConfirmation class="form-control" type="password" aria-describedby="inputPasswordConfirmationStatus"}}
+                        <span class="glyphicon {{if passwordMatches 'glyphicon-ok' 'glyphicon-remove'}} form-control-feedback" aria-hidden="true"></span>
+                        <span id="inputPasswordConfirmationStatus" class="sr-only">{{#if passwordMatches}}(success){{else}}(error){{/if}}</span>
+                      </div>
+                      <button type="submit" class="btn btn-success btn-lg btn-block"
+                        style="margin-top: 15px" disabled={{buttonDisabled}}>Create User</button>
+                    </form>
+                  {{/if}}
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
 </section>

@@ -19,5 +19,17 @@ export default Ember.Service.extend({
         newRegistration: newRegistration
       }
     });
+  },
+
+  registerNewUserAndAssignCompany(newUser, person_id){
+    return Ember.$.ajax({
+      method: "POST",
+      url: config.host+'/'+config.namespace+'/auths/addNewUserToCompany',
+      dataType: 'json',
+      data: {
+        newUser: newUser,
+        person_id: person_id
+      }
+    });
   }
 });
