@@ -54,6 +54,9 @@ product:
       active_people: 'Active People'
       person:
         title: 'Person'
+        edit: 'Edit Person'
+        main_info: 'Main Info'
+        main_info_subtext: 'View and edit personal info'
         information_rolledback: 'Changes have been rolled back'
         person_is_active: 'Person is now active'
         person_is_inactive: 'Person is now inactive'

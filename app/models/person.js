@@ -18,7 +18,7 @@ export default DS.Model.extend(Validations, {
   // user: DS.belongsTo('user', {inverse: 'people', async: true}),
   company: DS.belongsTo('company',{inverse: 'people'}),
   paymentTransactions: DS.hasMany('payment-transaction',   {inverse: 'person'}),
-  projects: DS.hasMany('project', {inverse: 'assignee'}),
+  projectsAssignedTo: DS.hasMany('project', {inverse: 'assignee'}),
   companyRelationship: DS.belongsTo('company-to-user',{inverse: 'person'}),
   // privilege: DS.attr('string'),
   isActive: DS.attr('boolean'),
