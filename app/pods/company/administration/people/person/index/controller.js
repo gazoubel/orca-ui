@@ -26,6 +26,9 @@ export default Ember.Controller.extend({
     return this.get('emailIsTaken') ||
         !this.get('passwordMatches');
   }),
+  userMainInfoImgStyle: Ember.computed('person.user', function(){
+    return this.get('person.user')?'padding-left:15px;':'';
+  }),
   actions: {
     doRegisterNewUserAndAssignCompany(newUser, person_id){
       this.get('registration').registerNewUserAndAssignCompany(newUser, person_id)

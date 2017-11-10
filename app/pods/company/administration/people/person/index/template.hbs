@@ -138,7 +138,11 @@
             <div class="box box-widget" >
               <div class="box-header with-border">
                 <div class="user-block">
-                  <div><i class="ion {{if person.user 'ion-key' 'ion-android-person-add'}}" style="font-size: 40px;float: left;{{if person.user 'padding-left:15px;'}}"></i> </div>
+                  {{#if person.user}}
+                    <div><i class="ion ion-key" style="font-size: 40px;float: left;padding-left:15px;"></i> </div>
+                  {{else}}
+                    <div><i class="ion ion-android-person-add" style="font-size: 40px;float: left;"></i> </div>
+                  {{/if}}
                   <span class="username" >{{t 'product.administration.people.person.user_info'}}</span>
                   <span class="description">{{#if person.user}}{{t 'product.administration.people.person.user_info_subtext'}}{{else}}{{t 'product.administration.people.person.add_new_user_subtext'}}{{/if}}</span>
                 </div>

@@ -14,10 +14,8 @@ export default Ember.Service.extend({
       .then(function(companies){
         var company = companies.get('firstObject');
         if(company && company.get('id')){
-          store.findAll('person', {user: userId, company: company.get('id'), isActive: true})
-          .then(function(records) {
-            if(records.get('length')>0){
-              var person = records.get('firstObject');
+          store.queryRecord('person', {user: userId, company: company.get('id'), isActive: true}).then(function(person){
+            if (person) {
               intl.setLocale('en-us');
               var sessionVariables = {
                 company_id: company.get('id'),
@@ -29,10 +27,32 @@ export default Ember.Service.extend({
               };
               session.set('sessionVariables', sessionVariables);
               resolve(true);
-            } else {
-              reject('user does not have access to this company');
             }
+            reject('user does not have access to this company');
+
           });
+
+          // store.query('person', {user: userId, company: company.get('id'), isActive: true}).then(function(records){
+          //   if(records.get('length')>0){
+          //     var person = records.get('firstObject');
+          //     if (person) {
+          //       intl.setLocale('en-us');
+          //       var sessionVariables = {
+          //         company_id: company.get('id'),
+          //         company_name: company.get('name'),
+          //         company_acronym: currentAcronym,
+          //         privilege:person.get('isAdmin')?'admin':'other',
+          //         person_id:person.get('id'),
+          //         name: person.get('firstName')+' '+person.get('lastName')
+          //       };
+          //       session.set('sessionVariables', sessionVariables);
+          //       resolve(true);
+          //     }
+          //     reject('user does not have access to this company');
+          //   } else {
+          //       reject('user does not have access to this company');
+          //     }
+          // });
         } else {
           reject('company does not exist');
         }

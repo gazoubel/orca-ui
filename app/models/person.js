@@ -31,5 +31,5 @@ export default DS.Model.extend(Validations, {
   }),
   privilege: Ember.computed('isAdmin', function(){
     return Ember.get(this, 'isAdmin')?'admin':'other';
-  })
+  }),
 });
