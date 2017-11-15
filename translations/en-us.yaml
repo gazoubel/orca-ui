@@ -7,7 +7,7 @@ models:
   projectStage: 'stage'
   purchaseTransaction: 'purchase transaction'
   purchaseTransactionItem: 'product'
-  paymentTransaction: 'payment transaction'
+  paymentTransaction: 'labor transaction'
   paymentTransactionItem: 'item'
   item: 'item'
   laborItem: 'labor type'
@@ -93,7 +93,7 @@ product:
     breadcrumbs:
       home: 'transactions'
       payment_transactions: 'payments'
-      purchase_transactions: 'purchases'
+      purchase_transactions: 'labor payments'
     purchase-transactions:
       purchase-transaction:
         type_name: 'Purchase Transaction'
@@ -103,9 +103,9 @@ product:
         item: 'Product'
     payment-transactions:
       payment-transaction:
-        type_name: 'Payment Transaction'
-        new: 'New Payment Transaction'
-        edit: 'Edit Payment Transaction'
+        type_name: 'Labor Transaction'
+        new: 'New Labor Transaction'
+        edit: 'Edit Labor Transaction'
         add_item: 'Add New Labor Item'
         paid_to: 'Paid To'
         labor-item: 'Labor Type'
@@ -125,6 +125,7 @@ product:
       main_info: 'Main Info'
       main_info_subtext: 'View and edit project info'
       project_closed: 'Closed'
+      stages_progress: 'Stages progress'
       team_members: 'Team members'
       team:
         new_member: 'New team member'
@@ -142,9 +143,9 @@ product:
           above_budget: 'above budget'
           on_track: 'on track'
           purchased_items: 'Purchased Items'
-          payment_items: 'Payment Items'
+          payment_items: 'Labor Items'
           estimated_total: 'Estimated Total'
-          total_payments: 'Total Payments'
+          total_payments: 'Total Labor'
           total_purchase: 'Total Purchase'
       breadcrumbs:
         home: 'project'
@@ -165,7 +166,7 @@ product:
     model_created: '{model} created.'
     model_updated: '{model} updated.'
     successfuly_added: 'successfully added'
-    successfuly_removed: 'successfully removed'    
+    successfuly_removed: 'successfully removed'
 errors:
   unique: 'Another {model} with same {field} already exists'
   description: "Este campo"

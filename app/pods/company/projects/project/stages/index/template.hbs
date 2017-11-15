@@ -12,21 +12,37 @@
           <th>{{t 'fields.name'}}</th>
           <th>{{t 'fields.predicted_total'}}</th>
           <th>{{t 'fields.total_spent'}}</th>
+          <!-- <th>{{t 'fields.total_spent'}}</th> -->
           <th></th>
         </tr>
       </thead>
       <tbody>
         {{#each projectStages as |projectStage|}}
-          {{#link-to 'company.projects.project.stages.stage' projectStage.id tagName="tr" style="vertical-align:middle;"}}
-            <td style="vertical-align:middle;">{{projectStage.name}}</td>
-            <!-- {{projectStage.name}} -->
-            <td style="vertical-align:middle;">{{format-currency projectStage.predictedTotal fallback='n/a'}} </td>
-            <td style="vertical-align:middle;">{{format-currency projectStage.total fallback='n/a'}} </td>
+          {{#link-to 'company.projects.project.stages.stage' projectStage.id tagName="tr" style="vertical-align:middle;" }}
             <td style="vertical-align:middle;">
               {{#if projectStage.isWaiting}}
-                <button class="btn btn-xs btn-flat btn-success pull-right" style="margin-right: 5px;" {{action "start" projectStage bubbles=false}}>{{t 'product.projects.project.stages.stage.start_stage'}}</button>
+              {{else if projectStage.isOnTrack}}
+                <i class="fa fa-circle-o text-green"></i>
+              {{else}}
+                <i class="fa fa-circle-o text-red"></i>
+              {{/if}}
+              {{projectStage.name}}</td>
+            <td style="vertical-align:middle;">{{format-currency projectStage.predictedTotal fallback='n/a'}} </td>
+            <td style="vertical-align:middle;">{{format-currency projectStage.total fallback='n/a'}} </td>
+            <!-- <td style="vertical-align:middle;">
+              {{#if projectStage.isWaiting}}
+                <i class="fa fa-circle-o text-blue"></i>not started
+                {{else if projectStage.isOnTrack}}
+                <i class="fa fa-circle-o text-green"></i>on track
+                {{else}}
+                <i class="fa fa-circle-o text-red"></i>above budget
+              {{/if}}
+            </td> -->
+            <td style="vertical-align:middle;">
+              {{#if projectStage.isWaiting}}
+                <button class="btn btn-default pull-right" style="margin-right: 5px;" {{action "start" projectStage bubbles=false}}>{{t 'product.projects.project.stages.stage.start_stage'}}</button>
               {{else if projectStage.isInProgress}}
-                <button class="btn btn-xs btn-flat btn-danger pull-right" style="margin-right: 5px;" {{action "finish" projectStage bubbles=false}}>{{t 'product.projects.project.stages.stage.finish_stage'}}</button>
+                <button class="btn btn-default pull-right" style="margin-right: 5px;" {{action "finish" projectStage bubbles=false}}>{{t 'product.projects.project.stages.stage.finish_stage'}}</button>
               {{else}}
                 <span class="pull-right" style="margin-right: 5px">{{t 'product.projects.project.stages.stage.stage_closed'}}</span>
               {{/if}}
