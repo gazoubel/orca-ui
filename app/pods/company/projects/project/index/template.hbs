@@ -1,5 +1,5 @@
 <div class ="row" style="margin-top: 30px">
-  <div class="col-lg-3 col-xs-6">
+  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
     <div class="small-box bg-yellow">
       <div class="inner">
         <h3>{{t 'product.projects.project.main_info'}}</h3>
@@ -13,8 +13,21 @@
       {{/link-to}}
     </div>
   </div>
-
-  <div class="col-lg-3 col-xs-6">
+  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <div class="small-box bg-purple">
+      <div class="inner">
+        <h3>{{t 'fields.assignee'}}</h3>
+        <p>{{project.assignee.name}}</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person"></i>
+      </div>
+      {{#link-to "company.projects.project.info" tagName="a" class="small-box-footer"}}
+        {{t 'product.commonWords.more_info'}} <i class="fa fa-arrow-circle-right"></i>
+      {{/link-to}}
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
     <div class="small-box bg-aqua">
       <div class="inner">
         <h3>{{project.projectStages.length}}</h3>
@@ -24,6 +37,20 @@
         <i class="ion ion-ios-albums-outline"></i>
       </div>
       {{#link-to "company.projects.project.stages" tagName="a" class="small-box-footer"}}
+        {{t 'product.commonWords.more_info'}} <i class="fa fa-arrow-circle-right"></i>
+      {{/link-to}}
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3>{{project.teamMembers.length}}</h3>
+        <p>{{t 'product.projects.project.team_members'}}</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person-stalker"></i>
+      </div>
+      {{#link-to "company.projects.project.team" tagName="a" class="small-box-footer"}}
         {{t 'product.commonWords.more_info'}} <i class="fa fa-arrow-circle-right"></i>
       {{/link-to}}
     </div>

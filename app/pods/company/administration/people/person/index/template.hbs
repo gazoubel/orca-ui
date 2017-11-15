@@ -37,10 +37,13 @@
 
           <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
-              <b>Projects</b> <a class="pull-right">{{person.projectsAssignedTo.length}}</a>
+              <b>Assignee</b> <a class="pull-right">{{person.activeProjectsAssignedTo.length}}</a>
             </li>
             <li class="list-group-item">
-              <b>PayChecks</b> <a class="pull-right">{{person.paymentTransactions.length}}</a>
+              <b>Teams</b> <a class="pull-right">{{person.activeTeamMemberOf.length}}</a>
+            </li>
+            <li class="list-group-item">
+              <b>PayChecks</b> <a class="pull-right">{{person.unpaidPaymentTransactions.length}}</a>
             </li>
           </ul>
           {{#if person.isActive}}
@@ -70,6 +73,12 @@
           <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
 
           <p>
+            <!-- {{#each person.previousRoles as |roleName|}}
+              <span class="label label-danger">{{roleName}}</span>
+            {{/each}} -->
+
+
+
             <!-- <span class="label label-danger">UI Design</span>
             <span class="label label-success">Coding</span>
             <span class="label label-info">Javascript</span>

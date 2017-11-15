@@ -16,6 +16,7 @@ fields:
   save: 'Save'
   cancel: 'Cancel'
   edit: 'Edit'
+  remove: 'remove'
   name: 'Name'
   first_name: 'First Name'
   last_name: 'Last Name'
@@ -124,6 +125,9 @@ product:
       main_info: 'Main Info'
       main_info_subtext: 'View and edit project info'
       project_closed: 'Closed'
+      team_members: 'Team members'
+      team:
+        new_member: 'New team member'
       stages:
         label: 'Stages'
         main_info: 'Main Info'
@@ -160,6 +164,8 @@ product:
   messages:
     model_created: '{model} created.'
     model_updated: '{model} updated.'
+    successfuly_added: 'successfully added'
+    successfuly_removed: 'successfully removed'    
 errors:
   unique: 'Another {model} with same {field} already exists'
   description: "Este campo"

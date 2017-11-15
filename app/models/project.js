@@ -21,6 +21,7 @@ export default DS.Model.extend(Validations,{
   projectStages: DS.hasMany('project-stage', {inverse: 'project'}),
   company: DS.belongsTo('company',{inverse: 'projects'}),
   assignee: DS.belongsTo('person',{inverse: 'projectsAssignedTo'}),
+  teamMembers: DS.hasMany('person'),
   // defaultPurchaseTransactions: DS.hasMany('purchase-transaction', {inverse: 'defaultProject'}),
   totalClosingAmount: DS.attr('number'),
   isArchived: DS.attr('boolean'),

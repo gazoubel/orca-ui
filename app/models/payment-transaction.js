@@ -74,7 +74,10 @@ export default DS.Model.extend(Validations,{
   paymentType: DS.belongsTo('payment-type',{inverse: 'paymentTransactions'}),
 
   paymentTransactionItems: DS.hasMany('payment-transaction-item', {inverse: 'paymentTransaction'}),
-
+  // paymentRoles: Ember.computed.map('paymentTransactionItems.@each','paymentTransactionItems.[]', function(item, index) {
+  //   var laborName = item.get('laborItem.name');
+  //   return laborName?laborName:'other';
+  // }),
   total: Ember.computed('paymentTransactionItems.@each.total', 'paymentTransactionItems.[]', function() {
     var expenseItems = this.get('paymentTransactionItems');
     if (!expenseItems) {

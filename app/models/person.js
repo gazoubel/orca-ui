@@ -20,11 +20,13 @@ export default DS.Model.extend(Validations, {
   paymentTransactions: DS.hasMany('payment-transaction',   {inverse: 'person'}),
   projectsAssignedTo: DS.hasMany('project', {inverse: 'assignee'}),
   companyRelationship: DS.belongsTo('company-to-user',{inverse: 'person'}),
+  teamMemberOf: DS.hasMany('project'),
   // privilege: DS.attr('string'),
   isActive: DS.attr('boolean'),
   phone: DS.attr('string'),
   notes: DS.attr('string'),
   isAdmin: DS.attr('boolean'),
+  projects: DS.hasMany('person'),
 
   name: Ember.computed('firstName','lastName', function(){
     return Ember.get(this, 'firstName')+' '+Ember.get(this, 'lastName');
@@ -32,4 +34,9 @@ export default DS.Model.extend(Validations, {
   privilege: Ember.computed('isAdmin', function(){
     return Ember.get(this, 'isAdmin')?'admin':'other';
   }),
+  activeProjectsAssignedTo: Ember.computed.filterBy('projectsAssignedTo', 'isActive', true),
+  activeTeamMemberOf: Ember.computed.filterBy('teamMemberOf', 'isActive', true),
+  unpaidPaymentTransactions: Ember.computed.filterBy('paymentTransactions', 'isUnpaid', true),
+  // previousRoles: Ember.computed.map('paymentTransactionItems.@each.roles')
+  // previousRoles: Ember.computed.uniq('paymentTransactions.@each.paymentRoles')
 });

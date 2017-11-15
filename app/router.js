@@ -56,6 +56,9 @@ Router.map(function() {
           });
         });
         this.route('info');
+        this.route('team', function() {
+          this.route('new_member');
+        });
       });
     });
     this.route('transactions', function() {
