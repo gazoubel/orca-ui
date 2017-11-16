@@ -22,19 +22,23 @@ export default Ember.Route.extend({
     }).then(function(arr){
       model.get('defaultPurchaseTransactions').then(function(purchaseTransactions){
         purchaseTransactions.forEach(function(item) {
-          // item.get('other').then(function(other){
+          var other = item.get('other');
+          if (other) {
             arr.addObject({
               id: item.get('id'),
               name: 'Other',
-              total: item.get('other'),
+              total: other,
               quantity:1});
+          }
+          var tax = item.get('tax');
+          if (tax) {
             arr.addObject({
               id: item.get('id'),
               name: 'Tax',
-              total: item.get('tax'),
+              total: tax,
               quantity:''});
-            // });
-          });
+          }
+        });
         return arr;
       }).then(function(arr){
         controller.set('purchasedItems', arr);

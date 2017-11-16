@@ -22,9 +22,13 @@
             <td style="vertical-align:middle;">
               {{#if projectStage.isWaiting}}
               {{else if projectStage.isOnTrack}}
-                <i class="fa fa-circle-o text-green"></i>
+                <a href="#" data-toggle="tooltip" data-placement="top" title="Project is on track.">
+                  <i class="fa fa-circle-o text-green"></i>
+                </a>
               {{else}}
-                <i class="fa fa-circle-o text-red"></i>
+                <a href="#" data-toggle="tooltip" data-placement="top" title="Project is above budget.">
+                  <i class="fa fa-circle-o text-red"></i>
+                </a>
               {{/if}}
               {{projectStage.name}}</td>
             <td style="vertical-align:middle;">{{format-currency projectStage.predictedTotal fallback='n/a'}} </td>
