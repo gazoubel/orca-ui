@@ -31,6 +31,7 @@ export default DS.Model.extend(Validations, {
   items: DS.hasMany('item', {inverse: 'company'}),
   laborItems: DS.hasMany('labor-item', {inverse: 'company'}),
   people: DS.hasMany('person', {inverse: 'company'}),
+  privileges: DS.hasMany('privilege', {inverse: 'company'}),
 
   // activeProjects: Ember.computed.filterBy('projects','isArchived', false),
   unpaidPurchaseTransactions: Ember.computed('purchaseTransactions.@each','purchaseTransactions.@each.isUnpaid', 'purchaseTransactions.[]', function(){

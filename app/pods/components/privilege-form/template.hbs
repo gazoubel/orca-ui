@@ -1,0 +1,17 @@
+<form  class="form-horizotal" role="form" {{action "save" privilege on="submit"}}> <!-- horizontal form -->
+  <div class="row">
+    {{orca-input-with-label field = privilege.name displayText=(t 'fields.name')
+     classNames="col-sm-12" validation=privilege.validations.attrs.name}}
+  </div>
+
+  <div class="checkbox">
+     <label>
+       {{input type="checkbox" checked=privilege.displayAdminTab}} Should display admin menu
+     </label>
+   </div>
+
+  <div class="box-footer">
+    <button type="submit" class="btn btn-default pull-right">{{t 'fields.save'}}</button>
+    <button class="btn btn-default pull-right" style="margin-right: 5px;" {{action "cancel" privilege}}>{{t 'fields.cancel'}}</button>
+  </div>
+</form>

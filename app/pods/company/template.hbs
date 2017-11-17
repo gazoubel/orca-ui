@@ -128,6 +128,9 @@
             {{#link-to 'company.administration.people' tagName="li" href=false}}
             <a href="#"><i class="fa fa-users"></i> <span>{{t 'product.administration.menu.people'}}</span></a>
             {{/link-to}}
+            {{#link-to 'company.administration.privileges' tagName="li" href=false}}
+            <a href="#"><i class="fa fa-puzzle-piece"></i> <span>{{t 'product.administration.menu.privileges'}}</span></a>
+            {{/link-to}}
           </ul>
         </li>
       </ul>
@@ -136,11 +139,6 @@
 <div class="content-wrapper" style="padding: 15px;">
   {{outlet}}
 </div>
-<!-- <div class="content-wrapper" style="min-height: 817px; margin-left: 0px; padding-top: 5px">
-  <div class="container">
-      {{outlet}}
-  </div>
-</div> -->
 
 <footer class="main-footer" style="position: fixed;left: 0;bottom: 0px;width: 100%;">
   <div class="pull-right hidden-xs">
@@ -149,73 +147,6 @@
   <strong>Copyright © 2016 <a href="#">Orkaman</a>.</strong> All rights reserved.
 </footer>
 
-<!--
-<header class="main-header" >
-  <nav class="navbar navbar-static-top" style="margin-left: 0px;">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand">
-          <span>{{model.acronym}}
-            <small style="font-size: 8px;padding-left:5px;">powered by orkaman</small>
-          </span>
-        </a>
-      </div>
-      <div class="container">
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav navbar-right">
-            {{#link-to 'company.projects' tagName="li" href=false}}
-              <a href="#"><span class="visible-xs-block">{{t 'product.projects.tabNameMobile'}}</span>
-                <span class="hidden-xs">{{t 'product.projects.tabName'}}</span></a>
-            {{/link-to}}
-            {{#link-to 'company.transactions' tagName="li" href=false}}
-              <a href="#"><span class="visible-xs-block">{{t 'product.transactions.tabNameMobile'}}</span>
-                <span class="hidden-xs">{{t 'product.transactions.tabName'}}</span></a>
-            {{/link-to}}
-            {{#link-to 'company.administration' tagName="li" href=false}}
-              <a href="#"><span class="visible-xs-block">{{t 'product.administration.tabNameMobile'}}</span>
-                <span class="hidden-xs">{{t 'product.administration.tabName'}}</span></a>
-            {{/link-to}}
-
-            <li class="dropdown user user-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span class="fa fa-user visible-xs-block"></span>
-                <span class="hidden-xs">{{session.sessionVariables.name}}</span><span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="user-header">
-                  <p>
-                    {{session.sessionVariables.name}}
-                    <small>{{session.sessionVariables.privilege}}</small>
-                  </p>
-                </li>
-                <li class="user-footer">
-                  <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">{{t 'product.user.profile'}}</a>
-                  </div>
-                  <div class="pull-right">
-                    <a {{action 'doSignOut'}} class="btn btn-default btn-flat">{{t 'product.user.signOut'}}</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </nav>
-</header>
-<div class="content-wrapper" style="min-height: 817px; margin-left: 0px; padding-top: 5px">
-  <div class="container">
-      {{outlet}}
-  </div>
-</div>
-
-<footer class="main-footer" style="margin-left: 0px;">
-  <div class="pull-right hidden-xs">
-    Report an issue
-  </div>
-  <strong>Copyright © 2016 <a href="#">Orkaman</a>.</strong> All rights reserved.
-</footer> -->
 {{else}}
 not authorized.
 {{/if}}

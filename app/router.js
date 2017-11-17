@@ -32,6 +32,14 @@ Router.map(function() {
           this.route('edit');
         });
       });
+      this.route('privileges', function() {
+        this.route('new');
+        this.route('privilege', {
+          path: ':privilege_id'
+        }, function() {
+          this.route('edit');
+        });
+      });
     });
     this.route('projects', function() {
       this.route('new');

@@ -25,13 +25,14 @@ export default DS.Model.extend(Validations, {
   isActive: DS.attr('boolean'),
   phone: DS.attr('string'),
   notes: DS.attr('string'),
-  isAdmin: DS.attr('boolean'),
   projects: DS.hasMany('person'),
+  isAdmin: DS.attr('boolean'),
+  privilege: DS.belongsTo('privilege',{inverse: 'people'}),
 
   name: Ember.computed('firstName','lastName', function(){
     return Ember.get(this, 'firstName')+' '+Ember.get(this, 'lastName');
   }),
-  privilege: Ember.computed('isAdmin', function(){
+  privilegeName: Ember.computed('isAdmin', function(){
     return Ember.get(this, 'isAdmin')?'admin':'other';
   }),
   activeProjectsAssignedTo: Ember.computed.filterBy('projectsAssignedTo', 'isActive', true),

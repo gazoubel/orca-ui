@@ -12,6 +12,7 @@ models:
   item: 'item'
   laborItem: 'labor type'
   person: 'Person'
+  privilege: 'Privilege'
 fields:
   save: 'Save'
   cancel: 'Cancel'
@@ -52,6 +53,9 @@ product:
     tabName: 'Administration'
     tabNameMobile: 'A'
     title: 'Administration'
+    privileges:
+      new_privilege: 'New privilege'
+      edit_privilege: 'Edit privilege'
     people:
       title: 'People'
       active_people: 'Active People'
@@ -76,6 +80,7 @@ product:
       items: 'Products'
       laborItems: 'Labor Types'
       people: 'People'
+      privileges: 'Privileges'
   transactions:
     tabName: 'Transactions'
     tabNameMobile: 'T'

@@ -1,0 +1,12 @@
+<div class="box box-primary" style="margin-top: 30px;">
+  <div class="box-header with-border">
+    <h3 class="box-title">{{t 'product.administration.privileges.new_privilege'}}</h3>
+  </div>
+  <div class="box-body" style="padding-bottom: 0px;">
+    {{privilege-form
+      onCancelClicked="canceled"
+      onSaveClicked="added"
+      privilege = privilege}}
+
+  </div>
+</div>
