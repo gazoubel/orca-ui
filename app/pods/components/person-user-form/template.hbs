@@ -9,9 +9,11 @@
       <span class="username" >{{t 'product.administration.people.person.user_info'}}</span>
       <span class="description">{{#if person.user}}{{t 'product.administration.people.person.user_info_subtext'}}{{else}}{{t 'product.administration.people.person.add_new_user_subtext'}}{{/if}}</span>
     </div>
+    {{#if person.user}}
     <div class="box-tools">
       <button class="btn btn-box-tool" {{action "startUpdating"}}><a href={{view.href}} class="text-muted" style="font-size: 15px;"><i class="fa fa-pencil"></i></a></button>
     </div>
+    {{/if}}
   </div>
     <div class="box-body">
       {{#if person.user}}
@@ -36,7 +38,7 @@
                 {{/orca-dropdown-label}}
               {{/unless}}
             <button type="submit" class="btn btn-success pull-right"
-              style="margin-top: 15px;margin-left: 15px;" disabled={{buttonUpdateDisabled}}>Update privilege</button>
+              style="margin-top: 15px;margin-left: 5px;" disabled={{buttonUpdateDisabled}}>Update privilege</button>
               <button class="btn btn-danger pull-right"
                 style="margin-top: 15px" {{action "stopUpdating"}}>Cancel</button>
           </form>

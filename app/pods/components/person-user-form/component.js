@@ -29,6 +29,9 @@ export default Ember.Component.extend({
         !this.get('passwordMatches') ||
         (!this.get('person.isAdmin') && (!this.get('person.privilege.id')));
   }),
+  buttonUpdateDisabled: Ember.computed('person.privilege', 'person.isAdmin', function(){
+    return (!this.get('person.isAdmin') && (!this.get('person.privilege.id')));
+  }),
   actions: {
     startUpdating(){
       this.set('isUpdating', true);
