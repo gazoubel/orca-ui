@@ -136,64 +136,23 @@
               <b>{{t 'fields.notes'}}:</b> {{person.notes}}
             </div>
           </div>
-        </div>
-      </div>
-        </div>
-      </div>
-
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="box box-widget" >
-              <div class="box-header with-border">
-                <div class="user-block">
-                  {{#if person.user}}
-                    <div><i class="ion ion-key" style="font-size: 40px;float: left;padding-left:15px;"></i> </div>
-                  {{else}}
-                    <div><i class="ion ion-android-person-add" style="font-size: 40px;float: left;"></i> </div>
-                  {{/if}}
-                  <span class="username" >{{t 'product.administration.people.person.user_info'}}</span>
-                  <span class="description">{{#if person.user}}{{t 'product.administration.people.person.user_info_subtext'}}{{else}}{{t 'product.administration.people.person.add_new_user_subtext'}}{{/if}}</span>
-                </div>
-                <!-- <div class="box-tools">
-                  {{#link-to "company.administration.people.person.edit" class="btn btn-box-tool" data-toggle="tooltip" tagName="button" title="edit project"}}
-                    <a href={{view.href}} class="text-muted" style="font-size: 15px;"><i class="fa fa-pencil"></i></a>
-                  {{/link-to}}
-                </div> -->
-              </div>
-                <div class="box-body">
-                  {{#if person.user}}
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <b>{{t 'fields.privilege'}}:</b> {{person.privilegeName}}
-                    </div>
-                  </div>
-                  {{else}}
-                    <form {{action "doRegisterNewUserAndAssignCompany" newUser person.id on="submit"}}>
-                      <label for="email">Email</label>
-                      <div class="form-group has-feedback {{if emailIsTaken 'has-error' 'has-success'}}">
-                        {{input value=newUser.email class="form-control" aria-describedby="inputEmailStatus"}}
-                        <span class="glyphicon {{if emailIsTaken 'glyphicon-remove' 'glyphicon-ok'}} form-control-feedback" aria-hidden="true"></span>
-                        <span id="inputEmailStatus" class="sr-only">{{#if emailIsTaken}}(error){{else}}(success){{/if}}</span>
-                      </div>
-
-                      <label for="password">Password</label>
-                      {{input value=newUser.password type="password" class="form-control"}}
-
-                      <label for="passwordConfirmation">Confirm Password</label>
-                      <div class="form-group has-feedback {{if passwordMatches 'has-success' 'has-error'}}">
-                        {{input value=newUser.passwordConfirmation class="form-control" type="password" aria-describedby="inputPasswordConfirmationStatus"}}
-                        <span class="glyphicon {{if passwordMatches 'glyphicon-ok' 'glyphicon-remove'}} form-control-feedback" aria-hidden="true"></span>
-                        <span id="inputPasswordConfirmationStatus" class="sr-only">{{#if passwordMatches}}(success){{else}}(error){{/if}}</span>
-                      </div>
-                      <button type="submit" class="btn btn-success btn-lg btn-block"
-                        style="margin-top: 15px" disabled={{buttonDisabled}}>Create User</button>
-                    </form>
-                  {{/if}}
-                </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <b>{{t 'fields.email'}}:</b> {{person.user.email}}
             </div>
           </div>
         </div>
+      </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          {{person-user-form
+            person=person
+            privileges = person.company.privileges }}
+        </div>
+      </div>
     </div>
   </div>
 </section>

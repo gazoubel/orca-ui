@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
   modelIsInValid: false,
   activePeople: Ember.computed.filterBy('people','isActive', true),
   people: {},
+  newPerson:{},
   showAll: false,
   displayPeople: Ember.computed('showAll', 'people', 'people.@each.isActive', function(){
     var showAll = this.get('showAll');

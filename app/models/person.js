@@ -32,8 +32,8 @@ export default DS.Model.extend(Validations, {
   name: Ember.computed('firstName','lastName', function(){
     return Ember.get(this, 'firstName')+' '+Ember.get(this, 'lastName');
   }),
-  privilegeName: Ember.computed('isAdmin', function(){
-    return Ember.get(this, 'isAdmin')?'admin':'other';
+  privilegeName: Ember.computed('isAdmin', 'privilege', 'privilege.name', function(){
+    return Ember.get(this, 'isAdmin')?'admin':Ember.get(this, 'privilege.name');
   }),
   activeProjectsAssignedTo: Ember.computed.filterBy('projectsAssignedTo', 'isActive', true),
   activeTeamMemberOf: Ember.computed.filterBy('teamMemberOf', 'isActive', true),

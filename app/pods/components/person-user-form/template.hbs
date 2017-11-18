@@ -1,0 +1,92 @@
+<div class="box box-widget" >
+  <div class="box-header with-border">
+    <div class="user-block">
+      {{#if person.user}}
+        <div><i class="ion ion-key" style="font-size: 40px;float: left;padding-left:15px;"></i> </div>
+      {{else}}
+        <div><i class="ion ion-android-person-add" style="font-size: 40px;float: left;"></i> </div>
+      {{/if}}
+      <span class="username" >{{t 'product.administration.people.person.user_info'}}</span>
+      <span class="description">{{#if person.user}}{{t 'product.administration.people.person.user_info_subtext'}}{{else}}{{t 'product.administration.people.person.add_new_user_subtext'}}{{/if}}</span>
+    </div>
+    <div class="box-tools">
+      <button class="btn btn-box-tool" {{action "startUpdating"}}><a href={{view.href}} class="text-muted" style="font-size: 15px;"><i class="fa fa-pencil"></i></a></button>
+    </div>
+  </div>
+    <div class="box-body">
+      {{#if person.user}}
+
+        {{#if isUpdating}}
+          <form {{action "updatePrivilege" person on="submit"}}>
+            <div class="checkbox">
+               <label>
+                 {{input type="checkbox" checked=person.isAdmin}} is admin
+               </label>
+             </div>
+             {{#unless person.isAdmin}}
+                {{#orca-dropdown-label
+                validation=person.validations.attrs.privilege
+                options=privileges
+                selected=person.privilege
+                onchange=(action (mut person.privilege))
+                placeholder = (t 'fields.privilege')
+                displayText=(t 'fields.privilege')
+                as |privilege|}}
+                  {{privilege.name}}
+                {{/orca-dropdown-label}}
+              {{/unless}}
+            <button type="submit" class="btn btn-success pull-right"
+              style="margin-top: 15px;margin-left: 15px;" disabled={{buttonUpdateDisabled}}>Update privilege</button>
+              <button class="btn btn-danger pull-right"
+                style="margin-top: 15px" {{action "stopUpdating"}}>Cancel</button>
+          </form>
+        {{else}}
+          <div class="row">
+            <div class="col-sm-12">
+              <b>{{t 'fields.privilege'}}:</b> {{person.privilegeName}}
+            </div>
+          </div>
+        {{/if}}
+
+      {{else}}
+        <form {{action "doRegisterNewUserAndAssignCompany" newUser person on="submit"}}>
+          <label for="email">Email</label>
+          <div class="form-group has-feedback {{if emailIsTaken 'has-error' 'has-success'}}">
+            {{input value=newUser.email class="form-control" aria-describedby="inputEmailStatus"}}
+            <span class="glyphicon {{if emailIsTaken 'glyphicon-remove' 'glyphicon-ok'}} form-control-feedback" aria-hidden="true"></span>
+            <span id="inputEmailStatus" class="sr-only">{{#if emailIsTaken}}(error){{else}}(success){{/if}}</span>
+          </div>
+
+          <label for="password">Password</label>
+          {{input value=newUser.password type="password" class="form-control"}}
+
+          <label for="passwordConfirmation">Confirm Password</label>
+          <div class="form-group has-feedback {{if passwordMatches 'has-success' 'has-error'}}">
+            {{input value=newUser.passwordConfirmation class="form-control" type="password" aria-describedby="inputPasswordConfirmationStatus"}}
+            <span class="glyphicon {{if passwordMatches 'glyphicon-ok' 'glyphicon-remove'}} form-control-feedback" aria-hidden="true"></span>
+            <span id="inputPasswordConfirmationStatus" class="sr-only">{{#if passwordMatches}}(success){{else}}(error){{/if}}</span>
+          </div>
+
+          <div class="checkbox">
+             <label>
+               {{input type="checkbox" checked=person.isAdmin}} is admin
+             </label>
+           </div>
+           {{#unless person.isAdmin}}
+              {{#orca-dropdown-label
+              validation=person.validations.attrs.privilege
+              options=privileges
+              selected=person.privilege
+              onchange=(action (mut person.privilege))
+              placeholder = (t 'fields.privilege')
+              displayText=(t 'fields.privilege')
+              as |privilege|}}
+                {{privilege.name}}
+              {{/orca-dropdown-label}}
+            {{/unless}}
+          <button type="submit" class="btn btn-success btn-lg btn-block"
+            style="margin-top: 15px" disabled={{buttonDisabled}}>Create User</button>
+        </form>
+      {{/if}}
+    </div>
+</div>
