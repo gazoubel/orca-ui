@@ -4,13 +4,19 @@ export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
   model: function () {
-    var ref = this;
-    return this.modelFor('company').reload().then(function(company){
-      return Ember.RSVP.hash({
-        project: ref.modelFor('company.projects.project'),
-        availableProjectAssignees: company.get('people')
-      });
+    // var ref = this;
+    var company = this.modelFor('company');
+    var project = this.modelFor('company.projects.project');
+    return Ember.RSVP.hash({
+      project: project,
+      availableProjectAssignees: company.get('people')
     });
+    // return this.modelFor('company').then(function(company){
+    //   return Ember.RSVP.hash({
+    //     project: ref.modelFor('company.projects.project'),
+    //     availableProjectAssignees: company.get('people')
+    //   });
+    // });
     // return this.modelFor('company.projects.project');
 
   },

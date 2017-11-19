@@ -7,10 +7,18 @@ export default Ember.Service.extend({
   add: function (name){
     var store = this.get('store');
     var intl = this.get('intl');
-    var sessionVariables = this.get('session.sessionVariables');
+    var person = this.get('session.person');
+    if (!person) {
+      reject("Error creating stage: Invalid company");
+      return;
+    }
 
     let promise = new Ember.RSVP.Promise(function(resolve, reject) {
-      store.findRecord('company', sessionVariables.company_id).then(function(company){
+      person.get('company').then(function(company){
+        if (!company) {
+          reject("Error creating stage: Error with person / company");
+          return;
+        }
         var item = store.createRecord('item', {
           name: name,
           company: company
@@ -35,6 +43,31 @@ export default Ember.Service.extend({
           reject("Error creating stage:" + reason);
         });
       });
+      // store.findRecord('company', sessionVariables.company_id).then(function(company){
+      //   var item = store.createRecord('item', {
+      //     name: name,
+      //     company: company
+      //   });
+      //
+      //   if (!item.get('validations.isValid')) {
+      //     item.rollbackAttributes();
+      //     reject(item.get('validations.messages'));
+      //     return;
+      //   }
+      //
+      //   item.save().then(function(item) {
+      //       var t_model = intl.t('models.item');
+      //       var message = intl.t('product.messages.model_created',{model: t_model});
+      //       resolve({item: item, message:message});
+      //       return;
+      //   }, function(error){
+      //     reject(error.detailedMessage);
+      //     item.rollbackAttributes();
+      //   }).catch(function(reason){
+      //     item.rollbackAttributes();
+      //     reject("Error creating stage:" + reason);
+      //   });
+      // });
     });
 
     return promise;

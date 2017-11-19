@@ -41,8 +41,9 @@ export default Ember.Route.extend({
 
     var session = this.get('session');
     if (session.get('isAuthenticated')) {
-      var company_id = this.get('session.sessionVariables.company_id');
-      return this.get('store').findRecord('company', company_id, { reload: true });
+      var person = this.get('session.sessionVariables.person');
+      return person.get('company');
+      // return this.get('store').findRecord('company', company_id, { reload: true });
     } else {
       return Ember.RSVP.hash({
         companyAcronym: params.company_acronym

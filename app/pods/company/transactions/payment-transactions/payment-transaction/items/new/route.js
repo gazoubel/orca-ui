@@ -6,21 +6,30 @@ export default Ember.Route.extend({
   model: function () {
     // var company_id = this.get('session.sessionVariables.company_id');
     var _this = this;
-    return this.modelFor('company').reload().then(function(company){
-      var paymentTransaction = _this.modelFor('company.transactions.payment-transactions.payment-transaction');
-      var paymentTransactionItem = _this.store.createRecord('payment-transaction-item', {
-        paymentTransaction: paymentTransaction
-      });
-
-      return Ember.RSVP.hash({
-        paymentTransactionItem: paymentTransactionItem,
-        allProjects: company.get('projects'),
-        allLaborItems: company.get('laborItems')
-      });
+    var company = this.modelFor('company');
+    var paymentTransaction = _this.modelFor('company.transactions.payment-transactions.payment-transaction');
+    var paymentTransactionItem = _this.store.createRecord('payment-transaction-item', {
+      paymentTransaction: paymentTransaction
     });
 
+    return Ember.RSVP.hash({
+      paymentTransactionItem: paymentTransactionItem,
+      allProjects: company.get('projects'),
+      allLaborItems: company.get('laborItems')
+    });
 
-
+    // return this.modelFor('company').reload().then(function(company){
+    //   var paymentTransaction = _this.modelFor('company.transactions.payment-transactions.payment-transaction');
+    //   var paymentTransactionItem = _this.store.createRecord('payment-transaction-item', {
+    //     paymentTransaction: paymentTransaction
+    //   });
+    //
+    //   return Ember.RSVP.hash({
+    //     paymentTransactionItem: paymentTransactionItem,
+    //     allProjects: company.get('projects'),
+    //     allLaborItems: company.get('laborItems')
+    //   });
+    // });
   },
   setupController: function(controller, models) {
     controller.set('paymentTransactionItem', models.paymentTransactionItem);

@@ -17,13 +17,16 @@ export default Ember.Service.extend({
           store.queryRecord('person', {user: userId, company: company.get('id'), isActive: true}).then(function(person){
             if (person) {
               intl.setLocale('en-us');
+              // var sessionVariables = {
+              //   company_id: company.get('id'),
+              //   company_name: company.get('name'),
+              //   company_acronym: currentAcronym,
+              //   privilege:person.get('isAdmin')?'admin':'other',
+              //   person_id:person.get('id'),
+              //   name: person.get('firstName')+' '+person.get('lastName')
+              // };
               var sessionVariables = {
-                company_id: company.get('id'),
-                company_name: company.get('name'),
-                company_acronym: currentAcronym,
-                privilege:person.get('isAdmin')?'admin':'other',
-                person_id:person.get('id'),
-                name: person.get('firstName')+' '+person.get('lastName')
+                person:person
               };
               session.set('sessionVariables', sessionVariables);
               resolve(true);

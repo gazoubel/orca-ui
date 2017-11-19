@@ -4,11 +4,13 @@ export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
   model: function (params) {
-    var company_id = this.get('session.sessionVariables.company_id');
+    var loggedCompany = this.modelFor('company');
+
+    // var company_id = this.get('session.sessionVariables.company_id');
     return this.get('store').findRecord('person', params.person_id).then(function(person){
       return person.get('company').then(function(company){
           var companyId = company.get('id');
-          if(companyId===company_id)
+          if(companyId===loggedCompany.get('id'))
           {
             return person;
           }

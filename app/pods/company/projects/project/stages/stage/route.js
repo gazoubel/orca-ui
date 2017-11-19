@@ -24,7 +24,7 @@ export default Ember.Route.extend({
 
   },
   setupController: function(controller, model) {
-    controller.set('projectStages', model.projectStages);
+    // controller.set('projectStages', model.projectStages);
     controller.set('projectStage', model.projectStage);
   },
 });

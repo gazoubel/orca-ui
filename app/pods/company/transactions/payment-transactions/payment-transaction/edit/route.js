@@ -6,14 +6,22 @@ export default Ember.Route.extend({
   model: function () {
     // var company_id = this.get('session.sessionVariables.company_id');
     var ref = this;
-    return this.modelFor('company').reload().then(function(company){
-      return Ember.RSVP.hash({
-        paymentTransaction: ref.modelFor('company.transactions.payment-transactions.payment-transaction').reload(),
-        allProjects: company.get('projects'),
-        allPeople: company.get('people'),
-        allPaymentTypes: company.get('paymentTypes')
-      });
+    var company = this.modelFor('company');
+    return Ember.RSVP.hash({
+      paymentTransaction: ref.modelFor('company.transactions.payment-transactions.payment-transaction').reload(),
+      allProjects: company.get('projects'),
+      allPeople: company.get('people'),
+      allPaymentTypes: company.get('paymentTypes')
     });
+    //
+    // return this.modelFor('company').reload().then(function(company){
+    //   return Ember.RSVP.hash({
+    //     paymentTransaction: ref.modelFor('company.transactions.payment-transactions.payment-transaction').reload(),
+    //     allProjects: company.get('projects'),
+    //     allPeople: company.get('people'),
+    //     allPaymentTypes: company.get('paymentTypes')
+    //   });
+    // });
   },
   setupController: function(controller, models) {
     controller.set('paymentTransaction', models.paymentTransaction);

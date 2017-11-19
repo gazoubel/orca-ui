@@ -2,10 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model: function () {
-    // var project = this.modelFor('company.projects.project');
-    return this.modelFor('company.projects.project').reload().then(function(project){
-      return project.get('projectStages');
-    });
+    var project = this.modelFor('company.projects.project');
+    return project.get('projectStages');
+    // return this.modelFor('company.projects.project').then(function(project){
+    //   return project.get('projectStages');
+    // });
   },
   setupController: function(controller, model) {
     controller.set('projectStages', model);

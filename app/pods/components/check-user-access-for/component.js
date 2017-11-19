@@ -1,0 +1,39 @@
+import Ember from 'ember';
+import DS from 'ember-data';
+
+const AccessComponent = Ember.Component.extend({
+  session: Ember.inject.service(),
+  tagName: "",
+  canUserSeeBlock: Ember.computed('params.[]', function(){
+    var self = this;
+    return DS.PromiseObject.create({
+      promise: new Ember.RSVP.Promise(function(resolve){
+        if (!self.get('params') || !self.get('params')[0]) {
+          resolve(false);
+        }
+
+        var person = self.get('session.sessionVariables.person');
+
+        var path = self.get('params')[0];
+        var isAdmin = person.get('isAdmin');
+        if (isAdmin) {
+          resolve(isAdmin);
+        } else {
+          person.get('privilege').then(function(privilege){
+            var hasAccess = privilege.get(path);
+            return hasAccess;
+          }).then(function(hasAccess){
+            resolve(hasAccess);
+          });
+        }
+      })
+    });
+
+  })
+});
+
+AccessComponent.reopenClass({
+  positionalParams: 'params'
+});
+
+export default AccessComponent;

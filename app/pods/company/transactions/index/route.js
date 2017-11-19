@@ -3,14 +3,20 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   model: function () {
-    return this.modelFor('company').reload().then(function(company){
-      // company.get('unpaidPurchaseTransactions');
-      // company.get('unpaidPaymentTransactions');
-      return Ember.RSVP.hash({
-        purchaseTransactions: company.get('unpaidPurchaseTransactions'),
-        paymentTransactions: company.get('unpaidPaymentTransactions')
-      });
+    var company = this.modelFor('company');
+    return Ember.RSVP.hash({
+      purchaseTransactions: company.get('unpaidPurchaseTransactions'),
+      paymentTransactions: company.get('unpaidPaymentTransactions')
     });
+
+    // return this.modelFor('company').then(function(company){
+    //   // company.get('unpaidPurchaseTransactions');
+    //   // company.get('unpaidPaymentTransactions');
+    //   return Ember.RSVP.hash({
+    //     purchaseTransactions: company.get('unpaidPurchaseTransactions'),
+    //     paymentTransactions: company.get('unpaidPaymentTransactions')
+    //   });
+    // });
     // return this.modelFor('company');
 
     // var company_id = this.get('session.sessionVariables.company_id');

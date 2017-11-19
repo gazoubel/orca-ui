@@ -5,21 +5,31 @@ export default Ember.Route.extend({
   intl: Ember.inject.service(),
   model: function () {
     var ref = this;
-    // var sessionVariables = ref.get('session.sessionVariables');
-    var company_id = this.get('session.sessionVariables.company_id');
-    return ref.get('store').findRecord('company', company_id)
-    .then(function(company){
-      var project = ref.store.createRecord('project', {
-        company: company
-      });
+    let company = this.modelFor('company');
+    var project = ref.store.createRecord('project', {
+      company: company
+    });
 
-      return Ember.RSVP.hash({
-        project: project,
-        availableProjectAssignees: company.get('people')
-      });
+    return Ember.RSVP.hash({
+      project: project,
+      availableProjectAssignees: company.get('people')
+    });
+
+    // var sessionVariables = ref.get('session.sessionVariables');
+    // var company_id = this.get('session.sessionVariables.company_id');
+    // return ref.get('store').findRecord('company', company_id)
+    // .then(function(company){
+    //   var project = ref.store.createRecord('project', {
+    //     company: company
+    //   });
+    //
+    //   return Ember.RSVP.hash({
+    //     project: project,
+    //     availableProjectAssignees: company.get('people')
+    //   });
       //
       // return project;
-    });
+    // });
   },
   setupController: function(controller, model) {
     controller.set('project', model.project);

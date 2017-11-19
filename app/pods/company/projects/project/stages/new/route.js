@@ -6,35 +6,62 @@ export default Ember.Route.extend({
   model: function () {
     var ref = this;
     var project = this.modelFor('company.projects.project');
-    var company_id = this.get('session.sessionVariables.company_id');
-    return ref.get('store').findRecord('company', company_id)
-    .then(function(company){
-      var projectStage = project.get('projectStages').then(function(projectStages){
-        return projectStages.filter(function(item){
-          return item.get('isLastItem')===true;
-        });
-      }).then(function(records){
-        var lastProjectStage=null;
-        if(records.get('length')>0){
-          lastProjectStage = records.get('firstObject');
-          if (lastProjectStage==null || !lastProjectStage.get('id')) {
-            lastProjectStage=null;
-          }
+    let company = this.modelFor('company');
+    var projectStage = project.get('projectStages').then(function(projectStages){
+      return projectStages.filter(function(item){
+        return item.get('isLastItem')===true;
+      });
+    }).then(function(records){
+      var lastProjectStage=null;
+      if(records.get('length')>0){
+        lastProjectStage = records.get('firstObject');
+        if (lastProjectStage==null || !lastProjectStage.get('id')) {
+          lastProjectStage=null;
         }
-        return lastProjectStage;
-      }).then(function (lastProjectStage) {
-        var projectStage = ref.store.createRecord('project-stage', {
-          project: project,
-          previous: lastProjectStage
-        });
-        return projectStage;
+      }
+      return lastProjectStage;
+    }).then(function (lastProjectStage) {
+      var projectStage = ref.store.createRecord('project-stage', {
+        project: project,
+        previous: lastProjectStage
       });
-
-      return Ember.RSVP.hash({
-        projectStage: projectStage,
-        stages: company.get('stages')
-      });
+      return projectStage;
     });
+
+    return Ember.RSVP.hash({
+      projectStage: projectStage,
+      stages: company.get('stages')
+    });
+
+    // var company_id = this.get('session.sessionVariables.company_id');
+    // return ref.get('store').findRecord('company', company_id)
+    // .then(function(company){
+    //   var projectStage = project.get('projectStages').then(function(projectStages){
+    //     return projectStages.filter(function(item){
+    //       return item.get('isLastItem')===true;
+    //     });
+    //   }).then(function(records){
+    //     var lastProjectStage=null;
+    //     if(records.get('length')>0){
+    //       lastProjectStage = records.get('firstObject');
+    //       if (lastProjectStage==null || !lastProjectStage.get('id')) {
+    //         lastProjectStage=null;
+    //       }
+    //     }
+    //     return lastProjectStage;
+    //   }).then(function (lastProjectStage) {
+    //     var projectStage = ref.store.createRecord('project-stage', {
+    //       project: project,
+    //       previous: lastProjectStage
+    //     });
+    //     return projectStage;
+    //   });
+    //
+    //   return Ember.RSVP.hash({
+    //     projectStage: projectStage,
+    //     stages: company.get('stages')
+    //   });
+    // });
 
 
     // var lastProjectStage = null;

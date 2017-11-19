@@ -6,21 +6,27 @@ export default Ember.Route.extend({
   model: function () {
     // var stageModel = this.modelFor('company.projects.project.stages.stage');
     // return stageModel.projectStage;
-
-    var ref = this;
-    // var sessionVariables = ref.get('session.sessionVariables');
-    var company_id = this.get('session.sessionVariables.company_id');
-    return ref.get('store').findRecord('company', company_id)
-    .then(function(company){
-      var stageModel = ref.modelFor('company.projects.project.stages.stage');
-
-      return Ember.RSVP.hash({
-        projectStage: stageModel.projectStage,
-        stages: company.get('stages')
-      });
-      //
-      // return project;
+    var company = this.modelFor('company');
+    var stageModel = this.modelFor('company.projects.project.stages.stage');
+    return Ember.RSVP.hash({
+      projectStage: stageModel.projectStage,
+      stages: company.get('stages')
     });
+
+    // var ref = this;
+    // // var sessionVariables = ref.get('session.sessionVariables');
+    // var company_id = this.get('session.sessionVariables.company_id');
+    // return ref.get('store').findRecord('company', company_id)
+    // .then(function(company){
+    //   var stageModel = ref.modelFor('company.projects.project.stages.stage');
+    //
+    //   return Ember.RSVP.hash({
+    //     projectStage: stageModel.projectStage,
+    //     stages: company.get('stages')
+    //   });
+    //   //
+    //   // return project;
+    // });
   },
   setupController: function(controller, model) {
     controller.set('projectStage', model.projectStage);
