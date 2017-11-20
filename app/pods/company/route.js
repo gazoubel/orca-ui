@@ -22,6 +22,15 @@ export default Ember.Route.extend({
         // on fulfillment
         _this.get('moment').changeLocale('en-US');
         _this.set('moment.defaultFormat', 'MM/DD/YYYY');
+        // var ref = this;
+        // return _this.get('company').checkUserAccessFor(transition.targetName.replace(/\./g,'_')).then(function(hasAccess){
+        //   if (!hasAccess) {
+        //     transition.abort();
+        //     // ref.transitionTo('company');
+        //   } else {
+        //     return true;
+        //   }
+        // });
       }, function(reason) {
         alert('user access denied:'+reason);
         _this.set('session.attemptedTransition', null);
@@ -51,7 +60,6 @@ export default Ember.Route.extend({
     }
 
   },
-
   // setupController: function(controller, model) {
   //   controller.set('modelIsInValid', false);
   //   controller.set('newItemType', {name: ''});
@@ -63,6 +71,16 @@ export default Ember.Route.extend({
         var currentAcronym = this.get('session.sessionVariables.company_acronym');
         this.get('session').invalidate().then(function(){
           self.transitionTo('public.company', currentAcronym);
+        });
+      },
+      willTransition(transition) {
+        var ref = this;
+        return this.get('company').checkUserAccessFor(transition.targetName.replace(/\./g,'_')).then(function(hasAccess){
+          if (!hasAccess) {
+            transition.abort();
+          } else {
+            return true;
+          }
         });
       }
   }

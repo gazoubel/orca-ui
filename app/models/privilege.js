@@ -13,5 +13,6 @@ export default DS.Model.extend(Validations, {
   name: DS.attr('string'),
   company: DS.belongsTo('company',{inverse: 'privileges'}),
   people: DS.hasMany('person', {inverse: 'privilege'}),
-  displayAdminTab: DS.attr('boolean')
+  // displayAdminTab: DS.attr('boolean'),
+  company_administration: DS.attr('boolean')
 });

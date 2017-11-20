@@ -24,6 +24,8 @@ export default Ember.Service.extend({
           person.get('privilege').then(function(privilege){
             privilege.reload();
             var hasAccess = privilege.get(restrictionName);
+            if(hasAccess===undefined)
+              return true;
             return hasAccess;
           }).then(function(hasAccess){
             resolve(hasAccess);

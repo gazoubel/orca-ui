@@ -1,8 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  // currentPath: '',
   session: Ember.inject.service('session'),
   company: Ember.inject.service(),
+  // checkAccess: Ember.computed('currentPath', function(){
+  //   var path = this.get('currentPath');
+  //   console.log('path changed to: ', path);
+  //   return path;
+  // }),
   // store: Ember.inject.service(),
   actions: {
     // doSignIn(email, password){
