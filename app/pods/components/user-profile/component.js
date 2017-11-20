@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   person: null,
   canEdit: true,
+  intl: Ember.inject.service(),
   userMainInfoImgStyle: Ember.computed('person.user', function(){
     return this.get('person.user')?'padding-left:15px;':'';
   }),

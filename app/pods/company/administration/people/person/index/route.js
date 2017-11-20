@@ -10,21 +10,21 @@ export default Ember.Route.extend({
     controller.set('person', model);
   },
   actions: {
-    activate(person, isActive){
-      var _ref = this;
-      person.set('isActive', isActive);
-      return person.save().then(function(){
-        var message;
-        if (isActive) {
-          message = _ref.get('intl').t('product.administration.people.person.person_is_active');
-        }else {
-          message = _ref.get('intl').t('product.administration.people.person.person_is_inactive');
-        }
-        _ref.get('appManager').notify('success', message);
-      }).catch(function(reason){
-        _ref.get('appManager').notify('error', reason);
-      });
-    },
+    // activate(person, isActive){
+    //   var _ref = this;
+    //   person.set('isActive', isActive);
+    //   return person.save().then(function(){
+    //     var message;
+    //     if (isActive) {
+    //       message = _ref.get('intl').t('product.administration.people.person.person_is_active');
+    //     }else {
+    //       message = _ref.get('intl').t('product.administration.people.person.person_is_inactive');
+    //     }
+    //     _ref.get('appManager').notify('success', message);
+    //   }).catch(function(reason){
+    //     _ref.get('appManager').notify('error', reason);
+    //   });
+    // },
     willTransition(transition) {
       var person = this.controller.get('person');
       if (person.get('hasDirtyAttributes') &&
