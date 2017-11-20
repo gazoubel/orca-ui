@@ -1,10 +1,37 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
+import DS from 'ember-data';
 
 export default Ember.Service.extend({
   store: Ember.inject.service('store'),
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
+  checkUserAccessFor(restrictionName){
+    var self = this;
+    var session = this.get('session');
+    return DS.PromiseObject.create({
+      promise: new Ember.RSVP.Promise(function(resolve){
+        if(!restrictionName){
+          resolve(false);
+        }
+
+        var person = session.get('sessionVariables.person');
+
+        var isAdmin = person.get('isAdmin');
+        if (isAdmin) {
+          resolve(isAdmin);
+        } else {
+          person.get('privilege').then(function(privilege){
+            privilege.reload();
+            var hasAccess = privilege.get(restrictionName);
+            return hasAccess;
+          }).then(function(hasAccess){
+            resolve(hasAccess);
+          });
+        }
+      })
+    });
+  },
   checkUserAccess(currentAcronym, userId){
     var session = this.get('session');
     var store = this.get('store');

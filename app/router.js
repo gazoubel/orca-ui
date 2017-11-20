@@ -107,6 +107,7 @@ Router.map(function() {
         });
       });
     });
+    this.route('current-profile');
   });
 });
 
