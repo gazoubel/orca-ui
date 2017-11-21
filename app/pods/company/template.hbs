@@ -44,9 +44,25 @@
     <section class="sidebar">
       <ul class="sidebar-menu tree" data-widget="tree">
           <li class="header">MAIN NAVIGATION</li>
-          {{#link-to 'company.projects' tagName="li" href=false}}
+          <li class="treeview">
+            {{#link-to 'company.projects' tagName="a" href=false}}
+            <i class="fa fa-cube"></i> <span>{{t 'product.projects.tabName'}}</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            {{/link-to}}
+            <ul class="treeview-menu">
+              {{#link-to 'company.projects' tagName="li" href=false}}
+              <a href="#"><i class="fa fa-hourglass-start"></i> <span>{{t 'product.projects.activeTabName'}}</span></a>
+              {{/link-to}}
+              {{#link-to 'company.projects' tagName="li" href=false}}
+              <a href="#"><i class="fa fa-hourglass-end"></i> <span>{{t 'product.projects.closedTabName'}}</span></a>
+              {{/link-to}}
+            </ul>
+          </li>
+          <!-- {{#link-to 'company.projects' tagName="li" href=false}}
             <a href="#"><i class="fa fa-cube"></i><span>{{t 'product.projects.tabName'}}</span></a>
-          {{/link-to}}
+          {{/link-to}} -->
           {{#link-to 'company.transactions' tagName="li" href=false}}
           <a href="#"><i class="fa fa-bank"></i><span>{{t 'product.transactions.tabName'}}</span></a>
           {{/link-to}}

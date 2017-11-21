@@ -120,6 +120,8 @@ product:
   projects:
     tabName: 'Projects'
     tabNameMobile: 'P'
+    activeTabName: 'All active'
+    closedTabName: 'All closed'
     title: 'Projects'
     new_project: 'New Project'
     edit_project: 'Edit Project'
