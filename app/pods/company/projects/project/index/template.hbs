@@ -1,28 +1,15 @@
 <div class ="row" style="margin-top: 30px">
-
-  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box {{if project.isOnTrack "bg-green" "bg-red"}}">
-      <span class="info-box-icon"><i class="fa fa-flag-o"></i></span>
-
-      <div class="info-box-content">
-        <span class="info-box-text">Target Health</span>
-        <span class="info-box-text">{{if project.isOnTrack (t 'product.projects.project.stages.stage.on_track') (t 'product.projects.project.stages.stage.above_budget')}}</span>
-
-        {{#if project.isOnTrack}}
-          <div class="progress">
-            <div class="progress-bar" style="width: {{project.percentageSpent}}%"></div>
-          </div>
-              <span class="progress-description">
-                {{format-number project.percentageSpent fallback='0' maximumFractionDigits=2}}%
-              </span>
-        {{/if}}
-      </div>
-    </div>
-  </div>
-
+  {{dashboard-info-card
+    class="col-lg-4 col-md-4 col-sm-6 col-xs-12"
+    title="Target Health"
+    subTitle=(if project.isOnTrack (t 'product.projects.project.stages.stage.on_track') (t 'product.projects.project.stages.stage.above_budget'))
+    icon='fa fa-flag-o'
+    color=(if project.isOnTrack "bg-green" "bg-red")
+    displayProgress=project.isOnTrack
+    progress= project.percentageSpent
+    progressDescription=(concat (format-number project.percentageSpent fallback='0' maximumFractionDigits=2) '%')}}
   <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
     <div class="info-box">
-      <!-- <div class="box-header">Summary</div> -->
         <div class="box-body no-padding">
           <table style="width:100%;margin-top:5px;">
             <tbody>
@@ -49,60 +36,35 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-    <div class="small-box bg-yellow">
-      <div class="inner">
-        <h3>{{t 'product.projects.project.main_info'}}</h3>
-        <p>{{t 'product.projects.project.main_info_subtext'}}</p>
-      </div>
-      <div class="icon">
-        <i class="ion ion-ios-list-outline"></i>
-      </div>
-      {{#link-to "company.projects.project.info" tagName="a" class="small-box-footer"}}
-        {{t 'product.commonWords.more_info'}} <i class="fa fa-arrow-circle-right"></i>
-      {{/link-to}}
-    </div>
-  </div>
-  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-    <div class="small-box bg-purple">
-      <div class="inner">
-        <h3>{{t 'fields.assignee'}}</h3>
-        <p>{{project.assignee.name}}</p>
-      </div>
-      <div class="icon">
-        <i class="ion ion-person"></i>
-      </div>
-      {{#link-to "company.projects.project.info" tagName="a" class="small-box-footer"}}
-        {{t 'product.commonWords.more_info'}} <i class="fa fa-arrow-circle-right"></i>
-      {{/link-to}}
-    </div>
-  </div>
-  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-    <div class="small-box bg-aqua">
-      <div class="inner">
-        <h3>{{project.activeOrClosedStages}} of {{project.projectStages.length}}</h3>
-        <p>{{t 'product.projects.project.stages_progress'}}</p>
-      </div>
-      <div class="icon">
-        <i class="ion ion-ios-albums-outline"></i>
-      </div>
-      {{#link-to "company.projects.project.stages" tagName="a" class="small-box-footer"}}
-        {{t 'product.commonWords.more_info'}} <i class="fa fa-arrow-circle-right"></i>
-      {{/link-to}}
-    </div>
-  </div>
-  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-    <div class="small-box bg-green">
-      <div class="inner">
-        <h3>{{project.teamMembers.length}}</h3>
-        <p>{{t 'product.projects.project.team_members'}}</p>
-      </div>
-      <div class="icon">
-        <i class="ion ion-person-stalker"></i>
-      </div>
-      {{#link-to "company.projects.project.team" tagName="a" class="small-box-footer"}}
-        {{t 'product.commonWords.more_info'}} <i class="fa fa-arrow-circle-right"></i>
-      {{/link-to}}
-    </div>
-  </div>
+    {{dashboard-basic-card
+      class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+      title=(t 'product.projects.project.main_info')
+      subTitle=(t 'product.projects.project.main_info_subtext')
+      moreInfoRoute="company.projects.project.info"
+      icon='ion-ios-list-outline'
+      color='bg-yellow'}}
+
+    {{dashboard-basic-card
+      class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+      title=(t 'fields.assignee')
+      subTitle=project.assignee.name
+      moreInfoRoute="company.projects.project.info"
+      icon='ion-person'
+      color='bg-purple'}}
+
+    {{dashboard-basic-card
+      class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+      title=project.projectStagesCurrentProgress
+      subTitle=(t 'product.projects.project.stages_progress')
+      moreInfoRoute="company.projects.project.stages"
+      icon='ion-ios-albums-outline'
+      color='bg-aqua'}}
+      
+    {{dashboard-basic-card
+      class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+      title=project.teamMembers.length
+      subTitle=(t 'product.projects.project.team_members')
+      moreInfoRoute="company.projects.project.team"
+      icon='ion-person-stalker'
+      color='bg-green'}}
 </div>

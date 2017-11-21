@@ -134,4 +134,8 @@ export default DS.Model.extend(Validations,{
     var percentageSpent = this.get('percentageSpent')||0;
     return  percentageSpent<=100;
   }),
+
+  projectStagesCurrentProgress: Ember.computed('activeOrClosedStages','projectStages.[]', function(){
+    return Ember.get(this, 'activeOrClosedStages')+' of '+Ember.get(this, 'projectStages.length');
+  }),
 });
