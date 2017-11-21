@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   person: null,
   canEdit: true,
+  isEditingMainInfo: false,
   intl: Ember.inject.service(),
   userMainInfoImgStyle: Ember.computed('person.user', function(){
     return this.get('person.user')?'padding-left:15px;':'';
@@ -23,6 +24,17 @@ export default Ember.Component.extend({
       }).catch(function(reason){
         _ref.get('appManager').notify('error', reason);
       });
+    },
+    added(){
+      var t_model = this.get('intl').t('models.person');
+      var message = this.get('intl').t('product.messages.model_updated',{model: t_model});
+      this.get('appManager').notify('success', message);
+      this.set('isEditingMainInfo', false);
+      return false;
+    },
+    canceled(){
+      this.get('appManager').notify('success', this.get('intl').t('product.administration.people.person.information_rolledback'));
+      this.set('isEditingMainInfo', false);
     }
   }
 });

@@ -10,6 +10,14 @@
 </section>
 
 <section class="content">
-  {{user-profile
-    person = person}}
+  {{#user-profile
+    person = person as |p|}}
+    <div class="row">
+      <div class="col-md-12">
+        {{person-user-form
+          person=p
+          privileges = p.company.privileges }}
+      </div>
+    </div>
+  {{/user-profile}}
 </section>

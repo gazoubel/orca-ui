@@ -104,45 +104,53 @@
           <span class="username" >{{t 'product.administration.people.person.main_info'}}</span>
           <span class="description">{{t 'product.administration.people.person.main_info_subtext'}}</span>
         </div>
-        {{#if canEdit}}
           <div class="box-tools">
-            {{#link-to "company.administration.people.person.edit" class="btn btn-box-tool" data-toggle="tooltip" tagName="button" title="edit project"}}
+            <a href="#" onclick={{action (mut isEditingMainInfo) true}} class="text-muted" style="font-size: 15px;"><i class="fa fa-pencil"></i></a>
+
+            <!-- {{#link-to "company.administration.people.person.edit" class="btn btn-box-tool" data-toggle="tooltip" tagName="button" title="edit project"}}
               <a href={{view.href}} class="text-muted" style="font-size: 15px;"><i class="fa fa-pencil"></i></a>
-            {{/link-to}}
+            {{/link-to}} -->
+          </div>
+      </div>
+      <div class="box-body">
+        {{#if isEditingMainInfo}}
+          {{person-form
+            onCancelClicked="canceled"
+            onSaveClicked="added"
+            person=person }}
+        {{else}}
+          <div class="row">
+            <div class="col-sm-12">
+              <b>{{t 'fields.first_name'}}:</b> {{person.firstName}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <b>{{t 'fields.last_name'}}:</b> {{person.lastName}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <b>{{t 'fields.phone'}}:</b> {{person.phone}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <b>{{t 'fields.notes'}}:</b> {{person.notes}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <b>{{t 'fields.email'}}:</b> {{person.user.email}}
+            </div>
           </div>
         {{/if}}
       </div>
-      <div class="box-body">
-        <div class="row">
-          <div class="col-sm-12">
-            <b>{{t 'fields.first_name'}}:</b> {{person.firstName}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <b>{{t 'fields.last_name'}}:</b> {{person.lastName}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <b>{{t 'fields.phone'}}:</b> {{person.phone}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <b>{{t 'fields.notes'}}:</b> {{person.notes}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <b>{{t 'fields.email'}}:</b> {{person.user.email}}
-          </div>
-        </div>
-      </div>
     </div>
       </div>
     </div>
-    {{#if canEdit}}
+    {{yield person}}
+    <!-- {{#if canEdit}}
       <div class="row">
         <div class="col-md-12">
           {{person-user-form
@@ -150,6 +158,6 @@
             privileges = person.company.privileges }}
         </div>
       </div>
-    {{/if}}
+    {{/if}} -->
   </div>
 </div>

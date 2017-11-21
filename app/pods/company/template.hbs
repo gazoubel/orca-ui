@@ -53,12 +53,18 @@
 
           {{#check-user-access-for "company_administration"}}
             <li class="treeview">
-              <a href="#">
+              <!-- <a href="#">
                 <i class="fa fa-gear"></i> <span>{{t 'product.administration.tabName'}}</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
-              </a>
+              </a> -->
+              {{#link-to 'company.administration' tagName="a" href=false}}
+              <i class="fa fa-gear"></i> <span>{{t 'product.administration.tabName'}}</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+              {{/link-to}}
               <ul class="treeview-menu">
                 {{#link-to 'company.administration.stages' tagName="li" href=false}}
                 <a href="#"><i class="fa fa-cubes"></i> <span>{{t 'product.administration.menu.stages'}}</span></a>
