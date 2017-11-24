@@ -40,14 +40,14 @@
   </div>
 </div>
 
-{{#link-to 'company.transactions.payment-transactions.new'}}
+{{#link-to 'company.transactions.labor-transactions.new'}}
 <button class="btn btn-default">
   <i class="glyphicon glyphicon-plus"></i>
-  {{t 'product.transactions.payment-transactions.payment-transaction.new'}}
+  {{t 'product.transactions.labor-transactions.labor-transaction.new'}}
 </button>
 {{/link-to}}
 <div class="pull-right"  style="margin-top: 15px">
-  {{#link-to 'company.transactions.payment-transactions' }}
+  {{#link-to 'company.transactions.labor-transactions' }}
   view all
   {{/link-to}}
 </div>
@@ -64,13 +64,13 @@
         </tr>
       </thead>
       <tbody>
-        {{#each paymentTransactions as |paymentTransaction|}}
-          {{#link-to paymentTransaction.route paymentTransaction.id tagName="tr"}}
-          <td>{{paymentTransaction.person.firstName}}</td>
-          <td>{{t paymentTransaction.transactionType}}</td>
-          <td>{{paymentTransaction.description}}</td>
-          <td>{{format-date paymentTransaction.paymentDueDate}}</td>
-          <td>{{format-currency paymentTransaction.total fallback='n/a'}}</td>
+        {{#each laborTransactions as |laborTransaction|}}
+          {{#link-to laborTransaction.route laborTransaction.id tagName="tr"}}
+          <td>{{laborTransaction.person.firstName}}</td>
+          <td>{{t laborTransaction.transactionType}}</td>
+          <td>{{laborTransaction.description}}</td>
+          <td>{{format-date laborTransaction.paymentDueDate}}</td>
+          <td>{{format-currency laborTransaction.total fallback='n/a'}}</td>
           {{/link-to}}
         {{/each}}
     </tbody>

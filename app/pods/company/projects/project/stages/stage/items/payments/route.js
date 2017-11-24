@@ -6,15 +6,15 @@ export default Ember.Route.extend({
     return stageModel.projectStage;
   },
   setupController: function(controller, model) {
-    controller.set('paymentTransactionItems', model.get('paymentTransactionItems'));
-    // return model.get('paymentTransactionItems');
-    // return model.get('paymentTransactionItems').then(function(items){
+    controller.set('laborTransactionItems', model.get('laborTransactionItems'));
+    // return model.get('laborTransactionItems');
+    // return model.get('laborTransactionItems').then(function(items){
     //   var arr = Ember.A();
     //   items.forEach(function(item, index) {
     //     item.get('laborItem').then(function(paymentItem){
     //       arr.addObject({
-    //         id: item.get('paymentTransaction.id'),
-    //         name: item.get('paymentTransaction.person.firstname') +' as '+paymentItem.get('name'),
+    //         id: item.get('laborTransaction.id'),
+    //         name: item.get('laborTransaction.person.firstname') +' as '+paymentItem.get('name'),
     //         total:item.get('total'),
     //         quantity:item.get('quantity')});
     //     });

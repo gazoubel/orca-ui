@@ -68,6 +68,8 @@ Router.map(function() {
           this.route('new_member');
         });
       });
+      this.route('active');
+      this.route('closed');
     });
     this.route('transactions', function() {
       this.route('purchase-transactions', function() {
@@ -88,10 +90,10 @@ Router.map(function() {
         });
       });
 
-      this.route('payment-transactions', function() {
+      this.route('labor-transactions', function() {
         this.route('new');
 
-        this.route('payment-transaction', {
+        this.route('labor-transaction', {
           path: ':payment_transaction_id'
         }, function() {
           this.route('edit');

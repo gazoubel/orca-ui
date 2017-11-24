@@ -45,27 +45,41 @@
       <ul class="sidebar-menu tree" data-widget="tree">
           <li class="header">MAIN NAVIGATION</li>
           <li class="treeview">
-            {{#link-to 'company.projects' tagName="a" href=false}}
+            {{#link-to 'company.projects.active' tagName="a" href=false}}
             <i class="fa fa-cube"></i> <span>{{t 'product.projects.tabName'}}</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
             {{/link-to}}
             <ul class="treeview-menu">
-              {{#link-to 'company.projects' tagName="li" href=false}}
-              <a href="#"><i class="fa fa-hourglass-start"></i> <span>{{t 'product.projects.activeTabName'}}</span></a>
+              {{#link-to 'company.projects.active' tagName="li" href=false}}
+              <a href="#"><i class="fa fa-flag-o"></i> <span>{{t 'product.projects.activeTabName'}}</span></a>
               {{/link-to}}
-              {{#link-to 'company.projects' tagName="li" href=false}}
-              <a href="#"><i class="fa fa-hourglass-end"></i> <span>{{t 'product.projects.closedTabName'}}</span></a>
+              {{#link-to 'company.projects.closed' tagName="li" href=false}}
+              <a href="#"><i class="fa fa-flag-checkered"></i> <span>{{t 'product.projects.closedTabName'}}</span></a>
               {{/link-to}}
             </ul>
           </li>
-          <!-- {{#link-to 'company.projects' tagName="li" href=false}}
-            <a href="#"><i class="fa fa-cube"></i><span>{{t 'product.projects.tabName'}}</span></a>
-          {{/link-to}} -->
-          {{#link-to 'company.transactions' tagName="li" href=false}}
+          <!-- {{#link-to 'company.transactions' tagName="li" href=false}}
           <a href="#"><i class="fa fa-bank"></i><span>{{t 'product.transactions.tabName'}}</span></a>
-          {{/link-to}}
+          {{/link-to}} -->
+
+          <li class="treeview">
+            {{#link-to 'company.transactions' tagName="a" href=false}}
+            <i class="fa fa-bank"></i> <span>{{t 'product.transactions.tabName'}}</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            {{/link-to}}
+            <ul class="treeview-menu">
+              {{#link-to 'company.transactions.purchase-transactions' tagName="li" href=false}}
+              <a href="#"><i class="fa fa-shopping-cart"></i> <span>{{t 'product.transactions.purchase_transactions_menu'}}</span></a>
+              {{/link-to}}
+              {{#link-to 'company.transactions.labor-transactions' tagName="li" href=false}}
+              <a href="#"><i class="fa fa-suitcase"></i> <span>{{t 'product.transactions.labor_transactions_menu'}}</span></a>
+              {{/link-to}}
+            </ul>
+          </li>
 
           {{#check-user-access-for "company_administration"}}
             <li class="treeview">

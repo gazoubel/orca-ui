@@ -1,0 +1,142 @@
+
+
+<section class="invoice">
+     <!-- title row -->
+     <div class="row">
+       <div class="col-xs-12">
+         <h2 class="page-header">
+           <i class="fa fa-user"></i> Paid To: {{laborTransaction.person.firstName}}
+
+           <small>{{laborTransaction.description}}</small>
+         </h2>
+       </div>
+       <!-- /.col -->
+     </div>
+     <!-- info row -->
+     <div class="row invoice-info">
+
+       <div class="col-sm-4 invoice-col">
+         <!-- <b>Description:</b> {{laborTransaction.description}}<br> -->
+         <b>Reference #{{laborTransaction.id}}</b><br>
+         <b>Payment Due:</b> {{format-date laborTransaction.paymentDueDate}}<br>
+         <!-- <b>Default Project:</b> {{laborTransaction.defaultProjectStage.project.name}}<br>
+         <b>Default Stage:</b> {{laborTransaction.defaultProjectStage.name}}<br> -->
+       </div>
+       <!-- /.col -->
+       <div class="col-sm-4 invoice-col">
+         <b>Invoice #{{laborTransaction.invoiceNumber}}</b><br>
+         <!-- <b>Order ID:</b> 4F3S8J<br>
+         <b>Account:</b> 968-34567 -->
+         <!-- To
+         <address>
+           <strong>John Doe</strong><br>
+           795 Folsom Ave, Suite 600<br>
+           San Francisco, CA 94107<br>
+           Phone: (555) 539-1037<br>
+           Email: john.doe@example.com
+         </address> -->
+       </div>
+       <!-- /.col -->
+       <div class="col-sm-4 invoice-col">
+         {{#if laborTransaction.transactionPaidOn}}
+            <b>Paid on:</b> {{format-date laborTransaction.transactionPaidOn}}
+         {{else}}
+            <b>NOT PAID</b>
+         {{/if}}
+
+         {{#link-to "company.transactions.labor-transactions.labor-transaction.edit" class="pull-right" data-toggle="tooltip" title="edit transaction"}}
+          <a href={{view.href}} class="text-muted" style="font-size: 15px;margin-left:10px;"><i class="fa fa-pencil"></i></a>
+         {{/link-to}}<br>
+         <br>
+         <!-- <b>Order ID:</b> 4F3S8J<br>
+         <b>Account:</b> 968-34567 -->
+       </div>
+     </div>
+
+     <br>
+     {{#link-to 'company.transactions.labor-transactions.labor-transaction.items.new'}}
+     <button class="btn btn-default">
+       <i class="glyphicon glyphicon-plus"></i>
+       {{t 'product.transactions.labor-transactions.labor-transaction.add_item'}}
+     </button>
+     {{/link-to}}
+     <div class="row">
+       <div class="col-xs-12 table-responsive">
+         <table class="table table-striped">
+           <thead>
+           <tr>
+             <th>Qty</th>
+             <th>Type</th>
+             <th>Description</th>
+             <th>Project</th>
+             <th>Stage</th>
+             <th>Subtotal</th>
+             <td></td>
+           </tr>
+           </thead>
+           <tbody>
+             {{#each laborTransaction.laborTransactionItems as |transactionItem|}}
+             <tr>
+               <td>{{transactionItem.quantity}}</td>
+               <td>{{transactionItem.laborItem.name}}</td>
+               <td>{{transactionItem.description}}</td>
+               <td>{{transactionItem.projectStage.project.name}}</td>
+               <td>{{transactionItem.projectStage.name}}</td>
+               <td>{{format-currency transactionItem.total fallback='n/a'}}</td>
+               <td>
+                {{#link-to 'company.transactions.labor-transactions.labor-transaction.items.item.edit' transactionItem.id}}
+                  <button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
+                {{/link-to}}
+                <button class="btn btn-default" {{action "remove" transactionItem}}><i class="glyphicon glyphicon-remove"></i></button>
+               </td>
+             </tr>
+             {{/each}}
+           </tbody>
+         </table>
+       </div>
+     </div>
+
+     <div class="row">
+       <!-- accepted payments column -->
+       <div class="col-xs-6">
+         <p class="lead">Payment Method: {{laborTransaction.paymentType.name}}</p>
+         <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+           No fields to display here
+         </p>
+       </div>
+       <!-- /.col -->
+       <div class="col-xs-6">
+         <p class="lead">Amount Due {{format-date laborTransaction.paymentDueDate}}</p>
+
+         <div class="table-responsive">
+           <table class="table">
+             <tbody>
+               <!-- <tr>
+               <th style="width:50%">Subtotal:</th>
+               <td>{{format-currency laborTransaction.subTotal fallback='n/a'}}</td>
+             </tr> -->
+             <!-- {{#if laborTransaction.socialSecurity}}
+             <tr>
+               <th>Social Security</th>
+               <td>{{format-currency laborTransaction.socialSecurity fallback='n/a'}}</td>
+             </tr>
+             {{/if}} -->
+             <tr>
+               <th>Total:</th>
+               <td>{{format-currency laborTransaction.total fallback='n/a'}}</td>
+             </tr>
+           </tbody></table>
+         </div>
+       </div>
+     </div>
+     <div class="row no-print">
+       <div class="col-xs-12">
+         <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+         <button type="button" class="btn btn-success pull-right" {{action "markAsPaidToday" laborTransaction}}><i class="fa fa-credit-card"></i> {{t 'product.transactions.paid_today'}}
+         </button>
+         <!-- <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+           <i class="fa fa-download"></i> Generate PDF
+         </button> -->
+       </div>
+     </div>
+   </section>

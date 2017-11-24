@@ -1,0 +1,42 @@
+
+{{#link-to 'company.transactions.labor-transactions.new'}}
+<button class="btn btn-default">
+  <i class="glyphicon glyphicon-plus"></i>
+  {{t 'product.transactions.labor-transactions.labor-transaction.new'}}
+</button>
+{{/link-to}}
+<div class="box" style="margin-top: 5px">
+  <div class="box-body no-padding">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>{{t 'fields.paid_to'}}</th>
+          <!-- <th>{{t 'fields.transaction_type'}}</th> -->
+          <th>{{t 'fields.description'}}</th>
+          <th>{{t 'fields.purchase_date'}}</th>
+          <th>{{t 'fields.total'}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each laborTransactions as |laborTransaction|}}
+          {{#link-to laborTransaction.route laborTransaction.id tagName="tr"}}
+          <td>{{laborTransaction.person.name}}</td>
+          <!-- <td>{{t laborTransaction.transactionType}}</td> -->
+          <td>{{laborTransaction.description}}</td>
+          <td>{{format-date laborTransaction.purchaseDate}}</td>
+          <td>{{format-currency laborTransaction.total fallback='n/a'}}</td>
+          <td>
+            {{#if laborTransaction.isLate}}
+              <span class="label label-danger">late</span>
+            {{else if laborTransaction.isUnpaid}}
+              <span class="label label-warning">not paid</span>
+            {{else}}
+              <span class="label label-success">paid</span>
+            {{/if}}</td>
+          {{/link-to}}
+        {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>

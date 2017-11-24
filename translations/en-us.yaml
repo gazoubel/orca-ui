@@ -7,8 +7,8 @@ models:
   projectStage: 'stage'
   purchaseTransaction: 'purchase transaction'
   purchaseTransactionItem: 'product'
-  paymentTransaction: 'labor transaction'
-  paymentTransactionItem: 'item'
+  laborTransaction: 'labor transaction'
+  laborTransactionItem: 'item'
   item: 'item'
   laborItem: 'labor type'
   person: 'Person'
@@ -89,6 +89,8 @@ product:
     edit_transaction: 'Edit Transaction'
     new_transaction_item: 'New Product'
     paid_today: 'Paid Today'
+    purchase_transactions_menu: 'Purchase'
+    labor_transactions_menu: 'Labor'
     transaction:
       default_project: 'Default Project'
       project: 'Project'
@@ -106,8 +108,8 @@ product:
         edit: 'Edit Purchase Transaction'
         add_item: 'Add New Product'
         item: 'Product'
-    payment-transactions:
-      payment-transaction:
+    labor-transactions:
+      labor-transaction:
         type_name: 'Labor Transaction'
         new: 'New Labor Transaction'
         edit: 'Edit Labor Transaction'
@@ -150,7 +152,7 @@ product:
           above_budget: 'above budget'
           on_track: 'on track'
           purchased_items: 'Purchased Items'
-          payment_items: 'Labor Items'
+          labor_items: 'Labor Items'
           estimated_total: 'Estimated Total'
           total_payments: 'Total Labor'
           total_purchase: 'Total Purchase'

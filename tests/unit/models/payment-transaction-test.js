@@ -1,6 +1,6 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('payment-transaction', 'Unit | Model | payment transaction', {
+moduleForModel('labor-transaction', 'Unit | Model | payment transaction', {
   // Specify the other units that are required for this test.
   needs: []
 });

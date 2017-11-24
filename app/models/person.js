@@ -17,7 +17,7 @@ export default DS.Model.extend(Validations, {
   lastName: DS.attr('string'),
   user: DS.belongsTo('user', {inverse: 'people', async: true}),
   company: DS.belongsTo('company',{inverse: 'people'}),
-  paymentTransactions: DS.hasMany('payment-transaction',   {inverse: 'person'}),
+  laborTransactions: DS.hasMany('labor-transaction',   {inverse: 'person'}),
   projectsAssignedTo: DS.hasMany('project', {inverse: 'assignee'}),
   companyRelationship: DS.belongsTo('company-to-user',{inverse: 'person'}),
   teamMemberOf: DS.hasMany('project'),
@@ -37,7 +37,7 @@ export default DS.Model.extend(Validations, {
   }),
   activeProjectsAssignedTo: Ember.computed.filterBy('projectsAssignedTo', 'isActive', true),
   activeTeamMemberOf: Ember.computed.filterBy('teamMemberOf', 'isActive', true),
-  unpaidPaymentTransactions: Ember.computed.filterBy('paymentTransactions', 'isUnpaid', true),
-  // previousRoles: Ember.computed.map('paymentTransactionItems.@each.roles')
-  // previousRoles: Ember.computed.uniq('paymentTransactions.@each.paymentRoles')
+  unpaidlaborTransactions: Ember.computed.filterBy('laborTransactions', 'isUnpaid', true),
+  // previousRoles: Ember.computed.map('laborTransactionItems.@each.roles')
+  // previousRoles: Ember.computed.uniq('laborTransactions.@each.paymentRoles')
 });

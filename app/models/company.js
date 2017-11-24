@@ -27,7 +27,7 @@ export default DS.Model.extend(Validations, {
   itemTypes: DS.hasMany('item-type', {inverse: 'company'}),
   projects: DS.hasMany('project', {inverse: 'company'}),
   purchaseTransactions: DS.hasMany('purchase-transaction', {inverse: 'company'}),
-  paymentTransactions: DS.hasMany('payment-transaction', {inverse: 'company'}),
+  laborTransactions: DS.hasMany('labor-transaction', {inverse: 'company'}),
   items: DS.hasMany('item', {inverse: 'company'}),
   laborItems: DS.hasMany('labor-item', {inverse: 'company'}),
   people: DS.hasMany('person', {inverse: 'company'}),
@@ -41,18 +41,18 @@ export default DS.Model.extend(Validations, {
     // let transactions = Ember.get(this, 'purchaseTransactions');
     // return transactions.filterBy('isUnpaid', true);
   }),
-  // unpaidPaymentTransactions: Ember.computed.filterBy('purchaseTransactions.[]','purchaseTransactions.@each.isPaid', 'isPaid', false),
+  // unpaidlaborTransactions: Ember.computed.filterBy('purchaseTransactions.[]','purchaseTransactions.@each.isPaid', 'isPaid', false),
   // unpaidPurchaseTransactions: Ember.computed('purchaseTransactions.@each.isUnpaid', 'purchaseTransactions.[]', function(){
   //   let transactions = Ember.get(this, 'purchaseTransactions');
   //   return transactions.filterBy('isUnpaid', true);
   // }),
-  unpaidPaymentTransactions: Ember.computed('paymentTransactions.@each','paymentTransactions.@each.isUnpaid', 'paymentTransactions.[]', function(){
-    return this.get('paymentTransactions').then(function(paymentTransactions){
-      return paymentTransactions.filterBy('isUnpaid', true);
+  unpaidlaborTransactions: Ember.computed('laborTransactions.@each','laborTransactions.@each.isUnpaid', 'laborTransactions.[]', function(){
+    return this.get('laborTransactions').then(function(laborTransactions){
+      return laborTransactions.filterBy('isUnpaid', true);
     });
-    // let transactions = Ember.get(this, 'paymentTransactions');
+    // let transactions = Ember.get(this, 'laborTransactions');
     // return transactions.filterBy('isUnpaid', true);
   })
   // unpaidPurchaseTransactions: Ember.computed.filterBy('purchaseTransactions.[]', 'isPaid', false),
-  // unpaidPaymentTransactions: Ember.computed.filterBy('paymentTransactions.[]', 'isPaid', false)
+  // unpaidlaborTransactions: Ember.computed.filterBy('laborTransactions.[]', 'isPaid', false)
 });

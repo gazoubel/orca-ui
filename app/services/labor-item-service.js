@@ -8,7 +8,7 @@ export default Ember.Service.extend({
     var store = this.get('store');
     var intl = this.get('intl');
 
-    var person = this.get('session.person');
+    var person = this.get('session.sessionVariables.person');
     if (!person) {
       reject("Error creating stage: Invalid company");
       return;
@@ -37,7 +37,7 @@ export default Ember.Service.extend({
           item.rollbackAttributes();
         }).catch(function(reason){
           item.rollbackAttributes();
-          reject("Error creating stage:" + reason);
+          reject("Error creating labor item:" + reason);
         });
       });
     });
