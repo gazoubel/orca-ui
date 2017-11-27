@@ -28,6 +28,7 @@ export default DS.Model.extend(Validations, {
   projects: DS.hasMany('person'),
   isAdmin: DS.attr('boolean'),
   privilege: DS.belongsTo('privilege',{inverse: 'people'}),
+  paymentTransactions: DS.hasMany('payment-transaction',   {inverse: 'paidByPerson'}),
 
   name: Ember.computed('firstName','lastName', function(){
     return Ember.get(this, 'firstName')+' '+Ember.get(this, 'lastName');

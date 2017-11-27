@@ -1,11 +1,34 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  intl: Ember.inject.service(),
   purchaseTransaction:null,
   actions:{
     markAsPaidToday: function(purchaseTransaction){
-      purchaseTransaction.set('transactionPaidOn', new Date());
-      purchaseTransaction.save();
+      var _this = this;
+      var intl = this.get('intl');
+      var person = this.get('session.sessionVariables.person');
+      var paymentTransaction = this.store.createRecord('payment-transaction', {
+        company:purchaseTransaction.get('company'),
+        purchaseTransaction: purchaseTransaction,
+        total: purchaseTransaction.get('total'),
+        paymentType: purchaseTransaction.get('paymentType'),
+        paidByPerson: person,
+        transactionPaidOn:new Date()
+      });
+      paymentTransaction.save().then(function(transaction) {
+          var message = intl.t('company.transactions.transaction_paid_in_full');
+          _this.get('appManager').notify('success', message);
+          return;
+      }, function(error){
+        _this.get('appManager').notify('error', error.detailedMessage);
+        paymentTransaction.rollbackAttributes();
+      }).catch(function(reason){
+        paymentTransaction.rollbackAttributes();
+        _this.get('appManager').notify('error', reason);
+      });
+      // purchaseTransaction.set('transactionPaidOn', new Date());
+      // purchaseTransaction.save();
     },
     remove: function (item){
       var ref = this;

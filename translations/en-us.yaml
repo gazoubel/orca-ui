@@ -99,8 +99,8 @@ product:
       payment_type: 'Payment Method'
     breadcrumbs:
       home: 'transactions'
-      payment_transactions: 'payments'
-      purchase_transactions: 'labor payments'
+      labor_transactions: 'labor'
+      purchase_transactions: 'purchase'
     purchase-transactions:
       purchase-transaction:
         type_name: 'Purchase Transaction'

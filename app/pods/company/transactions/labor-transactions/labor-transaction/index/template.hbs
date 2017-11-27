@@ -38,8 +38,8 @@
        </div>
        <!-- /.col -->
        <div class="col-sm-4 invoice-col">
-         {{#if laborTransaction.transactionPaidOn}}
-            <b>Paid on:</b> {{format-date laborTransaction.transactionPaidOn}}
+         {{#if laborTransaction.paidInFull}}
+            <b>Paid in full</b> <!-- {{format-date laborTransaction.transactionPaidOn}} -->
          {{else}}
             <b>NOT PAID</b>
          {{/if}}
@@ -99,28 +99,44 @@
      <div class="row">
        <!-- accepted payments column -->
        <div class="col-xs-6">
-         <p class="lead">Payment Method: {{laborTransaction.paymentType.name}}</p>
-         <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-           No fields to display here
-         </p>
+         <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Payment Method: {{laborTransaction.paymentType.name}}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <table class="table table-condensed">
+                <tbody>
+                  <tr>
+                    <th>Date</th>
+                    <th>Amount paid</th>
+                  </tr>
+                  {{#each laborTransaction.paymentTransactions as |t|}}
+                    <tr>
+                      <td>{{format-date t.transactionPaidOn}}</td>
+                      <td>{{format-currency t.total fallback='n/a'}}</td>
+                    </tr>
+                  {{else}}
+                  <tr><td colspan="2">
+                    <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                      Nothing to display here
+                    </p></td></tr>
+                  {{/each}}
+              </tbody>
+            </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
        </div>
        <!-- /.col -->
        <div class="col-xs-6">
-         <p class="lead">Amount Due {{format-date laborTransaction.paymentDueDate}}</p>
+         {{#unless laborTransaction.paidInFull}}
+          <p class="lead">Amount Due {{format-date laborTransaction.paymentDueDate}}</p>
+         {{/unless}}
 
          <div class="table-responsive">
            <table class="table">
              <tbody>
-               <!-- <tr>
-               <th style="width:50%">Subtotal:</th>
-               <td>{{format-currency laborTransaction.subTotal fallback='n/a'}}</td>
-             </tr> -->
-             <!-- {{#if laborTransaction.socialSecurity}}
-             <tr>
-               <th>Social Security</th>
-               <td>{{format-currency laborTransaction.socialSecurity fallback='n/a'}}</td>
-             </tr>
-             {{/if}} -->
              <tr>
                <th>Total:</th>
                <td>{{format-currency laborTransaction.total fallback='n/a'}}</td>
@@ -132,11 +148,10 @@
      <div class="row no-print">
        <div class="col-xs-12">
          <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-         <button type="button" class="btn btn-success pull-right" {{action "markAsPaidToday" laborTransaction}}><i class="fa fa-credit-card"></i> {{t 'product.transactions.paid_today'}}
-         </button>
-         <!-- <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-           <i class="fa fa-download"></i> Generate PDF
-         </button> -->
+         {{#unless laborTransaction.paidInFull}}
+           <button type="button" class="btn btn-success pull-right" {{action "markAsPaidToday" laborTransaction}}><i class="fa fa-credit-card"></i> {{t 'product.transactions.paid_today'}}
+           </button>
+         {{/unless}}
        </div>
      </div>
    </section>

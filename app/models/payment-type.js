@@ -14,5 +14,6 @@ export default DS.Model.extend(Validations,{
   name: DS.attr('string'),
   company: DS.belongsTo('company',{inverse: 'paymentTypes'}),
   purchaseTransactions: DS.hasMany('purchase-transaction',   {inverse: 'paymentType'}),
-  laborTransactions: DS.hasMany('labor-transaction',   {inverse: 'paymentType'})
+  laborTransactions: DS.hasMany('labor-transaction',   {inverse: 'paymentType'}),
+  paymentTransactions: DS.hasMany('payment-transaction',   {inverse: 'paymentType'})  
 });

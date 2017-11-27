@@ -37,8 +37,8 @@
        </div>
        <!-- /.col -->
        <div class="col-sm-4 invoice-col">
-         {{#if purchaseTransaction.transactionPaidOn}}
-            <b>Paid on:</b> {{format-date purchaseTransaction.transactionPaidOn}}
+         {{#if purchaseTransaction.paidInFull}}
+            <b>Paid in full</b>
          {{else}}
             <b>NOT PAID</b>
          {{/if}}
@@ -98,15 +98,57 @@
      <div class="row">
        <!-- accepted payments column -->
        <div class="col-xs-6">
-         <p class="lead">Payment Method: {{purchaseTransaction.paymentType.name}}</p>
-         <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-           Nothing to display here
-         </p>
+         <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Payment Method: {{purchaseTransaction.paymentType.name}}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <table class="table table-condensed">
+                <tbody>
+                  <tr>
+                    <th>Date</th>
+                    <th>Amount paid</th>
+                  </tr>
+                  {{#each purchaseTransaction.paymentTransactions as |t|}}
+                    <tr>
+                      <td>{{format-date t.transactionPaidOn}}</td>
+                      <td>{{format-currency t.total fallback='n/a'}}</td>
+                    </tr>
+                  {{else}}
+                  <tr><td colspan="2">
+                    <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                      Nothing to display here
+                    </p></td></tr>
+                  {{/each}}
+              </tbody>
+            </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+         <!-- <p class="lead">Payment Method: {{purchaseTransaction.paymentType.name}}</p>
+          {{#each purchaseTransaction.paymentTransactions as |t|}}
+          <table>
+            <tr>
+              <td>
+            {{format-date t.transactionPaidOn}} {{format-currency t.total fallback='n/a'}}
+              </td>
+            </tr>
+          </table>
+          {{else}}
+            <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+              Nothing to display here
+            </p>
+          {{/each}} -->
+
+
        </div>
        <!-- /.col -->
        <div class="col-xs-6">
-         <p class="lead">Amount Due {{format-date purchaseTransaction.paymentDueDate}}</p>
-
+         {{#unless purchaseTransaction.paidInFull}}
+          <p class="lead">Amount Due {{format-date purchaseTransaction.paymentDueDate}}</p>
+         {{/unless}}
          <div class="table-responsive">
            <table class="table">
              <tbody>
@@ -139,8 +181,10 @@
      <div class="row no-print">
        <div class="col-xs-12">
          <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-         <button type="button" class="btn btn-success pull-right" {{action "markAsPaidToday" purchaseTransaction}}><i class="fa fa-credit-card"></i> {{t 'product.transactions.paid_today'}}
-         </button>
+         {{#unless purchaseTransaction.paidInFull}}
+           <button type="button" class="btn btn-success pull-right" {{action "markAsPaidToday" purchaseTransaction}}><i class="fa fa-credit-card"></i> {{t 'product.transactions.paid_today'}}
+           </button>
+         {{/unless}}
          <!-- <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
            <i class="fa fa-download"></i> Generate PDF
          </button> -->

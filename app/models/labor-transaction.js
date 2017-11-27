@@ -46,7 +46,7 @@ export default DS.Model.extend(Validations,{
   transactionType: Ember.computed(function(){
     return 'product.transactions.labor-transactions.labor-transaction.type_name';
   }),
-  isUnpaid: Ember.computed.empty('transPaidOn', null),
+  isUnpaid: Ember.computed.not('paidInFull'),
   isLate: Ember.computed('isUnpaid','paymentDueDate', function(){
     var isUnpaid = this.get('isUnpaid');
     var paymentDueDate = this.get('paymentDueDate');
@@ -57,27 +57,16 @@ export default DS.Model.extend(Validations,{
     }
     return false;
   }),
-  // isPaid: Ember.computed('transPaidOn', function(){
-  //   let transPaidOn = this.get('transPaidOn');
-  //   return transPaidOn && transPaidOn!=null && transPaidOn!='';
-  // }),
-  // defaultProjectStage: DS.belongsTo('project-stage',   {inverse: 'defaultPaymentTranss'}),
   description: DS.attr('string'),
   company: DS.belongsTo('company',{inverse: 'laborTransactions'}),
   person: DS.belongsTo('person',{inverse: 'laborTransactions'}),
-  // total: DS.attr('number'),
-  // socialSecurity: DS.attr('number'),
   invoiceNumber: DS.attr('string'),
-  // purchaseDate: DS.attr('date'),
   paymentDueDate: DS.attr('date'),
-  transPaidOn: DS.attr('date'),
+  // transactionPaidOn: DS.attr('date'),
   paymentType: DS.belongsTo('payment-type',{inverse: 'laborTransactions'}),
 
   laborTransactionItems: DS.hasMany('labor-transaction-item', {inverse: 'laborTransaction'}),
-  // paymentRoles: Ember.computed.map('paymentTransItems.@each','paymentTransItems.[]', function(item, index) {
-  //   var laborName = item.get('laborItem.name');
-  //   return laborName?laborName:'other';
-  // }),
+  paymentTransactions: DS.hasMany('payment-transaction',   {inverse: 'laborTransaction'}),
   total: Ember.computed('laborTransactionItems.@each.total', 'laborTransactionItems.[]', function() {
     var expenseItems = this.get('laborTransactionItems');
     if (!expenseItems) {
@@ -86,5 +75,21 @@ export default DS.Model.extend(Validations,{
     return expenseItems.reduce(function(prev, item) {
       return (prev || 0) + Number(item.get('total'));
     });
+  }),
+
+  totalPaid: Ember.computed('paymentTransactions.@each.total', 'paymentTransactions.[]', function() {
+    var paymentTransactions = this.get('paymentTransactions');
+    if (!paymentTransactions) {
+      return 0;
+    }
+    return paymentTransactions.reduce(function(prev, item) {
+      return (prev || 0) + Number(item.get('total'));
+    });
+  }),
+
+  paidInFull: Ember.computed('totalPaid', 'total', function() {
+    var totalPaid = this.get('totalPaid')||0;
+    var total = this.get('total')||0;
+    return totalPaid >= total;
   }),
 });

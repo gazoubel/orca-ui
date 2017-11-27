@@ -50,7 +50,7 @@ export default DS.Model.extend(Validations,{
   transactionType: Ember.computed(function(){
     return 'product.transactions.purchase-transactions.purchase-transaction.type_name';
   }),
-  isUnpaid: Ember.computed.empty('transactionPaidOn'),
+  isUnpaid: Ember.computed.not('paidInFull'),
 
   isLate: Ember.computed('isUnpaid','paymentDueDate', function(){
     var isUnpaid = this.get('isUnpaid');
@@ -75,11 +75,12 @@ export default DS.Model.extend(Validations,{
   tax: DS.attr('number'),
   purchaseDate: DS.attr('date'),
   paymentDueDate: DS.attr('date'),
-  transactionPaidOn: DS.attr('date'),
+  // transactionPaidOn: DS.attr('date'),
   paymentType: DS.belongsTo('payment-type',{inverse: 'purchaseTransactions'}),
   invoiceNumber: DS.attr('string'),
 
   purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'purchaseTransaction'}),
+  paymentTransactions: DS.hasMany('payment-transaction',   {inverse: 'purchaseTransaction'}),
   other: Ember.computed('total','totalExpense', 'tax', function() {
     var total = this.get('total')||0;
     var tax = this.get('tax') || 0;
@@ -134,5 +135,20 @@ export default DS.Model.extend(Validations,{
     // var totalExpense = this.get('totalExpense');
     // var other = this.get('other');
     // return totalExpense + other;
+  }),
+  totalPaid: Ember.computed('paymentTransactions.@each.total', 'paymentTransactions.[]', function() {
+    var paymentTransactions = this.get('paymentTransactions');
+    if (!paymentTransactions) {
+      return 0;
+    }
+    return paymentTransactions.reduce(function(prev, item) {
+      return (prev || 0) + Number(item.get('total'));
+    });
+  }),
+
+  paidInFull: Ember.computed('totalPaid', 'total', function() {
+    var totalPaid = this.get('totalPaid')||0;
+    var total = this.get('total')||0;
+    return totalPaid >= total;
   }),
 });
