@@ -1,0 +1,72 @@
+
+<ul class="sidebar-menu tree" data-widget="tree">
+  <li class="header">MAIN NAVIGATION</li>
+  <li class="treeview">
+    {{#link-to 'company.projects.active' tagName="a" href=false}}
+    <i class="fa fa-cube"></i> <span>{{t 'product.projects.tabName'}}</span>
+    <span class="pull-right-container">
+      <i class="fa fa-angle-left pull-right"></i>
+    </span>
+    {{/link-to}}
+    <ul class="treeview-menu">
+      {{#link-to 'company.projects.active' tagName="li" href=false}}
+      <a href="#"><i class="fa fa-flag-o"></i> <span>{{t 'product.projects.activeTabName'}}</span></a>
+      {{/link-to}}
+      {{#link-to 'company.projects.closed' tagName="li" href=false}}
+      <a href="#"><i class="fa fa-flag-checkered"></i> <span>{{t 'product.projects.closedTabName'}}</span></a>
+      {{/link-to}}
+    </ul>
+  </li>
+
+  <li class="treeview">
+    {{#link-to 'company.transactions' tagName="a" href=false}}
+    <i class="fa fa-bank"></i> <span>{{t 'product.transactions.tabName'}}</span>
+    <span class="pull-right-container">
+      <i class="fa fa-angle-left pull-right"></i>
+    </span>
+    {{/link-to}}
+    <ul class="treeview-menu">
+      {{#link-to 'company.transactions.purchase-transactions' tagName="li" href=false}}
+      <a href="#"><i class="fa fa-shopping-cart"></i> <span>{{t 'product.transactions.purchase_transactions_menu'}}</span></a>
+      {{/link-to}}
+      {{#link-to 'company.transactions.labor-transactions' tagName="li" href=false}}
+      <a href="#"><i class="fa fa-suitcase"></i> <span>{{t 'product.transactions.labor_transactions_menu'}}</span></a>
+      {{/link-to}}
+    </ul>
+  </li>
+
+  {{#check-user-access-for "company_administration"}}
+    <li class="treeview">
+      {{#link-to 'company.administration' tagName="a" href=false}}
+      <i class="fa fa-gear"></i> <span>{{t 'product.administration.tabName'}}</span>
+      <span class="pull-right-container">
+        <i class="fa fa-angle-left pull-right"></i>
+      </span>
+      {{/link-to}}
+      <ul class="treeview-menu">
+        {{#link-to 'company.administration.stages' tagName="li" href=false}}
+        <a href="#"><i class="fa fa-cubes"></i> <span>{{t 'product.administration.menu.stages'}}</span></a>
+        {{/link-to}}
+        {{#link-to 'company.administration.providers' tagName="li" href=false}}
+        <a href="#"><i class="fa fa-truck"></i> <span>{{t 'product.administration.menu.providers'}}</span></a>
+        {{/link-to}}
+        {{#link-to 'company.administration.payment-types' tagName="li" href=false}}
+        <a href="#"><i class="fa fa-money"></i> <span>{{t 'product.administration.menu.paymentTypes'}}</span></a>
+        {{/link-to}}
+        {{#link-to 'company.administration.items' tagName="li" href=false}}
+        <a href="#"><i class="fa fa-tags"></i> <span>{{t 'product.administration.menu.items'}}</span></a>
+        {{/link-to}}
+        {{#link-to 'company.administration.labor-items' tagName="li" href=false}}
+        <a href="#"><i class="fa fa-wrench"></i> <span>{{t 'product.administration.menu.laborItems'}}</span></a>
+        {{/link-to}}
+        {{#link-to 'company.administration.people' tagName="li" href=false}}
+        <a href="#"><i class="fa fa-users"></i> <span>{{t 'product.administration.menu.people'}}</span></a>
+        {{/link-to}}
+        {{#link-to 'company.administration.privileges' tagName="li" href=false}}
+        <a href="#"><i class="fa fa-puzzle-piece"></i> <span>{{t 'product.administration.menu.privileges'}}</span></a>
+        {{/link-to}}
+
+      </ul>
+    </li>
+  {{/check-user-access-for}}
+</ul>

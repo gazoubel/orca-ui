@@ -60,11 +60,16 @@ export default Ember.Route.extend({
     }
 
   },
-  // setupController: function(controller, model) {
-  //   controller.set('modelIsInValid', false);
-  //   controller.set('newItemType', {name: ''});
-  //   controller.set('model', model);
-  // },
+  setupController: function(controller, model) {
+    this._super(controller, model);
+    // var ref = this;
+    // Ember.run.scheduleOnce('afterRender', this, function(){
+    //   // Ember.$.getScript(null);
+    //   // ref.$.tree();
+    //   Ember.$.tree({});
+    //   // Ember.$('.sidebar-menu').tree(null);
+    // });
+  },
   actions:{
       doSignOut(){
         var self = this;
@@ -82,6 +87,16 @@ export default Ember.Route.extend({
             return true;
           }
         });
-      }
+      },
+      // didTransition() {
+      //   Ember.$('.sidebar-toggle').pushMenu();
+      //   // Ember.$().tree(null);
+      //   Ember.$('.sidebar-menu').tree(null);
+      //   // Ember.$.tree({});
+      //   // Ember.run.next(this, 'initJqueryPlugins');
+      // },
+      // initJqueryPlugins(){
+      //   Ember.$('.sidebar-toggle').pushMenu();
+      // }
   }
 });
