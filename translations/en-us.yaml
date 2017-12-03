@@ -153,6 +153,7 @@ product:
           on_track: 'on track'
           purchased_items: 'Purchased Items'
           labor_items: 'Labor Items'
+          payment_items: 'Payments'
           estimated_total: 'Estimated Total'
           total_payments: 'Total Labor'
           total_purchase: 'Total Purchase'

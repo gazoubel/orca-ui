@@ -39,6 +39,16 @@ export default Ember.Controller.extend({
         });
       });
 
+    },
+    removePayment: function (item){
+      var ref = this;
+      Ember.run(function(){
+        var laborTransaction = ref.get('laborTransaction');
+        item.destroyRecord().then(function(){
+          laborTransaction.reload();
+        });
+      });
+
     }
   }
 });

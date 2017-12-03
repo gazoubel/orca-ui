@@ -85,9 +85,9 @@
                <td>{{format-currency transactionItem.total fallback='n/a'}}</td>
                <td>
                 {{#link-to 'company.transactions.labor-transactions.labor-transaction.items.item.edit' transactionItem.id}}
-                  <button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
+                  <button class="btn btn-xs btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
                 {{/link-to}}
-                <button class="btn btn-default" {{action "remove" transactionItem}}><i class="glyphicon glyphicon-remove"></i></button>
+                <button class="btn btn-xs btn-default" {{action "remove" transactionItem}}><i class="glyphicon glyphicon-remove"></i></button>
                </td>
              </tr>
              {{/each}}
@@ -115,6 +115,7 @@
                     <tr>
                       <td>{{format-date t.transactionPaidOn}}</td>
                       <td>{{format-currency t.total fallback='n/a'}}</td>
+                      <td><button class="btn btn-xs btn-default" {{action "removePayment" t}}><i class="glyphicon glyphicon-remove"></i></button></td>
                     </tr>
                   {{else}}
                   <tr><td colspan="2">

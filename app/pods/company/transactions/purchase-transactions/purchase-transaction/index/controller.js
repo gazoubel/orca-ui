@@ -41,6 +41,16 @@ export default Ember.Controller.extend({
         });
       });
 
+    },
+    removePayment: function (item){
+      var ref = this;
+      Ember.run(function(){
+        var purchaseTransaction = ref.get('purchaseTransaction');
+        item.destroyRecord().then(function(){
+          purchaseTransaction.reload();
+        });
+      });
+
     }
   }
 });
