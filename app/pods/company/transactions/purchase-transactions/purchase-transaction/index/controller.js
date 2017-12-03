@@ -27,15 +27,11 @@ export default Ember.Controller.extend({
         paymentTransaction.rollbackAttributes();
         _this.get('appManager').notify('error', reason);
       });
-      // purchaseTransaction.set('transactionPaidOn', new Date());
-      // purchaseTransaction.save();
     },
     remove: function (item){
       var ref = this;
       Ember.run(function(){
         var purchaseTransaction = ref.get('purchaseTransaction');
-        // purchaseTransaction.get('purchaseTransactionItems').removeObject(item)
-        // purchaseTransaction.save();
         item.destroyRecord().then(function(){
           purchaseTransaction.reload();
         });
