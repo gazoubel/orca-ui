@@ -80,14 +80,22 @@
                <td>{{transactionItem.quantity}}</td>
                <td>{{transactionItem.laborItem.name}}</td>
                <td>{{transactionItem.description}}</td>
-               <td>{{transactionItem.projectStage.project.name}}</td>
-               <td>{{transactionItem.projectStage.name}}</td>
+               <td>
+                 {{#link-to 'company.projects.project' transactionItem.projectStage.project.id}}
+                   {{transactionItem.projectStage.project.name}}
+                 {{/link-to}}
+               </td>
+               <td>
+                 {{#link-to 'company.projects.project.stages.stage' transactionItem.projectStage.project.id transactionItem.projectStage.id}}
+                   {{transactionItem.projectStage.name}}
+                 {{/link-to}}
+               </td>
                <td>{{format-currency transactionItem.total fallback='n/a'}}</td>
                <td>
+                 <button class="btn btn-xs btn-default pull-right" {{action "remove" transactionItem}}><i class="glyphicon glyphicon-remove"></i></button>
                 {{#link-to 'company.transactions.labor-transactions.labor-transaction.items.item.edit' transactionItem.id}}
-                  <button class="btn btn-xs btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
+                  <button class="btn btn-xs btn-default pull-right" style="margin-right: 5px;"><i class="glyphicon glyphicon-pencil"></i></button>
                 {{/link-to}}
-                <button class="btn btn-xs btn-default" {{action "remove" transactionItem}}><i class="glyphicon glyphicon-remove"></i></button>
                </td>
              </tr>
              {{/each}}
@@ -115,7 +123,7 @@
                     <tr>
                       <td>{{format-date t.transactionPaidOn}}</td>
                       <td>{{format-currency t.total fallback='n/a'}}</td>
-                      <td><button class="btn btn-xs btn-default" {{action "removePayment" t}}><i class="glyphicon glyphicon-remove"></i></button></td>
+                      <td><button class="btn btn-xs btn-default pull-right" {{action "removePayment" t}}><i class="glyphicon glyphicon-remove"></i></button></td>
                     </tr>
                   {{else}}
                   <tr><td colspan="2">

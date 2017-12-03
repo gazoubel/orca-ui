@@ -91,6 +91,7 @@ product:
     paid_today: 'Paid Today'
     purchase_transactions_menu: 'Purchase'
     labor_transactions_menu: 'Labor'
+    transaction_paid_in_full: 'Paid in full'
     transaction:
       default_project: 'Default Project'
       project: 'Project'

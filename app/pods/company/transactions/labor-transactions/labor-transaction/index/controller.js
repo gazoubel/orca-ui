@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
         transactionPaidOn:new Date()
       });
       paymentTransaction.save().then(function() {
-          var message = intl.t('company.transactions.transaction_paid_in_full');
+          var message = intl.t('product.transactions.transaction_paid_in_full');
           _this.get('appManager').notify('success', message);
           return;
       }, function(error){
