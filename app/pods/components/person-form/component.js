@@ -7,7 +7,7 @@ export default Ember.Component.extend({
       var _ref = this;
 
       if (!person.get('validations.isValid')) {
-        _ref.get('appManager').notify('error', project.get('validations.messages'));
+        _ref.get('appManager').notify('error', person.get('validations.messages'));
         return;
       }
       return person.save().then(function(){

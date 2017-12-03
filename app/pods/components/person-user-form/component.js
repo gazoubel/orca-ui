@@ -65,7 +65,7 @@ export default Ember.Component.extend({
             alert('err:'+xhr.responseText+status+error);
           }
         );
-      })
+      });
 
     }
   }

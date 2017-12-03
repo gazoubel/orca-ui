@@ -12,7 +12,7 @@ export default Ember.Route.extend({
           {
             return laborTransactionItem;
           }
-          RSVP.reject("Labor Transaction item does not belong to this transaction.");
+          Ember.RSVP.reject("Labor Transaction item does not belong to this transaction.");
       });
     });
   },

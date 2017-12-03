@@ -79,8 +79,9 @@ export default Ember.Route.extend({
         });
       },
       willTransition(transition) {
-        var ref = this;
-        return this.get('company').checkUserAccessFor(transition.targetName.replace(/\./g,'_')).then(function(hasAccess){
+        // var ref = this;
+        return this.get('company').checkUserAccessFor(transition.targetName.replace(/\./g,'_'))
+        .then(function(hasAccess){
           if (!hasAccess) {
             transition.abort();
           } else {

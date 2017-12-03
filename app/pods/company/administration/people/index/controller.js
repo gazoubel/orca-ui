@@ -45,7 +45,7 @@ export default Ember.Controller.extend({
           return;
         }
 
-        createdPerson.save().then(function(addedPerson) {
+        createdPerson.save().then(function() {
           controller.set('modelIsInValid', false);
           controller.set('newPerson', {});
           var t_model = controller.get('intl').t('models.person');

@@ -33,7 +33,7 @@ export default Ember.Route.extend({
     },
     willTransition(transition) {
       var privilege = this.controller.get('privilege');
-      if (project.get('hasDirtyAttributes') &&
+      if (privilege.get('hasDirtyAttributes') &&
           !confirm('Are you sure you want to abandon progress?')) {
         transition.abort();
       } else {

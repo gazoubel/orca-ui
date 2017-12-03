@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
-  model: function (params) {
+  model: function () {
     return this.modelFor('company.administration.people.person').reload();
   },
   setupController: function(controller, model) {

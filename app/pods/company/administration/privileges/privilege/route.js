@@ -7,14 +7,14 @@ export default Ember.Route.extend({
 
     var privilege_id = params.privilege_id;
     if (!privilege_id) {
-      RSVP.reject("Privilege is invalid.");
+      Ember.RSVP.reject("Privilege is invalid.");
     }
 
     return this.store.queryRecord('privilege', {id: privilege_id, company: company.get('id')}).then(function(privilege){
       if(privilege){
         return privilege;
       }
-      RSVP.reject("Privilege does not belong to this company.");
+      Ember.RSVP.reject("Privilege does not belong to this company.");
     });
   }
 });

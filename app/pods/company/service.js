@@ -7,7 +7,7 @@ export default Ember.Service.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
   checkUserAccessFor(restrictionName){
-    var self = this;
+    // var self = this;
     var session = this.get('session');
     return DS.PromiseObject.create({
       promise: new Ember.RSVP.Promise(function(resolve){
@@ -24,8 +24,9 @@ export default Ember.Service.extend({
           person.get('privilege').then(function(privilege){
             privilege.reload();
             var hasAccess = privilege.get(restrictionName);
-            if(hasAccess===undefined)
+            if(hasAccess===undefined){
               return true;
+            }
             return hasAccess;
           }).then(function(hasAccess){
             resolve(hasAccess);

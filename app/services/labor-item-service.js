@@ -9,13 +9,18 @@ export default Ember.Service.extend({
     var intl = this.get('intl');
 
     var person = this.get('session.sessionVariables.person');
-    if (!person) {
-      reject("Error creating stage: Invalid company");
-      return;
-    }
 
     let promise = new Ember.RSVP.Promise(function(resolve, reject) {
+      if (!person) {
+        reject("Error creating stage: Invalid person");
+        return;
+      }
       person.get('company').then(function(company){
+        if (!company || !company.get('id')) {
+          reject("Error creating item: Error with company");
+          return;
+        }
+        
         var item = store.createRecord('labor-item', {
           name: name,
           company: company
