@@ -6,37 +6,37 @@ export default Ember.Route.extend({
   model: function () {
     var ref = this;
     var company = this.modelFor('company');
-    var purchaseTransaction = this.modelFor('company.transactions.purchase-transactions.purchase-transaction');
-    var totalLeftToPay = purchaseTransaction.get('totalLeftToPay');
+    var laborTransaction = this.modelFor('company.transactions.labor-transactions.labor-transaction');
+    var totalLeftToPay = laborTransaction.get('totalLeftToPay');
     return Ember.RSVP.hash({
       allPaymentTypes: company.get('paymentTypes'),
-      purchaseTransaction: purchaseTransaction
+      laborTransaction: laborTransaction
     });
   },
   setupController: function(controller, models) {
-    controller.set('purchaseTransaction', models.purchaseTransaction);
+    controller.set('laborTransaction', models.laborTransaction);
     controller.set('allPaymentTypes', models.allPaymentTypes);
   },
 
   actions: {
     added(){
-      var t_model = this.get('intl').t('models.paymentTransaction');
+      var t_model = this.get('intl').t('models.laborTransaction');
       var message = this.get('intl').t('product.messages.model_created',{model: t_model});
       this.get('appManager').notify('success', message);
-      this.transitionTo('company.transactions.purchase-transactions.purchase-transaction');
+      this.transitionTo('company.transactions.labor-transactions.labor-transaction');
     },
     canceled(){
-      this.transitionTo('company.transactions.purchase-transactions.purchase-transaction');
+      this.transitionTo('company.transactions.labor-transactions.labor-transaction');
     },
     willTransition(transition) {
-      var paymentTransaction = this.controller.get('paymentTransaction');
-      if (paymentTransaction.get('hasDirtyAttributes') &&
+      var laborTransaction = this.controller.get('laborTransaction');
+      if (laborTransaction.get('hasDirtyAttributes') &&
           !confirm('Are you sure you want to abandon progress?')) {
         transition.abort();
       } else {
         // Bubble the `willTransition` action so that
         // parent routes can decide whether or not to abort.
-        paymentTransaction.rollbackAttributes();
+        laborTransaction.rollbackAttributes();
         return true;
       }
     }

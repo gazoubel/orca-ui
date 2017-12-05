@@ -57,7 +57,7 @@
      {{#link-to 'company.transactions.labor-transactions.labor-transaction.items.new'}}
      <button class="btn btn-default">
        <i class="glyphicon glyphicon-plus"></i>
-       {{t 'product.transactions.labor-transactions.labor-transaction.add_item'}}
+       <span class="btn-hover-text">{{t 'product.transactions.labor-transactions.labor-transaction.add_item'}}</span>
      </button>
      {{/link-to}}
      <div class="row">
@@ -92,9 +92,9 @@
                </td>
                <td>{{format-currency transactionItem.total fallback='n/a'}}</td>
                <td>
-                 <button class="btn btn-xs btn-default pull-right" {{action "remove" transactionItem}}><i class="glyphicon glyphicon-remove"></i></button>
+                 <button class="btn btn-xs btn-default pull-right btn-hover" {{action "remove" transactionItem}}><i class="glyphicon glyphicon-remove"></i></button>
                 {{#link-to 'company.transactions.labor-transactions.labor-transaction.items.item.edit' transactionItem.id}}
-                  <button class="btn btn-xs btn-default pull-right" style="margin-right: 5px;"><i class="glyphicon glyphicon-pencil"></i></button>
+                  <button class="btn btn-xs btn-default pull-right btn-hover" style="margin-right: 5px;"><i class="glyphicon glyphicon-pencil"></i></button>
                 {{/link-to}}
                </td>
              </tr>
@@ -118,12 +118,14 @@
                   <tr>
                     <th>Date</th>
                     <th>Amount paid</th>
+                    <th>Payment Type</th>
                   </tr>
                   {{#each laborTransaction.paymentTransactions as |t|}}
                     <tr>
                       <td>{{format-date t.transactionPaidOn}}</td>
                       <td>{{format-currency t.total fallback='n/a'}}</td>
-                      <td><button class="btn btn-xs btn-default pull-right" {{action "removePayment" t}}><i class="glyphicon glyphicon-remove"></i></button></td>
+                      <td>{{t.paymentType.name}}</td>
+                      <td><button class="btn btn-xs btn-default pull-right btn-hover" {{action "removePayment" t}}><i class="glyphicon glyphicon-remove"></i></button></td>
                     </tr>
                   {{else}}
                   <tr><td colspan="2">
@@ -146,11 +148,22 @@
          <div class="table-responsive">
            <table class="table">
              <tbody>
-             <tr>
-               <th>Total:</th>
-               <td>{{format-currency laborTransaction.total fallback='n/a'}}</td>
-             </tr>
-           </tbody></table>
+               <tr>
+                 <th>Total:</th>
+                 <td>{{format-currency laborTransaction.total fallback='n/a'}}</td>
+               </tr>
+               <tr>
+                 <th>Total Paid:</th>
+                 <td>({{format-currency laborTransaction.totalPaid fallback='n/a'}})</td>
+               </tr>
+               {{#unless laborTransaction.paidInFull}}
+               <tr>
+                 <th>Amount Left:</th>
+                 <td>{{format-currency laborTransaction.totalLeftToPay fallback='n/a'}}</td>
+               </tr>
+               {{/unless}}
+             </tbody>
+           </table>
          </div>
        </div>
      </div>
@@ -158,8 +171,18 @@
        <div class="col-xs-12">
          <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
          {{#unless laborTransaction.paidInFull}}
-           <button type="button" class="btn btn-success pull-right" {{action "markAsPaidToday" laborTransaction}}><i class="fa fa-credit-card"></i> {{t 'product.transactions.paid_today'}}
-           </button>
+           <div class="btn-group pull-right">
+            <button type="button" class="btn btn-success" {{action "markAsPaidToday" laborTransaction}}><i class="fa fa-credit-card"></i> {{t 'product.transactions.paid_today'}}
+            </button>
+             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <span class="caret"></span>
+               <span class="sr-only">Toggle Dropdown</span>
+             </button>
+             <ul class="dropdown-menu">
+               <li>{{#link-to 'company.transactions.labor-transactions.labor-transaction.payments.new'}}
+                 <a href={{view.href}} class="text-muted" style="font-size: 15px;margin-left:10px;"> Partial Payment</a> {{/link-to}}</li>
+             </ul>
+           </div>
          {{/unless}}
        </div>
      </div>

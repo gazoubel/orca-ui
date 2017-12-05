@@ -109,6 +109,17 @@ Router.map(function() {
               this.route('edit');
             });
           });
+          this.route('payments', function() {
+            this.route('new');
+          });
+        });
+      });
+
+      this.route('payment-transactions', function() {
+        this.route('payment-transaction', function() {
+          this.route('payments', function() {
+            this.route('new');
+          });
         });
       });
     });

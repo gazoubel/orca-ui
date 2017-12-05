@@ -60,7 +60,7 @@
      {{#link-to 'company.transactions.purchase-transactions.purchase-transaction.products.new'}}
      <button class="btn btn-default">
        <i class="glyphicon glyphicon-plus"></i>
-       {{t 'product.transactions.purchase-transactions.purchase-transaction.add_item'}}
+       <span class="btn-hover-text">{{t 'product.transactions.purchase-transactions.purchase-transaction.add_item'}}</span>
      </button>
      {{/link-to}}
      <div class="row">
@@ -88,9 +88,9 @@
                <td>{{format-currency transactionItem.total fallback='n/a'}}</td>
                <td>
                 {{#link-to 'company.transactions.purchase-transactions.purchase-transaction.products.product.edit' transactionItem.id}}
-                  <button class="btn btn-xs btn-default pull-right" ><i class="glyphicon glyphicon-pencil"></i></button>
+                  <button class="btn btn-xs btn-default pull-right btn-hover" ><i class="glyphicon glyphicon-pencil"></i></button>
                 {{/link-to}}
-                <button class="btn btn-xs btn-default pull-right" style="margin-right: 5px;" {{action "remove" transactionItem}}><i class="glyphicon glyphicon-remove"></i></button>
+                <button class="btn btn-xs btn-default pull-right btn-hover" style="margin-right: 5px;" {{action "remove" transactionItem}}><i class="glyphicon glyphicon-remove"></i></button>
                </td>
              </tr>
              {{/each}}
@@ -120,7 +120,7 @@
                       <td>{{format-date t.transactionPaidOn}}</td>
                       <td>{{format-currency t.total fallback='n/a'}}</td>
                       <td>{{t.paymentType.name}}</td>
-                      <td><button class="btn btn-xs btn-default pull-right" {{action "removePayment" t}}><i class="glyphicon glyphicon-remove"></i></button></td>
+                      <td><button class="btn btn-xs btn-default pull-right btn-hover" {{action "removePayment" t}}><i class="glyphicon glyphicon-remove"></i></button></td>
                     </tr>
                   {{else}}
                   <tr><td colspan="2">

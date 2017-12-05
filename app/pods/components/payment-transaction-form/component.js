@@ -5,12 +5,13 @@ export default Ember.Component.extend({
   newPaymentTransaction: {},
   allPaymentTypes: null,
   maximumAllowed: null,
+  paymentType:null,
   total: null,
   session: Ember.inject.service('session'),
   store: Ember.inject.service(),
   didReceiveAttrs() {
     this._super(...arguments);
-    this.set('newPaymentTransaction.paymentType', this.get('purchaseTransaction.paymentType'));
+    this.set('newPaymentTransaction.paymentType', this.get('paymentType'));
     this.set('newPaymentTransaction.transactionPaidOn', new Date());
     this.set('newPaymentTransaction.total', this.get('maximumAllowed'));
 
@@ -29,6 +30,7 @@ export default Ember.Component.extend({
       var paymentTransaction = _ref.get('store').createRecord('payment-transaction', {
         company: person.get('company'),
         purchaseTransaction: this.get('purchaseTransaction'),
+        laborTransaction: this.get('laborTransaction'),
         paidByPerson: person,
         paymentType: newPaymentTransaction.paymentType,
         total: thisPayment,

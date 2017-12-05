@@ -68,3 +68,19 @@ $ember-power-select-trigger-default-border-radius: 0;
   line-height: 1.33;
   border-radius: 35px;
 }
+
+.btn-hover-text {
+  display: none;
+}
+
+.btn-hover {
+  visibility: hidden ;
+}
+
+button:hover .btn-hover-text {
+  display:inline;
+}
+
+tr:hover .btn-hover {
+  visibility: visible;
+}

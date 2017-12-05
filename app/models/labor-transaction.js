@@ -92,4 +92,9 @@ export default DS.Model.extend(Validations,{
     var total = this.get('total')||0;
     return totalPaid >= total;
   }),
+  totalLeftToPay: Ember.computed('totalPaid', 'total', function() {
+    var totalPaid = this.get('totalPaid')||0;
+    var total = this.get('total')||0;
+    return total - totalPaid;
+  })
 });
