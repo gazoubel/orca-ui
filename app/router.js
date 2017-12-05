@@ -87,6 +87,9 @@ Router.map(function() {
               this.route('edit');
             });
           });
+          this.route('payments', function() {
+            this.route('new');
+          });
         });
       });
 

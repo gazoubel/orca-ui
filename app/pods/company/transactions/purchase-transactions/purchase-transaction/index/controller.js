@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
       var paymentTransaction = this.store.createRecord('payment-transaction', {
         company:purchaseTransaction.get('company'),
         purchaseTransaction: purchaseTransaction,
-        total: purchaseTransaction.get('total'),
+        total: purchaseTransaction.get('totalLeftToPay'),
         paymentType: purchaseTransaction.get('paymentType'),
         paidByPerson: person,
         transactionPaidOn:new Date()

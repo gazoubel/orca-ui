@@ -120,6 +120,8 @@ product:
         labor-items:
           new: 'New labor type for transaction'
           edit: 'Edit labor type for transaction'
+    payment-transactions:
+      new: 'New Payment'
   projects:
     tabName: 'Projects'
     tabNameMobile: 'P'
