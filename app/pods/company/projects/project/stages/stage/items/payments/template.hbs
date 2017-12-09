@@ -12,13 +12,13 @@
         </tr>
       </thead>
       <tbody>
-        {{#each laborTransactionItems as |item|}}
-          {{#link-to 'company.transactions.labor-transactions.labor-transaction.index' item.laborTransaction.id tagName="tr" style="vertical-align:middle;"}}
-          <td style="vertical-align:middle;">{{item.laborTransaction.person.firstName}} {{item.laborTransaction.person.lastName}}</td>
+        {{#each paycheckItems as |item|}}
+          {{#link-to 'company.transactions.paychecks.paycheck.index' item.paycheck.id tagName="tr" style="vertical-align:middle;"}}
+          <td style="vertical-align:middle;">{{item.paycheck.person.firstName}} {{item.paycheck.person.lastName}}</td>
             <td style="vertical-align:middle;">{{item.laborItem.name}}</td>
             <td style="vertical-align:middle;">{{format-currency item.total fallback='n/a'}} </td>
             <td style="vertical-align:middle;">{{item.quantity}}</td>
-            <td style="vertical-align:middle;">{{format-date item.laborTransaction.transactionPaidOn fallback=''}}</td>
+            <td style="vertical-align:middle;">{{format-date item.paycheck.transactionPaidOn fallback=''}}</td>
           {{/link-to}}
         {{/each}}
     </tbody>

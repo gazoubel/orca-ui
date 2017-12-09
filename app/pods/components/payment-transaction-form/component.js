@@ -30,7 +30,7 @@ export default Ember.Component.extend({
       var paymentTransaction = _ref.get('store').createRecord('payment-transaction', {
         company: person.get('company'),
         purchaseTransaction: this.get('purchaseTransaction'),
-        laborTransaction: this.get('laborTransaction'),
+        paycheck: this.get('paycheck'),
         paidByPerson: person,
         paymentType: newPaymentTransaction.paymentType,
         total: thisPayment,
@@ -50,7 +50,7 @@ export default Ember.Component.extend({
         paymentTransaction.rollbackAttributes();
       });
     },
-    cancel(newPaymentTransaction) {
+    cancel() {
       // paymentTransaction.rollbackAttributes();
       this.sendAction('onCancelClicked');
     }

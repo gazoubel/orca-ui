@@ -36,7 +36,7 @@ export default DS.Model.extend(Validations,{
   previous: DS.belongsTo('project-stage',{inverse: 'next'}),
   next: DS.belongsTo('project-stage',{inverse: 'previous'}),
   purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'projectStage'}),
-  laborTransactionItems: DS.hasMany('labor-transaction-item', {inverse: 'projectStage'}),
+  paycheckItems: DS.hasMany('paycheck-item', {inverse: 'projectStage'}),
 
   defaultPurchaseTransactions: DS.hasMany('purchase-transaction', {inverse: 'defaultProjectStage'}),
   predictedTotal: DS.attr('number'),
@@ -68,7 +68,7 @@ export default DS.Model.extend(Validations,{
 
     return startedOn.isValid() && finishedOn.isValid();
   }),
-  // defaultlaborTransactions: DS.hasMany('labor-transaction', {inverse: 'defaultProjectStage'}),
+  // defaultpaychecks: DS.hasMany('paycheck', {inverse: 'defaultProjectStage'}),
   isLastItem: Ember.computed('previous','next', function() {
     var next = this.get('next');
     if (next===null || !next.get('id')) {
@@ -114,21 +114,21 @@ export default DS.Model.extend(Validations,{
     }
     return total;
   }),
-  quantityOfPaymentItems: Ember.computed( 'laborTransactionItems.@each.quantity', 'laborTransactionItems.[]',function() {
-    var laborTransactionItems = this.get('laborTransactionItems');
-    if (!laborTransactionItems || laborTransactionItems.get('length')===0) {
+  quantityOfPaymentItems: Ember.computed( 'paycheckItems.@each.quantity', 'paycheckItems.[]',function() {
+    var paycheckItems = this.get('paycheckItems');
+    if (!paycheckItems || paycheckItems.get('length')===0) {
       return 0;
     }
-    return laborTransactionItems.reduce(function(prev, item) {
+    return paycheckItems.reduce(function(prev, item) {
       return (prev || 0) + Number(item.get('quantity'));
     });
   }),
-  totalPayments: Ember.computed( 'laborTransactionItems.@each.total', 'laborTransactionItems.[]',function() {
-    var laborTransactionItems = this.get('laborTransactionItems');
-    if (!laborTransactionItems || laborTransactionItems.get('length')===0) {
+  totalPayments: Ember.computed( 'paycheckItems.@each.total', 'paycheckItems.[]',function() {
+    var paycheckItems = this.get('paycheckItems');
+    if (!paycheckItems || paycheckItems.get('length')===0) {
       return 0;
     }
-    return laborTransactionItems.reduce(function(prev, item) {
+    return paycheckItems.reduce(function(prev, item) {
       return (prev || 0) + Number(item.get('total'));
     });
   }),

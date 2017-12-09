@@ -4,10 +4,8 @@ export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
   model: function () {
-    var ref = this;
     var company = this.modelFor('company');
     var purchaseTransaction = this.modelFor('company.transactions.purchase-transactions.purchase-transaction');
-    var totalLeftToPay = purchaseTransaction.get('totalLeftToPay');
     return Ember.RSVP.hash({
       allPaymentTypes: company.get('paymentTypes'),
       purchaseTransaction: purchaseTransaction

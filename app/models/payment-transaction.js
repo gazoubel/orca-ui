@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 import { validator, buildValidations } from 'ember-cp-validations';
+import Ember from 'ember';
 
 const Validations = buildValidations({
   company: [
@@ -22,7 +23,7 @@ const Validations = buildValidations({
 });
 export default DS.Model.extend(Validations, {
   company: DS.belongsTo('company',{inverse: 'paymentTransactions'}),
-  laborTransaction: DS.belongsTo('labor-transaction',{inverse: 'paymentTransactions'}),
+  paycheck: DS.belongsTo('paycheck',{inverse: 'paymentTransactions'}),
   purchaseTransaction: DS.belongsTo('purchase-transaction',{inverse: 'paymentTransactions'}),
   transactionPaidOn: DS.attr('date'),
   paidByPerson: DS.belongsTo('person',{inverse: 'paymentTransactions'}),

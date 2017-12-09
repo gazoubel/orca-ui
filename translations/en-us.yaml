@@ -7,8 +7,8 @@ models:
   projectStage: 'stage'
   purchaseTransaction: 'purchase transaction'
   purchaseTransactionItem: 'product'
-  laborTransaction: 'labor transaction'
-  laborTransactionItem: 'item'
+  paycheck: 'labor transaction'
+  paycheckItem: 'item'
   item: 'item'
   laborItem: 'labor type'
   person: 'Person'
@@ -90,7 +90,7 @@ product:
     new_transaction_item: 'New Product'
     paid_today: 'Paid Today'
     purchase_transactions_menu: 'Purchase'
-    labor_transactions_menu: 'Labor'
+    paychecks_menu: 'Paychecks'
     transaction_paid_in_full: 'Paid in full'
     transaction:
       default_project: 'Default Project'
@@ -100,7 +100,7 @@ product:
       payment_type: 'Payment Method'
     breadcrumbs:
       home: 'transactions'
-      labor_transactions: 'labor'
+      paychecks: 'paychecks'
       purchase_transactions: 'purchase'
     purchase-transactions:
       purchase-transaction:
@@ -109,17 +109,17 @@ product:
         edit: 'Edit Purchase Transaction'
         add_item: 'Add New Product'
         item: 'Product'
-    labor-transactions:
-      labor-transaction:
-        type_name: 'Labor Transaction'
-        new: 'New Labor Transaction'
-        edit: 'Edit Labor Transaction'
-        add_item: 'Add New Labor Item'
+    paychecks:
+      paycheck:
+        type_name: 'Paycheck'
+        new: 'New Paycheck'
+        edit: 'Edit Paycheck'
+        add_item: 'Add New Item'
         paid_to: 'Paid To'
         labor-item: 'Labor Type'
         labor-items:
-          new: 'New labor type for transaction'
-          edit: 'Edit labor type for transaction'
+          new: 'New labor type for paycheck'
+          edit: 'Edit labor type for paycheck'
     payment-transactions:
       new: 'New Payment'
   projects:
@@ -155,7 +155,7 @@ product:
           above_budget: 'above budget'
           on_track: 'on track'
           purchased_items: 'Purchased Items'
-          labor_items: 'Labor Items'
+          labor_items: 'Paycheck Items'
           payment_items: 'Payments'
           estimated_total: 'Estimated Total'
           total_payments: 'Total Labor'

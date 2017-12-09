@@ -15,5 +15,5 @@ export default DS.Model.extend(Validations, {
   company: DS.belongsTo('company',{inverse: 'items'}),
   purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'item'}),
   // isLabor: DS.attr('boolean'),
-  // laborTransactionItems: DS.hasMany('labor-transaction-item', {inverse: 'item'}),
+  // paycheckItems: DS.hasMany('paycheck-item', {inverse: 'item'}),
 });

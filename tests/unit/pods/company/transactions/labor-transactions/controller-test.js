@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('controller:company/transactions/labor-transactions', 'Unit | Controller | company/transactions/payment transactions', {
+moduleFor('controller:company/transactions/paychecks', 'Unit | Controller | company/transactions/payment transactions', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

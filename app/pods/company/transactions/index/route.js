@@ -6,15 +6,15 @@ export default Ember.Route.extend({
     var company = this.modelFor('company');
     return Ember.RSVP.hash({
       purchaseTransactions: company.get('unpaidPurchaseTransactions'),
-      laborTransactions: company.get('unpaidlaborTransactions')
+      paychecks: company.get('unpaidpaychecks')
     });
 
     // return this.modelFor('company').then(function(company){
     //   // company.get('unpaidPurchaseTransactions');
-    //   // company.get('unpaidlaborTransactions');
+    //   // company.get('unpaidpaychecks');
     //   return Ember.RSVP.hash({
     //     purchaseTransactions: company.get('unpaidPurchaseTransactions'),
-    //     laborTransactions: company.get('unpaidlaborTransactions')
+    //     paychecks: company.get('unpaidpaychecks')
     //   });
     // });
     // return this.modelFor('company');
@@ -23,11 +23,11 @@ export default Ember.Route.extend({
     //
     // return Ember.RSVP.hash({
     //   purchaseTransactions: this.store.query('purchase-transaction', {company: company_id, transactionPaidOn: null}),
-    //   laborTransactions: this.store.query('labor-transaction', {company: company_id, transactionPaidOn: null})
+    //   paychecks: this.store.query('paycheck', {company: company_id, transactionPaidOn: null})
     // });
   },
   setupController: function(controller, models) {
     controller.set('purchaseTransactions', models.purchaseTransactions);
-    controller.set('laborTransactions', models.laborTransactions);
+    controller.set('paychecks', models.paychecks);
   }
 });

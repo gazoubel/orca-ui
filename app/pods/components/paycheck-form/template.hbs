@@ -1,0 +1,49 @@
+<form  class="form-horizotal" role="form" {{action "save" paycheck on="submit"}}> <!-- horizontal form -->
+  <div class="row">
+    {{orca-input-with-label field = paycheck.description displayText=(t 'fields.description')
+    classNames="col-sm-12" validation=paycheck.validations.attrs.description}}
+
+    {{orca-input-with-label field = paycheck.invoiceNumber displayText=(t 'fields.invoiceNumber')
+    classNames="col-sm-12" validation=paycheck.validations.attrs.invoiceNumber}}
+
+    {{#orca-dropdown-label
+      classNames="col-sm-12"
+      options=allPeople
+      selected=paycheck.person
+      onchange=(action (mut paycheck.person))
+      placeholder = (t 'product.transactions.paychecks.paycheck.paid_to')
+      displayText=(t 'product.transactions.paychecks.paycheck.paid_to')
+      as |person|}}
+        {{person.firstName}} {{person.lastName}}
+    {{/orca-dropdown-label}}
+
+    {{orca-input-date-with-label field = paycheck.paymentDueDate
+    displayText=(t 'fields.payment_due_date')
+    classNames="col-sm-12"
+    validation=paycheck.validations.attrs.paymentDueDate}}
+
+
+    <!-- {{orca-input-date-with-label field = paycheck.transactionPaidOn
+    displayText=(t 'fields.payment_paid_date')
+    classNames="col-sm-12"
+    validation=paycheck.validations.attrs.transactionPaidOn}} -->
+
+    {{#orca-dropdown-label
+      classNames="col-sm-12"
+      validation=paycheck.validations.attrs.paymentType
+      options=allPaymentTypes
+      selected=paycheck.paymentType
+      onchange=(action (mut paycheck.paymentType))
+      placeholder = (t 'product.transactions.transaction.payment_type')
+      displayText=(t 'product.transactions.transaction.payment_type')
+      as |paymentType|}}
+        {{paymentType.name}}
+    {{/orca-dropdown-label}}
+
+
+  </div>
+  <div class="box-footer">
+    <button type="submit" class="btn btn-default pull-right">{{t 'fields.save'}}</button>
+    <button class="btn btn-default pull-right" style="margin-right: 5px;" {{action "cancel" paycheck}}>{{t 'fields.cancel'}}</button>
+  </div>
+</form>

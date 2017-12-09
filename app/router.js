@@ -93,10 +93,10 @@ Router.map(function() {
         });
       });
 
-      this.route('labor-transactions', function() {
+      this.route('paychecks', function() {
         this.route('new');
 
-        this.route('labor-transaction', {
+        this.route('paycheck', {
           path: ':payment_transaction_id'
         }, function() {
           this.route('edit');
