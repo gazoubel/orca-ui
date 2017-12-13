@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:company/transactions/purchase-transactions/index', 'Unit | Route | company/transactions/purchase transactions/index', {
+moduleFor('route:company/transactions/purchase-bills/index', 'Unit | Route | company/transactions/purchase transactions/index', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

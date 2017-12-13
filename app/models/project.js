@@ -22,7 +22,7 @@ export default DS.Model.extend(Validations,{
   company: DS.belongsTo('company',{inverse: 'projects'}),
   assignee: DS.belongsTo('person',{inverse: 'projectsAssignedTo'}),
   teamMembers: DS.hasMany('person'),
-  // defaultPurchaseTransactions: DS.hasMany('purchase-transaction', {inverse: 'defaultProject'}),
+  // defaultPurchaseBills: DS.hasMany('purchase-bill', {inverse: 'defaultProject'}),
   totalClosingAmount: DS.attr('number'),
   isArchived: DS.attr('boolean'),
   isActive: Ember.computed.not('isArchived'),

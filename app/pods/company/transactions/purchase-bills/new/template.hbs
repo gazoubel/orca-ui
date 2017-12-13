@@ -1,0 +1,14 @@
+<div class="box box-primary" style="margin-top: 30px;">
+  <div class="box-header with-border">
+    <h3 class="box-title">{{t 'product.transactions.purchase-bills.purchase-bill.new'}}</h3>
+  </div>
+  <div class="box-body" style="padding-bottom: 0px;">
+    {{purchase-bill-form
+      onCancelClicked="canceled"
+      onSaveClicked="added"
+      purchaseBill=purchaseBill
+      allProjects=allProjects
+      allProviders=allProviders
+      allPaymentTypes=allPaymentTypes }}
+  </div>
+</div>

@@ -14,8 +14,8 @@ const Validations = buildValidations({
   next: [
     validator('belongs-to')
   ],
-  purchaseTransactionItems: validator('has-many'),
-  // defaultPurchaseTransactions: validator('has-many'),
+  purchaseBillItems: validator('has-many'),
+  // defaultPurchaseBills: validator('has-many'),
   predictedTotal : validator('number', {
     allowString: true,
     positive : true
@@ -35,10 +35,10 @@ export default DS.Model.extend(Validations,{
   stage: DS.belongsTo('stage',{inverse: 'projectStages'}),
   previous: DS.belongsTo('project-stage',{inverse: 'next'}),
   next: DS.belongsTo('project-stage',{inverse: 'previous'}),
-  purchaseTransactionItems: DS.hasMany('purchase-transaction-item', {inverse: 'projectStage'}),
+  purchaseBillItems: DS.hasMany('purchase-bill-item', {inverse: 'projectStage'}),
   paycheckItems: DS.hasMany('paycheck-item', {inverse: 'projectStage'}),
 
-  defaultPurchaseTransactions: DS.hasMany('purchase-transaction', {inverse: 'defaultProjectStage'}),
+  defaultPurchaseBills: DS.hasMany('purchase-bill', {inverse: 'defaultProjectStage'}),
   predictedTotal: DS.attr('number'),
   startedOn: DS.attr('date'),
   finishedOn: DS.attr('date'),
@@ -84,31 +84,31 @@ export default DS.Model.extend(Validations,{
     var previousSortOrder = previous.get('sortOrder');
     return previousSortOrder+1;
   }) ,
-  totalPurchaseTransactionItems: Ember.computed( 'purchaseTransactionItems.@each.total', 'purchaseTransactionItems.[]',function() {
-    var purchaseTransactionItems = this.get('purchaseTransactionItems');
-    if (!purchaseTransactionItems) {
+  totalPurchaseBillItems: Ember.computed( 'purchaseBillItems.@each.total', 'purchaseBillItems.[]',function() {
+    var purchaseBillItems = this.get('purchaseBillItems');
+    if (!purchaseBillItems) {
       return 0;
     }
-    return purchaseTransactionItems.reduce(function(prev, item) {
+    return purchaseBillItems.reduce(function(prev, item) {
       return (prev || 0) + Number(item.get('total'));
     });
   }),
   // 'total','totalExpense', 'tax'
-  totalDefaultPurchaseTransactions: Ember.computed('defaultPurchaseTransactions.@each','defaultPurchaseTransactions.@each.other', 'defaultPurchaseTransactions.[]', function() {
-    var defaultPurchaseTransactions = this.get('defaultPurchaseTransactions');
-    if (!defaultPurchaseTransactions) {
+  totalDefaultPurchaseBills: Ember.computed('defaultPurchaseBills.@each','defaultPurchaseBills.@each.other', 'defaultPurchaseBills.[]', function() {
+    var defaultPurchaseBills = this.get('defaultPurchaseBills');
+    if (!defaultPurchaseBills) {
       return 0;
     }
-    return defaultPurchaseTransactions.reduce(function(prev, item) {
+    return defaultPurchaseBills.reduce(function(prev, item) {
       var other = item.get('other') || 0;
       var tax = item.get('tax') || 0;
       return (prev || 0) + Number(other)+ Number(tax);
     });
   }),
-  totalPurchase: Ember.computed('totalPurchaseTransactionItems', 'totalDefaultPurchaseTransactions', function() {
-    var totalPurchaseTransactionItems = this.get('totalPurchaseTransactionItems')||0;
-    var totalDefaultPurchaseTransactions = this.get('totalDefaultPurchaseTransactions') || 0;
-    var total = totalPurchaseTransactionItems +totalDefaultPurchaseTransactions;
+  totalPurchase: Ember.computed('totalPurchaseBillItems', 'totalDefaultPurchaseBills', function() {
+    var totalPurchaseBillItems = this.get('totalPurchaseBillItems')||0;
+    var totalDefaultPurchaseBills = this.get('totalDefaultPurchaseBills') || 0;
+    var total = totalPurchaseBillItems +totalDefaultPurchaseBills;
     if (!total) {
       return 0;
     }
@@ -143,30 +143,30 @@ export default DS.Model.extend(Validations,{
     return total;
   }),
 
-  quantityOfPurchaseTransactionItems: Ember.computed( 'purchaseTransactionItems.@each.total', 'purchaseTransactionItems.[]',function() {
-    var purchaseTransactionItems = this.get('purchaseTransactionItems');
-    if (!purchaseTransactionItems || purchaseTransactionItems.get('length')===0) {
+  quantityOfPurchaseBillItems: Ember.computed( 'purchaseBillItems.@each.total', 'purchaseBillItems.[]',function() {
+    var purchaseBillItems = this.get('purchaseBillItems');
+    if (!purchaseBillItems || purchaseBillItems.get('length')===0) {
       return 0;
     }
-    return purchaseTransactionItems.reduce(function(prev, item) {
+    return purchaseBillItems.reduce(function(prev, item) {
       var quantity = item.get('quantity')||0;
       return (prev || 0) + Number(quantity);
     });
   }),
-  quantityOfDefaultPurchaseTransactions: Ember.computed('defaultPurchaseTransactions.@each','defaultPurchaseTransactions.@each.other', 'defaultPurchaseTransactions.[]', function() {
-    var defaultPurchaseTransactions = this.get('defaultPurchaseTransactions');
-    if (!defaultPurchaseTransactions) {
+  quantityOfDefaultPurchaseBills: Ember.computed('defaultPurchaseBills.@each','defaultPurchaseBills.@each.other', 'defaultPurchaseBills.[]', function() {
+    var defaultPurchaseBills = this.get('defaultPurchaseBills');
+    if (!defaultPurchaseBills) {
       return 0;
     }
-    return defaultPurchaseTransactions.reduce(function(prev) {
+    return defaultPurchaseBills.reduce(function(prev) {
       return (prev || 0) + 1;
     });
   }),
 
-  quantityOfTotalItems: Ember.computed('quantityOfPurchaseTransactionItems', 'quantityOfDefaultPurchaseTransactions', function() {
-    var quantityOfPurchaseTransactionItems = this.get('quantityOfPurchaseTransactionItems')||0;
-    var quantityOfDefaultPurchaseTransactions = this.get('quantityOfDefaultPurchaseTransactions') || 0;
-    return quantityOfPurchaseTransactionItems+quantityOfDefaultPurchaseTransactions;
+  quantityOfTotalItems: Ember.computed('quantityOfPurchaseBillItems', 'quantityOfDefaultPurchaseBills', function() {
+    var quantityOfPurchaseBillItems = this.get('quantityOfPurchaseBillItems')||0;
+    var quantityOfDefaultPurchaseBills = this.get('quantityOfDefaultPurchaseBills') || 0;
+    return quantityOfPurchaseBillItems+quantityOfDefaultPurchaseBills;
   }),
 
   percentageSpent: Ember.computed('total', 'predictedTotal', function() {

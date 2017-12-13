@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  purchaseTransaction: null,
+  purchaseBill: null,
   newPaymentTransaction: {},
   allPaymentTypes: null,
   maximumAllowed: null,
@@ -29,7 +29,7 @@ export default Ember.Component.extend({
       var person = this.get('session.sessionVariables.person');
       var paymentTransaction = _ref.get('store').createRecord('payment-transaction', {
         company: person.get('company'),
-        purchaseTransaction: this.get('purchaseTransaction'),
+        purchaseBill: this.get('purchaseBill'),
         paycheck: this.get('paycheck'),
         paidByPerson: person,
         paymentType: newPaymentTransaction.paymentType,

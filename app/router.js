@@ -72,9 +72,9 @@ Router.map(function() {
       this.route('closed');
     });
     this.route('transactions', function() {
-      this.route('purchase-transactions', function() {
+      this.route('purchase-bills', function() {
         this.route('new');
-        this.route('purchase-transaction', {
+        this.route('purchase-bill', {
           path: ':purchase_transaction_id'
         }, function() {
           this.route('edit');

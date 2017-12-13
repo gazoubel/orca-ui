@@ -24,14 +24,14 @@ const Validations = buildValidations({
 export default DS.Model.extend(Validations, {
   company: DS.belongsTo('company',{inverse: 'paymentTransactions'}),
   paycheck: DS.belongsTo('paycheck',{inverse: 'paymentTransactions'}),
-  purchaseTransaction: DS.belongsTo('purchase-transaction',{inverse: 'paymentTransactions'}),
+  purchaseBill: DS.belongsTo('purchase-bill',{inverse: 'paymentTransactions'}),
   transactionPaidOn: DS.attr('date'),
   paidByPerson: DS.belongsTo('person',{inverse: 'paymentTransactions'}),
   paymentType: DS.belongsTo('payment-type',{inverse: 'paymentTransactions'}),
   total: DS.attr('number'),
 
-  maximumAllowed: Ember.computed('purchaseTransaction.totalPaid', 'purchaseTransaction.total', function() {
-    var totalLeftToPay = this.get('purchaseTransaction.totalLeftToPay')||0;
+  maximumAllowed: Ember.computed('purchaseBill.totalPaid', 'purchaseBill.total', function() {
+    var totalLeftToPay = this.get('purchaseBill.totalLeftToPay')||0;
     return totalLeftToPay;
   }),
 });

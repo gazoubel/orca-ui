@@ -8,7 +8,7 @@ export default Ember.Route.extend({
     // var company_id = this.get('session.sessionVariables.company_id');
     //
     // return Ember.RSVP.hash({
-    //   purchaseTransactions: this.store.query('purchase-transaction', {company: company_id}),
+    //   purchaseBills: this.store.query('purchase-bill', {company: company_id}),
     //   paychecks: this.store.query('paycheck', {company: company_id})
     // });
   },

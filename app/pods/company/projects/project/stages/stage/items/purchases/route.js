@@ -6,12 +6,12 @@ export default Ember.Route.extend({
     return stageModel.projectStage;
   },
   setupController: function(controller, model) {
-    return model.get('purchaseTransactionItems').then(function(items){
+    return model.get('purchaseBillItems').then(function(items){
       var arr = Ember.A();
       items.forEach(function(item) {
         item.get('item').then(function(purchasedItem){
           arr.addObject({
-            id: item.get('purchaseTransaction.id'),
+            id: item.get('purchaseBill.id'),
             name: purchasedItem.get('name'),
             total:item.get('total'),
             quantity:item.get('quantity')});
@@ -20,8 +20,8 @@ export default Ember.Route.extend({
       return arr;
       // controller.set('purchasedItems', arr);
     }).then(function(arr){
-      model.get('defaultPurchaseTransactions').then(function(purchaseTransactions){
-        purchaseTransactions.forEach(function(item) {
+      model.get('defaultPurchaseBills').then(function(purchaseBills){
+        purchaseBills.forEach(function(item) {
           var other = item.get('other');
           if (other) {
             arr.addObject({

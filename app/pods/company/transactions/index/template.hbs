@@ -1,14 +1,14 @@
 <!-- <div class="row"> -->
   <!-- <div class="col-sm-4"> -->
-    {{#link-to 'company.transactions.purchase-transactions.new'}}
+    {{#link-to 'company.transactions.purchase-bills.new'}}
     <button class="btn btn-default">
       <i class="glyphicon glyphicon-plus"></i>
-      {{t 'product.transactions.purchase-transactions.purchase-transaction.new'}}
+      {{t 'product.transactions.purchase-bills.purchase-bill.new'}}
     </button>
     {{/link-to}}
   <!-- </div> -->
   <div class="pull-right"  style="margin-top: 15px">
-    {{#link-to 'company.transactions.purchase-transactions' }}
+    {{#link-to 'company.transactions.purchase-bills' }}
     view all
     {{/link-to}}
   </div>
@@ -26,13 +26,13 @@
         </tr>
       </thead>
       <tbody>
-        {{#each purchaseTransactions as |purchaseTransaction|}}
-          {{#link-to purchaseTransaction.route purchaseTransaction.id tagName="tr"}}
-          <td>{{purchaseTransaction.provider.name}}</td>
-          <td>{{t purchaseTransaction.transactionType}}</td>
-          <td>{{purchaseTransaction.description}}</td>
-          <td>{{format-date purchaseTransaction.paymentDueDate}}</td>
-          <td>{{format-currency purchaseTransaction.total fallback='n/a'}}</td>
+        {{#each purchaseBills as |purchaseBill|}}
+          {{#link-to purchaseBill.route purchaseBill.id tagName="tr"}}
+          <td>{{purchaseBill.provider.name}}</td>
+          <td>{{t purchaseBill.transactionType}}</td>
+          <td>{{purchaseBill.description}}</td>
+          <td>{{format-date purchaseBill.paymentDueDate}}</td>
+          <td>{{format-currency purchaseBill.total fallback='n/a'}}</td>
           {{/link-to}}
         {{/each}}
     </tbody>

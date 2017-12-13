@@ -6,7 +6,7 @@
   <div class="row">
     {{#orca-dropdown-label
       classNames="col-sm-12"
-      validation=purchaseTransaction.validations.attrs.provider
+      validation=purchaseBill.validations.attrs.provider
       options=availableProjectAssignees
       selected=project.assignee
       onchange=(action (mut project.assignee))

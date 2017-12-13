@@ -26,7 +26,7 @@ export default DS.Model.extend(Validations, {
   paymentTypes: DS.hasMany('payment-type', {inverse: 'company'}),
   itemTypes: DS.hasMany('item-type', {inverse: 'company'}),
   projects: DS.hasMany('project', {inverse: 'company'}),
-  purchaseTransactions: DS.hasMany('purchase-transaction', {inverse: 'company'}),
+  purchaseBills: DS.hasMany('purchase-bill', {inverse: 'company'}),
   paychecks: DS.hasMany('paycheck', {inverse: 'company'}),
   items: DS.hasMany('item', {inverse: 'company'}),
   laborItems: DS.hasMany('labor-item', {inverse: 'company'}),
@@ -35,16 +35,16 @@ export default DS.Model.extend(Validations, {
   paymentTransactions: DS.hasMany('payment-transaction',   {inverse: 'company'}),
 
   // activeProjects: Ember.computed.filterBy('projects','isArchived', false),
-  unpaidPurchaseTransactions: Ember.computed('purchaseTransactions.@each','purchaseTransactions.@each.isUnpaid', 'purchaseTransactions.[]', function(){
-    return this.get('purchaseTransactions').then(function(purchaseTransactions){
-      return purchaseTransactions.filterBy('isUnpaid', true);
+  unpaidPurchaseBills: Ember.computed('purchaseBills.@each','purchaseBills.@each.isUnpaid', 'purchaseBills.[]', function(){
+    return this.get('purchaseBills').then(function(purchaseBills){
+      return purchaseBills.filterBy('isUnpaid', true);
     });
-    // let transactions = Ember.get(this, 'purchaseTransactions');
+    // let transactions = Ember.get(this, 'purchaseBills');
     // return transactions.filterBy('isUnpaid', true);
   }),
-  // unpaidpaychecks: Ember.computed.filterBy('purchaseTransactions.[]','purchaseTransactions.@each.isPaid', 'isPaid', false),
-  // unpaidPurchaseTransactions: Ember.computed('purchaseTransactions.@each.isUnpaid', 'purchaseTransactions.[]', function(){
-  //   let transactions = Ember.get(this, 'purchaseTransactions');
+  // unpaidpaychecks: Ember.computed.filterBy('purchaseBills.[]','purchaseBills.@each.isPaid', 'isPaid', false),
+  // unpaidPurchaseBills: Ember.computed('purchaseBills.@each.isUnpaid', 'purchaseBills.[]', function(){
+  //   let transactions = Ember.get(this, 'purchaseBills');
   //   return transactions.filterBy('isUnpaid', true);
   // }),
   unpaidpaychecks: Ember.computed('paychecks.@each','paychecks.@each.isUnpaid', 'paychecks.[]', function(){
@@ -54,6 +54,6 @@ export default DS.Model.extend(Validations, {
     // let transactions = Ember.get(this, 'paychecks');
     // return transactions.filterBy('isUnpaid', true);
   })
-  // unpaidPurchaseTransactions: Ember.computed.filterBy('purchaseTransactions.[]', 'isPaid', false),
+  // unpaidPurchaseBills: Ember.computed.filterBy('purchaseBills.[]', 'isPaid', false),
   // unpaidpaychecks: Ember.computed.filterBy('paychecks.[]', 'isPaid', false)
 });

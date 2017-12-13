@@ -5,8 +5,8 @@ models:
   itemtype: 'item type'
   project: 'project'
   projectStage: 'stage'
-  purchaseTransaction: 'purchase transaction'
-  purchaseTransactionItem: 'product'
+  purchaseBill: 'purchase transaction'
+  purchaseBillItem: 'product'
   paycheck: 'labor transaction'
   paycheckItem: 'item'
   item: 'item'
@@ -102,8 +102,8 @@ product:
       home: 'transactions'
       paychecks: 'paychecks'
       purchase_transactions: 'purchase'
-    purchase-transactions:
-      purchase-transaction:
+    purchase-bills:
+      purchase-bill:
         type_name: 'Purchase Transaction'
         new: 'New Purchase Transaction'
         edit: 'Edit Purchase Transaction'

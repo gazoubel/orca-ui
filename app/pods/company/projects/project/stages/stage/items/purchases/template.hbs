@@ -12,11 +12,11 @@
       </thead>
       <tbody>
         {{#each purchasedItems as |item|}}
-          {{#link-to 'company.transactions.purchase-transactions.purchase-transaction.index' item.id tagName="tr" style="vertical-align:middle;"}}
+          {{#link-to 'company.transactions.purchase-bills.purchase-bill.index' item.id tagName="tr" style="vertical-align:middle;"}}
             <td style="vertical-align:middle;">{{item.name}}</td>
             <td style="vertical-align:middle;">{{format-currency item.total fallback='n/a'}} </td>
             <td style="vertical-align:middle;">{{item.quantity}}</td>
-            <!-- <td style="vertical-align:middle;">{{item.purchaseTransaction.purchaseDate}}</td> -->
+            <!-- <td style="vertical-align:middle;">{{item.purchaseBill.purchaseDate}}</td> -->
           {{/link-to}}
         {{/each}}
     </tbody>
