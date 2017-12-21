@@ -16,8 +16,9 @@ export default Ember.Controller.extend({
     add: function (itemType){
       var newItemType = itemType;
       var controller = this;
-      var sessionVariables = this.get('session.sessionVariables');
-      this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
+      var company = this.get('session.sessionVariables.person.company');
+      // var sessionVariables = this.get('session.sessionVariables');
+      // this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
         var itemType = controller.store.createRecord('item-type', {
           name: newItemType.name,
           // basicType: newItemType.basicType.value,
@@ -43,7 +44,7 @@ export default Ember.Controller.extend({
           controller.get('appManager').notify('error', error.detailedMessage);
           itemType.rollbackAttributes();
         });
-      });
+      // });
 
     },
     removeStage: function (itemType){

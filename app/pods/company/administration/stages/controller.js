@@ -12,8 +12,9 @@ export default Ember.Controller.extend({
 
     addStage: function (name){
       var controller = this;
-      var sessionVariables = this.get('session.sessionVariables');
-      return this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
+      var company = this.get('session.sessionVariables.person.company');
+      // var sessionVariables = this.get('session.sessionVariables');
+      // return this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
         var stage = controller.store.createRecord('stage', {
           name: name,
           company: company
@@ -41,7 +42,7 @@ export default Ember.Controller.extend({
           stage.rollbackAttributes();
           controller.get('appManager').notify('error', "Error creating stage:" + reason);
         });
-      });
+      // });
 
     },
     removeStage: function (stage){

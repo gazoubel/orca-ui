@@ -9,5 +9,8 @@
     "bootstrap-datepicker": "^1.6.4",
     "jquery.inputmask": "3.2.7",
     "admin-lte": "^2.4.2"
+  },
+  "resolutions": {
+    "jquery": "^3.2.1"
   }
 }

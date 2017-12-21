@@ -13,8 +13,9 @@ export default Ember.Controller.extend({
 
     add: function (name){
       var controller = this;
-      var sessionVariables = this.get('session.sessionVariables');
-      this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
+      var company = this.get('session.sessionVariables.person.company');
+      // var sessionVariables = this.get('session.sessionVariables');
+      // this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
         var paymentType = controller.store.createRecord('payment-type', {
           name: name,
           company: company
@@ -40,7 +41,7 @@ export default Ember.Controller.extend({
           controller.get('appManager').notify('error', error.detailedMessage);
           paymentType.rollbackAttributes();
         });
-      });
+      // });
 
     },
     removeStage: function (paymentType){

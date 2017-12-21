@@ -7,7 +7,8 @@ export default Ember.Service.extend({
   add: function (name){
     var store = this.get('store');
     var intl = this.get('intl');
-    var person = this.get('session.person');
+    var person = this.get('session.sessionVariables.person');
+    // var person = this.get('session.person');
 
     let promise = new Ember.RSVP.Promise(function(resolve, reject) {
       if (!person) {

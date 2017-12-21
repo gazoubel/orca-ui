@@ -29,8 +29,9 @@ export default Ember.Controller.extend({
       // var sessionVariables = this.get('session.sessionVariables');
 
       var controller = this;
-      var sessionVariables = this.get('session.sessionVariables');
-      this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
+      var company = this.get('session.sessionVariables.person.company');
+      // var sessionVariables = this.get('session.sessionVariables');
+      // this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
         var createdPerson = controller.store.createRecord('person', {
           firstName: newPerson.firstName,
           lastName: newPerson.lastName,
@@ -58,7 +59,7 @@ export default Ember.Controller.extend({
           controller.get('appManager').notify('error', reason);
           createdPerson.rollbackAttributes();
         });
-      });
+      // });
 
     },
     remove: function (person){
