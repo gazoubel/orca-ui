@@ -14,7 +14,8 @@ export default Ember.Controller.extend({
     add: function (name){
       var controller = this;
       var sessionVariables = this.get('session.sessionVariables');
-      this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
+      var company = this.get('company');
+      // this.get('store').findRecord('company', sessionVariables.company_id).then(function(company){
         var provider = controller.store.createRecord('provider', {
           name: name,
           company: company
@@ -39,7 +40,7 @@ export default Ember.Controller.extend({
           controller.get('appManager').notify('error', error.detailedMessage);
           provider.rollbackAttributes();
         });
-      });
+      // });
 
     },
     removeStage: function (provider){

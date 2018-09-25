@@ -12,6 +12,7 @@ export default Ember.Route.extend({
     controller.set('newPerson', {});
     controller.set('people', model.get('people'));
     controller.set('showAll', false);
+    controller.set('company', model);
   },
   actions:{
     refreshModel: function(){

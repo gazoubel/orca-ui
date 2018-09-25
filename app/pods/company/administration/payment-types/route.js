@@ -11,6 +11,7 @@ export default Ember.Route.extend({
   setupController: function(controller, model) {
     controller.set('modelIsInValid', false);
     controller.set('name', "");
-    controller.set('model', model.get('paymentTypes'));
+    controller.set('paymentTypes', model.get('paymentTypes'));
+    controller.set('company', model);
   }
 });

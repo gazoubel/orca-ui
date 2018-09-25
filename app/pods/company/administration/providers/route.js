@@ -13,7 +13,8 @@ export default Ember.Route.extend({
   setupController: function(controller, model) {
     controller.set('modelIsInValid', false);
     controller.set('name', "");
-    controller.set('model', model.get('providers'));
+    controller.set('providers', model.get('providers'));
+    controller.set('company', model);
   },
   actions:{
     // refreshModel: function(){
