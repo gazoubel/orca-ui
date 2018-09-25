@@ -4,7 +4,13 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
+    'ember-power-select': {
+      theme: 'bootstrap'
+    }
+    // ,
+    // 'ember-cli-babel': {
+    //   includePolyfill: true
+    // }
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -29,12 +35,23 @@ module.exports = function(defaults) {
   // app.import('bower_components/AdminLTE/dist/css/skins/_all-skins.css');
 
 
-  app.import('bower_components/AdminLTE/bootstrap/css/bootstrap.css');
-  app.import('bower_components/AdminLTE/dist/css/AdminLTE.css');
-  app.import('bower_components/AdminLTE/dist/css/skins/_all-skins.css');
-  app.import('bower_components/AdminLTE/plugins/jQuery/jQuery-2.2.3.min.js');
-  app.import('bower_components/AdminLTE/bootstrap/js/bootstrap.min.js');
-  app.import('bower_components/AdminLTE/dist/js/app.min.js');
+  // app.import('ember-power-select-typeahead.scss');
+
+  // app.import('bower_components/jquery/dist/jquery.min.js');
+  app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
+  app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
+
+  app.import('bower_components/admin-lte/dist/js/adminlte.min.js');
+  // app.import('bower_components/admin-lte/build/js/Tree.js');
+  // app.import('bower_components/AdminLTE/bootstrap/css/bootstrap.css');
+  // app.import('bower_components/admin-lte/dist/css/alt/AdminLTE-without-plugins.min.css');
+  app.import('bower_components/admin-lte/dist/css/AdminLTE.min.css');
+  app.import('bower_components/admin-lte/dist/css/skins/_all-skins.css');
+  // app.import('bower_components/admin-lte/build/js/PushMenu.js');
+  // app.import('bower_components/AdminLTE/build/js/Layout.js');
+  // app.import('bower_components/AdminLTE/plugins/jQuery/jQuery-2.2.3.min.js');
+  // app.import('bower_components/AdminLTE/bootstrap/js/bootstrap.min.js');
+  // app.import('bower_components/AdminLTE/dist/js/app.min.js');
 
   app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.eot',   { destDir: 'fonts' });
   app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.svg',   { destDir: 'fonts' });

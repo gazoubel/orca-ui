@@ -1,0 +1,15 @@
+<section class="content-header" style="padding-bottom: 5px;">
+  <ol class="breadcrumb" >
+  {{#link-to "company.transactions" tagName="li"}}
+    <a href="#"><i class="fa fa-dashboard"></i>{{t 'product.transactions.breadcrumbs.home'}}</a>
+  {{/link-to}}
+
+  {{#if showpaychecksBreadcrumbs}}
+    {{#link-to "company.transactions.paychecks" tagName="li"}}
+      <a href="#">{{t 'product.transactions.breadcrumbs.paychecks'}}</a>
+    {{/link-to}}
+  {{/if}}
+  </ol>
+
+</section>
+{{outlet}}

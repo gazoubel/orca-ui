@@ -1,0 +1,41 @@
+{{#link-to 'company.transactions.purchase-bills.new'}}
+<button class="btn btn-default">
+  <i class="glyphicon glyphicon-plus"></i>
+  {{t 'product.transactions.purchase-bills.purchase-bill.new'}}
+</button>
+{{/link-to}}
+<div class="box" style="margin-top: 5px">
+  <div class="box-body no-padding">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>{{t 'fields.paid_to'}}</th>
+          <!-- <th>{{t 'fields.transaction_type'}}</th> -->
+          <th>{{t 'fields.description'}}</th>
+          <th>{{t 'fields.purchase_date'}}</th>
+          <th>{{t 'fields.total'}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each purchaseBills as |purchaseBill|}}
+          {{#link-to purchaseBill.route purchaseBill.id tagName="tr"}}
+          <td>{{purchaseBill.provider.name}}</td>
+          <!-- <td>{{t purchaseBill.transactionType}}</td> -->
+          <td>{{purchaseBill.description}}</td>
+          <td>{{format-date purchaseBill.purchaseDate}}</td>
+          <td>{{format-currency purchaseBill.total fallback='n/a'}}</td>
+          <td>
+            {{#if purchaseBill.isLate}}
+              <span class="label label-danger">late</span>
+            {{else if purchaseBill.isUnpaid}}
+              <span class="label label-warning">not paid</span>
+            {{else}}
+              <span class="label label-success">paid</span>
+            {{/if}}</td>
+          {{/link-to}}
+        {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>

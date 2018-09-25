@@ -1,3 +1,28 @@
+$ember-power-select-trigger-border: initial;
+$ember-power-select-active-trigger-border: initial;
+$ember-power-select-trigger-default-border-radius: 0;
+
+.ember-power-select-typeahead-trigger {
+  border: none;
+  border-radius: 0;
+}
+
+.ember-power-select-typeahead-input {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  border: $ember-power-select-default-border;
+  outline: none;
+
+  & :focus {
+    border: $ember-power-select-default-focus-border;
+  }
+}
+
+
 .absolute-center {
   margin: auto;
   position: absolute;
@@ -16,4 +41,46 @@
     min-height: 100%;
     height:auto !important;
     height: 100%;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
+.btn-hover-text {
+  display: none;
+}
+
+.btn-hover {
+  visibility: hidden ;
+}
+
+button:hover .btn-hover-text {
+  display:inline;
+}
+
+tr:hover .btn-hover {
+  visibility: visible;
 }

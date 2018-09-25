@@ -1,0 +1,27 @@
+
+<div class="box" style="margin-top: 5px">
+  <div class="box-body no-padding">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>{{t 'fields.name'}}</th>
+          <th>{{t 'fields.service'}}</th>
+          <th>{{t 'fields.total'}}</th>
+          <th>{{t 'fields.quantity'}}</th>
+          <th>{{t 'fields.payment_paid_date'}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each paycheckItems as |item|}}
+          {{#link-to 'company.transactions.paychecks.paycheck.index' item.paycheck.id tagName="tr" style="vertical-align:middle;"}}
+          <td style="vertical-align:middle;">{{item.paycheck.person.firstName}} {{item.paycheck.person.lastName}}</td>
+            <td style="vertical-align:middle;">{{item.laborItem.name}}</td>
+            <td style="vertical-align:middle;">{{format-currency item.total fallback='n/a'}} </td>
+            <td style="vertical-align:middle;">{{item.quantity}}</td>
+            <td style="vertical-align:middle;">{{format-date item.paycheck.transactionPaidOn fallback=''}}</td>
+          {{/link-to}}
+        {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>

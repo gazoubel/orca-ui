@@ -1,0 +1,29 @@
+<div class="form-group {{if validation.isInvalid "has-error"}}">
+  <label>{{displayText}}</label>
+  {{#if validation.isInvalid}}
+    <label class="control-label">({{validation.message}})</label>
+  {{/if}}
+  {{#if isMultiline }}
+
+    {{textarea id        = idInputElement
+               class     = cssClass
+               value     = field
+               disabled  = isDisabled
+               autofocus = autofocus
+               maxlength = maxlength}}
+
+  {{else}}
+
+    {{orca-input  id        = idInputElement
+                  type      = "text"
+                  value     = field
+                  class     = cssClass
+                  disabled  = isDisabled
+                  autofocus = autofocus
+                  numeric   = numeric
+                  scale     = scale
+                  onChange  = (action "onChange")
+                  maxlength = maxlength}}
+
+  {{/if}}
+</div>

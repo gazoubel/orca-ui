@@ -1,0 +1,70 @@
+<div class ="row" style="margin-top: 30px">
+  {{dashboard-info-card
+    class="col-lg-4 col-md-4 col-sm-6 col-xs-12"
+    title="Target Health"
+    subTitle=(if project.isOnTrack (t 'product.projects.project.stages.stage.on_track') (t 'product.projects.project.stages.stage.above_budget'))
+    icon='fa fa-flag-o'
+    color=(if project.isOnTrack "bg-green" "bg-red")
+    displayProgress=project.isOnTrack
+    progress= project.percentageSpent
+    progressDescription=(concat (format-number project.percentageSpent fallback='0' maximumFractionDigits=2) '%')}}
+  <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+    <div class="info-box">
+        <div class="box-body no-padding">
+          <table style="width:100%;margin-top:5px;">
+            <tbody>
+              <tr>
+                <td style="text-align:right;width:50%;padding-right:5px;"><b>{{t 'product.projects.project.stages.stage.estimated_total'}}:</b></td>
+                <td>{{format-currency project.predictedTotal fallback='n/a'}}</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-right:5px;"><b>{{t 'product.commonWords.total'}}:</b></td>
+                <td>{{format-currency project.totalSpent fallback='n/a'}}</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-right:5px;"><b>{{t 'product.projects.project.stages.stage.total_payments'}}:</b></td>
+                <td>{{format-currency project.totalPayments fallback='n/a'}}</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;padding-right:5px;"><b>{{t 'product.projects.project.stages.stage.total_purchase'}}:</b></td>
+                <td>{{format-currency project.totalPurchase fallback='n/a'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+    {{dashboard-basic-card
+      class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+      title=(t 'product.projects.project.main_info')
+      subTitle=(t 'product.projects.project.main_info_subtext')
+      moreInfoRoute="company.projects.project.info"
+      icon='ion-ios-list-outline'
+      color='bg-yellow'}}
+
+    {{dashboard-basic-card
+      class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+      title=(t 'fields.assignee')
+      subTitle=project.assignee.name
+      moreInfoRoute="company.projects.project.info"
+      icon='ion-person'
+      color='bg-purple'}}
+
+    {{dashboard-basic-card
+      class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+      title=project.projectStagesCurrentProgress
+      subTitle=(t 'product.projects.project.stages_progress')
+      moreInfoRoute="company.projects.project.stages"
+      icon='ion-ios-albums-outline'
+      color='bg-aqua'}}
+      
+    {{dashboard-basic-card
+      class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+      title=project.teamMembers.length
+      subTitle=(t 'product.projects.project.team_members')
+      moreInfoRoute="company.projects.project.team"
+      icon='ion-person-stalker'
+      color='bg-green'}}
+</div>

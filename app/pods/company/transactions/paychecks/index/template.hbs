@@ -1,0 +1,42 @@
+
+{{#link-to 'company.transactions.paychecks.new'}}
+<button class="btn btn-default">
+  <i class="glyphicon glyphicon-plus"></i>
+  {{t 'product.transactions.paychecks.paycheck.new'}}
+</button>
+{{/link-to}}
+<div class="box" style="margin-top: 5px">
+  <div class="box-body no-padding">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>{{t 'fields.paid_to'}}</th>
+          <!-- <th>{{t 'fields.transaction_type'}}</th> -->
+          <th>{{t 'fields.description'}}</th>
+          <th>{{t 'fields.purchase_date'}}</th>
+          <th>{{t 'fields.total'}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each paychecks as |paycheck|}}
+          {{#link-to paycheck.route paycheck.id tagName="tr"}}
+          <td>{{paycheck.person.name}}</td>
+          <!-- <td>{{t paycheck.transactionType}}</td> -->
+          <td>{{paycheck.description}}</td>
+          <td>{{format-date paycheck.purchaseDate}}</td>
+          <td>{{format-currency paycheck.total fallback='n/a'}}</td>
+          <td>
+            {{#if paycheck.isLate}}
+              <span class="label label-danger">late</span>
+            {{else if paycheck.isUnpaid}}
+              <span class="label label-warning">not paid</span>
+            {{else}}
+              <span class="label label-success">paid</span>
+            {{/if}}</td>
+          {{/link-to}}
+        {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>

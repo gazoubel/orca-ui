@@ -1,0 +1,23 @@
+<section class="content-header" >
+  <h1>
+    {{t 'product.administration.people.person.title'}}
+  </h1>
+    <ol class="breadcrumb">
+      {{#link-to "company.administration.people" tagName="li"}}
+        <a href="#"><i class="fa fa-dashboard"></i>{{t 'product.administration.people.title'}}</a>
+      {{/link-to}}
+    </ol>
+</section>
+
+<section class="content">
+  {{#user-profile
+    person = person as |p|}}
+    <div class="row">
+      <div class="col-md-12">
+        {{person-user-form
+          person=p
+          privileges = p.company.privileges }}
+      </div>
+    </div>
+  {{/user-profile}}
+</section>

@@ -1,0 +1,16 @@
+<div class="info-box {{unless useWhiteBackground color}}">
+  <span class="info-box-icon {{if useWhiteBackground color}}"><i class="{{icon}}"></i></span>
+
+  <div class="info-box-content">
+    <span class="info-box-text">{{title}}</span>
+    <span class="info-box-text">{{subTitle}}</span>
+    {{#if displayProgress}}
+      <div class="progress">
+        <div class="progress-bar" style="{{barWidth}}"></div>
+      </div>
+      <span class="progress-description">
+        {{progressDescription}}
+      </span>
+    {{/if}}
+  </div>
+</div>

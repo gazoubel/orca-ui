@@ -1,0 +1,15 @@
+<div class="{{if validation.isInvalid "has-error"}}">
+  <label>{{displayText}}</label>
+  {{#if validation.isInvalid}}
+    <label class="control-label">({{validation.message}})</label>
+  {{/if}}
+  {{#orca-dropdown
+    options=options
+    selected=selected
+    searchField = searchField
+    renderInPlace=true
+    onchange=(action (mut selected))
+    as |item|}}
+     {{yield item}}
+   {{/orca-dropdown}}
+</div>

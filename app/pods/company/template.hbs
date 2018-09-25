@@ -1,93 +1,61 @@
 {{notification-container position="top"}}
 {{#if session.isAuthenticated}}
-<header class="main-header" >
-  <nav class="navbar navbar-static-top" style="margin-left: 0px;">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand">
-        <span>{{model.companyAcronym}}
-          <small style="font-size: 8px;padding-left:5px;">powered by orkaman</small>
-        </span>
-      </a>
+  <header class="main-header" >
+    <div class="logo">
+      <span class="logo-mini"><b>{{model.acronym}}</b></span>
+      <span class="logo-lg"><b>{{model.name}}</b><small style="font-size: 8px;padding-left:5px;">powered by orkaman</small></span>
     </div>
-    <div class="container">
+    <nav class="navbar navbar-static-top" role="navigation">
+      <a role="button" data-toggle="push-menu" class="sidebar-toggle" href="#">
+        <span class="sr-only">Toggle Navigation</span>
+      </a>
       <div class="navbar-custom-menu">
-
-        <!-- <ul class="nav navbar-nav navbar-left" style="margin-left: 10px;">
-          <li class="active"><a href="#">P<span class="hidden-xs">rojects</span> <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">A<span class="hidden-xs">dministration<</span></a></li>
-        </ul> -->
-        <!-- <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
-          </div>
-        </form> -->
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">P<span class="hidden-xs">rojects</span> </a></li>
-          {{#link-to 'company.administration' tagName="li" href=false}}
-            <a href="#"><span class="visible-xs-block">A</span><span class="hidden-xs">Administration<</span></a>
-          {{/link-to}}
-
+        <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="fa fa-user visible-xs-block"></span>
-              <span class="hidden-xs">{{session.sessionVariables.name}}</span><span class="caret"></span>
+              <span class="hidden-xs">{{session.sessionVariables.person.name}}</span><span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 <p>
-                  {{session.sessionVariables.name}}
-                  <small>{{session.sessionVariables.privilege}}</small>
+                  {{session.sessionVariables.person.name}}
+                  <small>{{session.sessionVariables.person.privilegeName}}</small>
                 </p>
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  {{#link-to 'company.current-profile' tagName="a" href=false class="btn btn-default btn-flat"}}
+                    {{t 'product.user.profile'}}
+                  {{/link-to}}
+                  <!-- <a href="#" class="btn btn-default btn-flat">{{t 'product.user.profile'}}</a> -->
                 </div>
                 <div class="pull-right">
-                  <a {{action 'doSignOut'}} class="btn btn-default btn-flat">Sign out</a>
+                  <a {{action 'doSignOut'}} class="btn btn-default btn-flat">{{t 'product.user.signOut'}}</a>
                 </div>
               </li>
             </ul>
           </li>
         </ul>
-      </div><!-- /.navbar-collapse -->
-    </div>
-    </div>
-  </nav>
-</header>
-<div class="content-wrapper" style="min-height: 817px; margin-left: 0px">
-  <div class="container">
-      {{outlet}}
-  </div>
-</div>
-
-<footer class="main-footer" style="margin-left: 0px;">
-  <div class="pull-right hidden-xs">
-    Report an issue
-  </div>
-  <strong>Copyright © 2016 <a href="#">Orkaman</a>.</strong> All rights reserved.
-</footer>
-{{else}}
-<div class="container">
-  <div class="row">
-    <div class="absolute-center is-responsive">
-      <div class="panel panel-default">
-        <div class="panel-heading">{{model.companyName}}</div>
-        <div class="panel-body">
-          <form {{action "doSignIn" email password on="submit"}}>
-            <label for="email">Email</label>
-            {{input value=email class="form-control"}}
-            <label for="password">Password</label>
-            {{input value=password type="password" class="form-control"}}
-            <button type="submit" class="btn btn-success btn-lg btn-block" style="margin-top: 15px">Sign in</button>
-          </form>
-        </div>
-        <div class="panel-footer">
-        </div>
       </div>
-    </div>
+    </nav>
+  </header>
+  <aside class="main-sidebar">
+    <section class="sidebar">
+      {{main-side-menu}}
+    </section>
+  </aside>
+  <div class="content-wrapper" style="padding: 15px;padding-bottom: 60px;">
+    {{outlet}}
   </div>
-</div>
+
+  <footer class="main-footer" style="position: fixed;left: 0;bottom: 0px;width: 100%;">
+    <div class="pull-right hidden-xs">
+      Report an issue
+    </div>
+    <strong>Copyright © 2016 <a href="#">Orkaman</a>.</strong> All rights reserved.
+  </footer>
+
+{{else}}
+  not authorized.
 {{/if}}

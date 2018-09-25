@@ -1,0 +1,19 @@
+{{#if isAdding}}
+  <div class="box {{if modelIsInValid "box-danger" "box-success"}} ">
+    {{#if modelIsInValid}}
+    <div class="box-header">Error</div>
+    {{/if}}
+    <div class="box-body">
+      <form class="{{formCss}}" role="form" {{action "addClicked" on="submit"}}>
+          {{yield}}
+          <button type="submit" class="btn btn-default">{{t 'product.commonWords.add'}}</button>
+          <button class="btn btn-default"  {{action "closeClicked"}}>{{t 'product.commonWords.done'}}</button>
+      </form>
+    </div>
+  </div>
+{{else}}
+  <button class="btn btn-default" sty {{action "openAddPanel" bubbles=false}}>
+    <i class="glyphicon glyphicon-plus"></i>
+    {{t 'product.commonWords.add'}}
+  </button>
+{{/if}}

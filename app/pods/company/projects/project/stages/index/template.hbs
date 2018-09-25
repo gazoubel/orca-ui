@@ -1,0 +1,60 @@
+{{#link-to 'company.projects.project.stages.new'}}
+<button class="btn btn-default" style="margin-top: 30px;">
+  <i class="glyphicon glyphicon-plus"></i>
+  {{t 'product.projects.project.stages.new_stage'}}
+</button>
+{{/link-to}}
+<div class="box" style="margin-top: 5px">
+  <div class="box-body no-padding">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>{{t 'fields.name'}}</th>
+          <th>{{t 'fields.predicted_total'}}</th>
+          <th>{{t 'fields.total_spent'}}</th>
+          <!-- <th>{{t 'fields.total_spent'}}</th> -->
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each projectStages as |projectStage|}}
+          {{#link-to 'company.projects.project.stages.stage' projectStage.id tagName="tr" style="vertical-align:middle;" }}
+            <td style="vertical-align:middle;">
+              {{#if projectStage.isWaiting}}
+              {{else if projectStage.isOnTrack}}
+                <a href="#" data-toggle="tooltip" data-placement="top" title="Project is on track.">
+                  <i class="fa fa-circle-o text-green"></i>
+                </a>
+              {{else}}
+                <a href="#" data-toggle="tooltip" data-placement="top" title="Project is above budget.">
+                  <i class="fa fa-circle-o text-red"></i>
+                </a>
+              {{/if}}
+              {{projectStage.name}}</td>
+            <td style="vertical-align:middle;">{{format-currency projectStage.predictedTotal fallback='n/a'}} </td>
+            <td style="vertical-align:middle;">{{format-currency projectStage.total fallback='n/a'}} </td>
+            <!-- <td style="vertical-align:middle;">
+              {{#if projectStage.isWaiting}}
+                <i class="fa fa-circle-o text-blue"></i>not started
+                {{else if projectStage.isOnTrack}}
+                <i class="fa fa-circle-o text-green"></i>on track
+                {{else}}
+                <i class="fa fa-circle-o text-red"></i>above budget
+              {{/if}}
+            </td> -->
+            <td style="vertical-align:middle;">
+              {{#if projectStage.isWaiting}}
+                <button class="btn btn-default pull-right" style="margin-right: 5px;" {{action "start" projectStage bubbles=false}}>{{t 'product.projects.project.stages.stage.start_stage'}}</button>
+              {{else if projectStage.isInProgress}}
+                <button class="btn btn-default pull-right" style="margin-right: 5px;" {{action "finish" projectStage bubbles=false}}>{{t 'product.projects.project.stages.stage.finish_stage'}}</button>
+              {{else}}
+                <span class="pull-right" style="margin-right: 5px">{{t 'product.projects.project.stages.stage.stage_closed'}}</span>
+              {{/if}}
+            </td>
+            {{/link-to}}
+
+        {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>

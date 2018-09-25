@@ -1,0 +1,79 @@
+<!-- <div class="row"> -->
+  <!-- <div class="col-sm-4"> -->
+    {{#link-to 'company.transactions.purchase-bills.new'}}
+    <button class="btn btn-default">
+      <i class="glyphicon glyphicon-plus"></i>
+      {{t 'product.transactions.purchase-bills.purchase-bill.new'}}
+    </button>
+    {{/link-to}}
+  <!-- </div> -->
+  <div class="pull-right"  style="margin-top: 15px">
+    {{#link-to 'company.transactions.purchase-bills' }}
+    view all
+    {{/link-to}}
+  </div>
+<!-- </div> -->
+<div class="box" style="margin-top: 5px">
+  <div class="box-body no-padding">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>{{t 'fields.paid_to'}}</th>
+          <th>{{t 'fields.transaction_type'}}</th>
+          <th>{{t 'fields.description'}}</th>
+          <th>{{t 'fields.payment_due_date'}}</th>
+          <th>{{t 'fields.total'}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each purchaseBills as |purchaseBill|}}
+          {{#link-to purchaseBill.route purchaseBill.id tagName="tr"}}
+          <td>{{purchaseBill.provider.name}}</td>
+          <td>{{t purchaseBill.transactionType}}</td>
+          <td>{{purchaseBill.description}}</td>
+          <td>{{format-date purchaseBill.paymentDueDate}}</td>
+          <td>{{format-currency purchaseBill.total fallback='n/a'}}</td>
+          {{/link-to}}
+        {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+{{#link-to 'company.transactions.paychecks.new'}}
+<button class="btn btn-default">
+  <i class="glyphicon glyphicon-plus"></i>
+  {{t 'product.transactions.paychecks.paycheck.new'}}
+</button>
+{{/link-to}}
+<div class="pull-right"  style="margin-top: 15px">
+  {{#link-to 'company.transactions.paychecks' }}
+  view all
+  {{/link-to}}
+</div>
+<div class="box" style="margin-top: 5px">
+  <div class="box-body no-padding">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>{{t 'fields.paid_to'}}</th>
+          <th>{{t 'fields.transaction_type'}}</th>
+          <th>{{t 'fields.description'}}</th>
+          <th>{{t 'fields.payment_due_date'}}</th>
+          <th>{{t 'fields.total'}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each paychecks as |paycheck|}}
+          {{#link-to paycheck.route paycheck.id tagName="tr"}}
+          <td>{{paycheck.person.firstName}}</td>
+          <td>{{t paycheck.transactionType}}</td>
+          <td>{{paycheck.description}}</td>
+          <td>{{format-date paycheck.paymentDueDate}}</td>
+          <td>{{format-currency paycheck.total fallback='n/a'}}</td>
+          {{/link-to}}
+        {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>

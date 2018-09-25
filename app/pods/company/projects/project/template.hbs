@@ -1,0 +1,25 @@
+<section class="content-header" >
+  <h1>
+    {{t 'product.projects.project.label'}}: {{project.name}}
+  </h1>
+  {{#if showBreadCrumbs}}
+    <ol class="breadcrumb">
+      {{#link-to "company.projects.project.index" tagName="li"}}
+        <a href="#"><i class="fa fa-dashboard"></i>{{t 'product.projects.project.breadcrumbs.home'}}</a>
+      {{/link-to}}
+
+      {{#if showBreadCrumbsForStages}}
+        {{#link-to "company.projects.project.stages" tagName="li"}}
+          <a href="#">{{t 'product.projects.project.breadcrumbs.stages'}}</a>
+        {{/link-to}}
+      {{/if}}
+
+      {{#if showBreadCrumbsForStage}}
+        {{#link-to "company.projects.project.stages.stage" tagName="li"}}
+          <a href="#">{{t 'product.projects.project.breadcrumbs.stage'}}</a>
+        {{/link-to}}
+      {{/if}}
+    </ol>
+  {{/if}}
+</section>
+{{outlet}}

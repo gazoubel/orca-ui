@@ -1,0 +1,36 @@
+<div class="{{if validation.isInvalid "has-error"}}">
+  <label>{{displayText}}</label>
+  {{#if validation.isInvalid}}
+    <label class="control-label">({{validation.message}})</label>
+  {{/if}}
+  {{#if canCreate}}
+    {{#power-select-typeahead-with-create
+     search=search
+     extra=(hash labelPath='name')
+     selected=selected
+     onchange=onchange
+     oncreate=oncreate as |item|
+     }}
+       {{yield item}}
+     {{/power-select-typeahead-with-create}}
+   {{else}}
+     {{#power-select-typeahead
+      search=search
+      extra=(hash labelPath='name')
+      selected=selected
+      onchange=onchange as |item|
+      }}
+        {{yield item}}
+      {{/power-select-typeahead}}
+   {{/if}}
+<!--
+   {{#orca-typeahead
+    search=search
+    options=options
+    selected=selected
+    onchange=(action (mut selected))
+    oncreate=oncreate as |item|}}
+      {{yield item}}
+    {{/orca-typeahead}} -->
+
+</div>

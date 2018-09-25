@@ -1,0 +1,36 @@
+<!-- <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-plus"></i></button> -->
+<h4 style="padding-left: 15px;">{{t 'product.projects.project.team_members'}}<small></small></h4>
+{{#show-on-click  modelIsInValid=modelIsInValid formCss="col-sm-8 pull-right"
+    onCloseClicked="closeAddPanel" onAddClicked="addNewMember" itemAdded=selectedMember }}
+  <div class="form-group col-sm-8 {{if modelIsInValid "has-error"}}" style="margin-bottom:0px;">
+      {{#orca-dropdown
+        id= "memberInput"
+        classNames="form-control"
+        options=availableTeamMembers
+        selected=selectedMember
+        onchange=(action (mut selectedMember))
+        as |member|}}
+          {{member.name}}
+      {{/orca-dropdown}}
+  </div>
+{{/show-on-click}}
+<div class="box" style="margin-top: 5px">
+  <div class="box-body no-padding">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>{{t 'fields.name'}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each project.teamMembers as |teamMember|}}
+        <tr>
+          <td style="vertical-align:middle;">{{teamMember.name}}</td>
+          <td><button class="btn btn-default pull-right" {{action "remove" teamMember}}>{{t 'fields.remove'}}</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>
