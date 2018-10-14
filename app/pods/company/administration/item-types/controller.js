@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  session: Ember.inject.service('session'),
-  intl: Ember.inject.service(),
+export default Controller.extend({
+  session: service('session'),
+  intl: service(),
   modelIsInValid: false,
   basicTypes: [{name: 'fields.basicTypes.material', value: 'material'}, {name: 'fields.basicTypes.labor', value: 'labor'}],
   newItemType: {name: '', basicType: null},
@@ -13,8 +14,8 @@ export default Ember.Controller.extend({
       this.set('newItemType', {name: '', isLabor: false});
     },
 
-    add: function (itemType){
-      var newItemType = itemType;
+    add: function (newItemType){
+      // var newItemType = itemType;
       var controller = this;
       var company = this.get('session.sessionVariables.person.company');
       // var sessionVariables = this.get('session.sessionVariables');
@@ -28,7 +29,7 @@ export default Ember.Controller.extend({
 
         if (!itemType.get('validations.isValid')) {
           controller.set('modelIsInValid', true);
-          controller.get('appManager').notify('error', itemType.get('validations.messages'));
+          controller.appManager.notify('error', itemType.get('validations.messages'));
           newItemType.rollbackAttributes();
           return;
         }
@@ -36,12 +37,12 @@ export default Ember.Controller.extend({
         itemType.save().then(function() {
           controller.set('modelIsInValid', false);
           controller.set('newItemType', {name: '', isLabor: false});
-          var t_model = controller.get('intl').t('models.itemtype');
-          var message = controller.get('intl').t('product.messages.model_created',{model: t_model});
-          controller.get('appManager').notify('success', message);
+          var t_model = controller.intl.t('models.itemtype');
+          var message = controller.intl.t('product.messages.model_created',{model: t_model});
+          controller.appManager.notify('success', message);
         }).catch(function(error){
           controller.set('modelIsInValid', true);
-          controller.get('appManager').notify('error', error.detailedMessage);
+          controller.appManager.notify('error', error.detailedMessage);
           itemType.rollbackAttributes();
         });
       // });
