@@ -1,0 +1,14 @@
+{
+  "name": "orca-ui",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "components-font-awesome": "4.4.0",
+    "ionicons": "2.0.1",
+    "bootstrap-datepicker": "^1.6.4",
+    "jquery.inputmask": "3.2.7",
+    "admin-lte": "^2.4.2"
+  },
+  "resolutions": {
+    "jquery": "^3.2.1"
+  }
+}
