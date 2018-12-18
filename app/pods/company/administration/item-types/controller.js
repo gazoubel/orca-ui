@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  session: Ember.inject.service('session'),
-  intl: Ember.inject.service(),
+export default Controller.extend({
+  session: service('session'),
+  intl: service(),
   modelIsInValid: false,
   basicTypes: [{name: 'fields.basicTypes.material', value: 'material'}, {name: 'fields.basicTypes.labor', value: 'labor'}],
   newItemType: {name: '', basicType: null},
